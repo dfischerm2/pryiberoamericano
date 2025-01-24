@@ -912,6 +912,7 @@ label {
 }
 
 .slider-content.second-slider-content h2 {
+    font-family: 'Montserrat', sans-serif; /* Usa Montserrat o Roboto */
     font-size: 5vw; /* Escala el tamaño dinámicamente */
     color: #0069ac;
     line-height: 1.2; /* Mejora la separación de líneas */
