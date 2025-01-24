@@ -167,11 +167,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-12 wow fadeInDown animated" data-animation="fadeInUp animated"
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
                      data-delay=".2s">
                     <div class="single-team text-center pt-50  pb-50 mb-30">
-                        <div class="team-thumb">
-                            <img src="" alt="img">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
                         </div>
                         <div class="team-info">
                             <h5>Dr. Edwin Carrasquero</h5>
@@ -187,11 +187,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 wow fadeInDown animated" data-animation="fadeInUp animated"
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
                      data-delay=".2s">
                     <div class="single-team text-center pt-50  pb-50 mb-30">
-                        <div class="team-thumb">
-                            <img src="img/speaker_2.png" alt="img">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
                         </div>
                         <div class="team-info">
                             <h5>Dra. Purificación Galindo Villardón</h5>
@@ -207,11 +207,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 wow fadeInDown animated" data-animation="fadeInUp animated"
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
                      data-delay=".2s">
                     <div class="single-team text-center pt-50  pb-50 mb-30">
-                        <div class="team-thumb">
-                            <img src="img/speaker_3.png" alt="img">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
                         </div>
                         <div class="team-info">
                             <h5>Dr. Paolo Geovanny Fabre Merchán</h5>
@@ -237,8 +237,10 @@
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8">
                 <div class="section-title text-center mb-80">
-                    <span class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Calendar</span>
-                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Event Calendar</h2>
+                    <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
+                          data-delay=".2s">Calendar</span>
+                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Event
+                        Calendar</h2>
                 </div>
             </div>
         </div>
@@ -680,7 +682,8 @@
             </div>
         </div>
     </div>
-    <section id="pricing" class="pricing-area pt-113 pb-90 fix" style="background-image:url(/static/eventes/img/pricing_bg.jpg);background-size: cover;">
+    <section id="pricing" class="pricing-area pt-113 pb-90 fix"
+             style="background-image:url(/static/eventes/img/pricing_bg.jpg);background-size: cover;">
         <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
              data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
              data-paroller-direction="horizontal"><h2>Plans</h2></div>
@@ -759,6 +762,39 @@
 {% endblock %}
 
 {% block jscript %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const adjustColumnHeights = () => {
+                // Selecciona todas las columnas
+                const columns = document.querySelectorAll('.single-team');
+                let maxHeight = 0;
+
+                // Restablece las alturas para recalcular
+                columns.forEach(column => {
+                    column.style.height = 'auto';
+                });
+
+                // Encuentra la altura máxima entre todas las columnas
+                columns.forEach(column => {
+                    const height = column.offsetHeight;
+                    if (height > maxHeight) {
+                        maxHeight = height;
+                    }
+                });
+
+                // Aplica la altura máxima a todas las columnas
+                columns.forEach(column => {
+                    column.style.height = `${maxHeight}px`;
+                });
+            };
+
+            // Ajusta las alturas al cargar la página
+            adjustColumnHeights();
+
+            // Ajusta las alturas al redimensionar la ventana
+            window.addEventListener("resize", adjustColumnHeights);
+        });
+    </script>
 {% endblock %}
 
 
