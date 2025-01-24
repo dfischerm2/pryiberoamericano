@@ -911,12 +911,66 @@ label {
     z-index: -1;
 }
 
-.slider-bg2 .second-slider-content h2 {
-
-    font-size: 74px;
+.slider-content.second-slider-content h2 {
+    font-size: 5vw; /* Escala el tamaño dinámicamente */
     color: #0069ac;
+    line-height: 1.2; /* Mejora la separación de líneas */
     margin-bottom: 20px;
+    margin-top: -20px;
+    text-transform: uppercase;
 }
+
+/* Media queries para tamaños específicos */
+@media (max-width: 1024px) { /* Tablets */
+    .slider-content.second-slider-content h2 {
+        font-size: 7vw; /* Tamaño adaptado para tablets */
+        margin-top: -10px;
+    }
+}
+
+@media (max-width: 768px) { /* Teléfonos medianos */
+    .slider-content.second-slider-content h2 {
+        font-size: 8vw; /* Tamaño reducido para teléfonos */
+        margin-top: 0px;
+    }
+}
+
+@media (max-width: 480px) { /* Teléfonos pequeños */
+    .slider-content.second-slider-content h2 {
+        font-size: 8vw; /* Asegura legibilidad en pantallas pequeñas */
+        line-height: 1.1; /* Más compacto */
+    }
+}
+
+/* Ajuste base */
+.single-slider.slick-slide.slick-current.slick-active {
+    position: relative; /* Asegura que top funcione */
+}
+
+/* Ajuste solo para teléfonos (pantallas menores a 768px) */
+@media (max-width: 480px) {
+    .single-slider.slick-slide.slick-current.slick-active {
+        top: -110px !important;
+    }
+}
+
+.slider-content.second-slider-content ul {
+    font-size: 1.2rem; /* Ajusta el tamaño de los íconos y texto */
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.slider-content.second-slider-content ul li {
+    display: inline-block;
+    margin: 0 10px;
+    color: #333; /* Color del texto */
+}
+
+.slider-content.second-slider-content ul li i {
+    margin-right: 5px; /* Separación entre ícono y texto */
+}
+
+
 
 .slider-bg2 .ss-three {
 
@@ -1271,8 +1325,8 @@ label {
 }
 
 .second-slider-content {
-    padding-top: 85px;
-    padding-bottom: 5px;
+    /*padding-top: 85px;*/
+    /*padding-bottom: 5px;*/
 }
 
 .slider-shape {

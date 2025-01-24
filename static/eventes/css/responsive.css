@@ -225,8 +225,8 @@
     position: relative;
 }
 .slider-bg2 .second-slider-content h2 {
-    font-size: 100px;
-    margin-bottom: 20px;
+    /*font-size: 100px;*/
+    /*margin-bottom: 20px;*/
 }
 .booking-form {
     float: right;
@@ -541,7 +541,7 @@ padding: 50px 0;
 	background-size:100%;
 }
 .slider-bg2 .second-slider-content h2 {
-    font-size: 45px;
+    /*font-size: 45px;*/
 }
 .slider-bg2 .slider-content ul li::after {
     content: "|";
@@ -990,6 +990,8 @@ padding: 50px 0;
 	}
 	.second-slider-content {
     padding-left: 30px;
+        padding-right: 20px;
+
 }
 	.cr2 {
     width: 285px;
