@@ -1435,7 +1435,7 @@ label {
 
 .feature-box {
     float: left;
-    width: 50%;
+    width: 100%;
     text-align: center;
     margin-bottom: 50px;
 }
