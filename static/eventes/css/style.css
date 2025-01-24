@@ -3968,7 +3968,8 @@ i {
 }
 
 .event-list-content:hover {
-    border: 10px solid #FF9900;
+    /*border: 10px solid #FF9900;*/
+    background-color: #f6fbff;
 }
 
 .event-list-content .crical {
