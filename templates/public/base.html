@@ -1,0 +1,519 @@
+{% load templatefunctions %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ titulo }} | {{ nombreempresa }}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta name="description" content="{{ nombreempresa }}">
+    <meta name="keywords" content="{{ keywords }}">
+    <meta name="theme-color" content="#2874A6">
+    {% if request.user.is_authenticated %}
+        <meta name="user_id" content="{{ request.user.pk }}">
+    {% endif %}
+    <link rel="stylesheet" href="/static/form-control.css?2.18">
+    <link href="/static/fonts/fontawesome/css/all.css?v=6.1.1" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/eventes/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/eventes/css/animate.min.css">
+    <link rel="stylesheet" href="/static/eventes/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/eventes/css/dripicons.css">
+    <link rel="stylesheet" href="/static/eventes/css/slick.css">
+    <link rel="stylesheet" href="/static/eventes/css/default.css">
+    <link rel="stylesheet" href="/static/eventes/css/style.css">
+    <link rel="stylesheet" href="/static/eventes/css/responsive.css">
+    <meta name="islogged" content="{{ request.user.is_authenticated }}">
+    <link href="{{ favicon }}" rel="shortcut icon"/>
+    <script>
+        let mode = window.localStorage.getItem('mode'),
+            root = document.getElementsByTagName('html')[0];
+        if (mode !== undefined && mode === 'dark') {
+            root.classList.add('dark-mode');
+        } else {
+            root.classList.remove('dark-mode');
+        }
+    </script>
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        .dark-mode .page-loading {
+            background-color: #121519;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active > .page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner > span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6f788b;
+        }
+
+        .dark-mode .page-loading-inner > span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            background-color: #d7dde2;
+            border-radius: 50%;
+            opacity: 0;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        .dark-mode .page-spinner {
+            background-color: rgba(255, 255, 255, .25);
+        }
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        .select2-dropdown {
+            border-radius: 10px;
+        }
+
+        .scroll-up-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none; /* Ocultarlo por defecto */
+            width: 50px;
+            height: 50px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .scroll-up-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .scroll-up-btn.show {
+            display: block; /* Mostrar el botón */
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <style>
+        {% if request.path != '/' %}
+            .header-area {
+                background-color: rgb(0, 38, 145) !important;
+            }
+
+            @media (min-width: 992px) {
+                .header-area {
+                    margin-bottom: 100px;
+                }
+            }
+
+        {% endif %}
+
+        @media (max-width: 1200px) {
+            .header-btn.second-header-btn {
+                margin-left: 10px;
+            }
+
+            .header-btn.second-header-btn .btn {
+                padding: 6px 12px;
+                font-size: 14px;
+                min-width: auto;
+            }
+
+            .header-btn.second-header-btn .btn-outline {
+                margin-right: 5px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-btn.second-header-btn .btn {
+                padding: 11px 17px;
+                font-size: 13px;
+            }
+        }
+    </style>
+    <!-- Import Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"
+          id="google-font">
+    <!-- Import Google Font-->
+    <link rel="stylesheet" media="screen" href="/static/landing/assets/vendor/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" media="screen"
+          href="/static/landing/assets/vendor/lightgallery/css/lightgallery-bundle.min.css"/>
+    <link rel="stylesheet" media="screen" href="/static/loading.css?1">
+    {% block head %}{% endblock %}
+    <script>
+        {% if activar_cambio_clave %}
+            window.location.href = "/changepass/";
+        {% endif %}
+    </script>
+</head>
+
+
+<div id="wrapper">
+    {% include 'public/navbar.html' %}
+
+    <main id="content" class="no-bottom no-top">
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% include 'public/footer.html' %}
+</div>
+
+<button id="scrollUp" class="scroll-up-btn" onclick="scrollToTop()"><i class="fas fa-level-up-alt"></i></button>
+
+<script src="/static/eventes/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/static/landing/assets/js/jquery-3.6.1.min.js"></script>
+
+<script src="/static/eventes/js/popper.min.js"></script>
+<script src="/static/eventes/js/one-page-nav-min.js"></script>
+<script src="/static/eventes/js/slick.min.js"></script>
+<script src="/static/eventes/js/ajax-form.js"></script>
+<script src="/static/eventes/js/paroller.js"></script>
+<script src="/static/eventes/js/wow.min.js"></script>
+<script src="/static/eventes/js/element-in-view.js"></script>
+<script src="/static/eventes/js/isotope.pkgd.min.js"></script>
+<script src="/static/eventes/js/imagesloaded.pkgd.min.js"></script>
+<script src="/static/eventes/js/main.js"></script>
+
+<script src="/static/landing/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/landing/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="/static/landing/assets/vendor/cleave.js/dist/cleave.min.js"></script>
+<script src="/static/landing/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/static/landing/assets/vendor/shufflejs/dist/shuffle.min.js"></script>
+<script src=/static/landing/assets/vendor/parallaxjs/dist/parallax.min.js></script>
+<script src="/static/landing/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/static/landing/assets/vendor/aos/dist/aos.js"></script>
+<script src="/static/landing/assets/vendor/lightgallery/lightgallery.min.js"></script>
+<script src="/static/landing/assets/vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
+<script src="/static/landing/assets/vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
+<script src="/static/landing/assets/vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script>
+<!-- Main theme script-->
+<script src="/static/landing/assets/js/theme.min.js"></script>
+{# info device #}
+<script src="/static/device_info/ua-parser.min.js"></script>
+{#<script src="/static/js/jsencrypt/forge.min.js?v=1.5"></script>#}
+<script src="/static/js/check_os.js"></script>
+{# Alert dialogs #}
+<script type="text/javascript"
+        src="/static/alertsDialogsMobile/alertDialogMaterialDesign/dist/duDialog.js"></script>
+<script src='/static/alertsDialogsMobile/alertDialogCupertino/js/component.js'></script>
+<!-- Plugins -->
+<link rel="stylesheet" href="/static/izitoast/css/iziToast.min.css">
+<script src="/static/izitoast/js/iziToast.min.js" type="text/javascript"></script>
+<script src="/static/jquery.blockUI.js"></script>
+<link rel="stylesheet" href="/static/dropify/css/dropifycitas.min.css?2.1">
+<script src="/static/dropify/js/dropify.min.js"></script>
+<script src="/static/validaciones/funciones.js?v=3"></script>
+<link rel="stylesheet" href="/static/sweetalert2/sweetalert2.css?1.0">
+<script src="/static/sweetalert2/sweetalert2.js"></script>
+<link rel="stylesheet" href="/static/autocomplement/jquery.autocomplete.css">
+<script src="/static/autocomplement/jquery.autocomplete.js"></script>
+<link rel="stylesheet" href="/static/spinner.css?0.6" type="text/css"/>
+<link rel="stylesheet" href="/static/izitoast/css/iziToast.min.css">
+<script src="/static/izitoast/js/iziToast.min.js" type="text/javascript"></script>
+<link href="/static/selectmultiple/select2.min.css?1" rel="stylesheet">
+<script src="/static/selectmultiple/select2.min.js"></script>
+<script src="/static/selectmultiple/i18n/es.js"></script>
+<!-- OWL CAROUSEL -->
+<link rel="stylesheet" href="/static/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="/static/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
+<script src="/static/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+<script src="/static/assets/plugins/bootstrap-show-password/dist/bootstrap-show-password.js?v=1"></script>
+<!-- Datatable -->
+{#<link rel="stylesheet" href="/static/datatables/datatables.css">#}
+{#<script src="/static/datatables/datatables.js"></script>#}
+{#<script type="text/javascript"#}
+{#        src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>#}
+{#<link rel="stylesheet" type="text/css"#}
+{#      href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap.min.css"/>#}
+{#<script type="text/javascript"#}
+{#        src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>#}
+{#<script type="text/javascript"#}
+{#        src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap.min.js"></script>#}
+{#<link rel="stylesheet" type="text/css"#}
+{#      href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>#}
+{#<link rel="stylesheet" type="text/css"#}
+{#      href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap.min.css"/>#}
+{#<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">#}
+{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>#}
+{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>#}
+{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap.min.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>#}
+
+
+{# TEMPLATE SCRIPTS #}
+{# TEMPLATE SCRIPTS #}
+
+<script src="/static/dropzone/dropzone.js"></script>
+<link rel="stylesheet" href="/static/dropzone/dropzone.css">
+
+<script src="/static/assets/plugins/switchery/switchery.min.js"></script>
+<script src="/static/js/renderSwicheryControl.js"></script>
+<link rel="stylesheet" href="/static/assets/plugins/switchery/switchery.min.css">
+
+<script>
+
+    window.onload = function () {
+        {% if messages %}
+            {% for message in messages %}
+                Swal.fire('{{ message }}', '{{ nombreempresa }}', '{% if message.tags %}{{ message.tags }}{% endif %}');
+            {% endfor %}
+        {% endif %}
+    }
+
+
+    function pantallaespera() {
+        $.blockUI({
+            {#message: '<span class="spinner-grow spinner-border-lg" role="status" aria-hidden="true" style="width: 5rem; height: 5rem; background-color: #fc5c00; color: #fc5c00; !important"</span>',#}
+            message: `<div id="loader" class="m-loaders-spinner"><div class="spinner"><div class="right-side"><div class="bar"></div></div><div class="left-side"><div class="bar"></div></div></div></div>`,
+            css: {
+                backgroundColor: 'transparent',
+                border: '0',
+                zIndex: 9999999
+            },
+            overlayCSS: {
+                backgroundColor: '#21242d59',
+                opacity: 0.8,
+                zIndex: 9999990
+            }
+        });
+    }
+
+    function getPromise(url, params) {
+        return new Promise(resolve => {
+            //$.get(url, {data: JSON.stringify(params)}, function (data) {
+            $.get(url, params, function (data) {
+                resolve(data);
+            }, 'json');
+        });
+    }
+
+    function postPromise(url, params) {
+        return new Promise(resolve => {
+            $.post(url, params, function (data) {
+                resolve(data);
+            }, 'json');
+        });
+    }
+
+    function alertaSuccess(mensaje) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            type: 'success',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1000
+        })
+    }
+
+    function alertaWarning(mensaje) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            type: 'warning',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1000
+        })
+    }
+
+    function alertaDanger(mensaje) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            type: 'error',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1000
+        })
+    }
+
+    function mensajeSuccess(mensaje) {
+        Swal.fire('', mensaje, 'success')
+    }
+
+    function mensajeWarning(mensaje) {
+        Swal.fire('', mensaje, 'warning')
+    }
+
+    function mensajeDanger(mensaje) {
+        Swal.fire('', mensaje, 'error')
+    }
+
+    function back() {
+        history.back();
+    }
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+    function toastMensaje(mensaje, timeout = 20000, icon = 'fa fa-question-circle', pauseOnHover = true, image = '', buttons = []) {
+        iziToast.show({
+            theme: 'dark',
+            icon: icon,
+            image: image,
+            title: '{{ nombreempresa }}',
+            displayMode: 2,
+            pauseOnHover: pauseOnHover,
+            message: mensaje,
+            buttons: buttons,
+            position: 'topCenter',
+            transitionIn: 'flipInX',
+            transitionOut: 'flipOutX',
+            progressBarColor: '#F4D03F',
+            layout: 2,
+            iconColor: '#F1C40F',
+            balloon: true,
+            timeout: timeout,
+        });
+    }
+
+    function contactarwhatsapp() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            let url = `https://api.whatsapp.com/send?phone=+593{{ telefonoempresa }}&text=Hola *{{ nombreempresa }}* necesito información`;
+            window.open(url);
+        } else {
+            let url = `https://web.whatsapp.com/send?l=en&phone=+593{{ telefonoempresa }}&text=Hola *{{ nombreempresa }}* necesito información`;
+            window.open(url);
+        }
+    }
+
+    $('.valnum').on('keypress', function (e) {
+        return soloNumeros(e)
+    });
+
+
+    window.addEventListener('scroll', function () {
+        const scrollUpBtn = document.getElementById('scrollUp');
+        if (window.scrollY > 200) {
+            scrollUpBtn.classList.add('show');
+        } else {
+            scrollUpBtn.classList.remove('show');
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    {#const tablaResp = $('.tabla-responsive').DataTable({#}
+    {#    responsive: true,#}
+    {#    ordering: false,#}
+    {#    paging: false,#}
+    {#    searching: false,#}
+    {#    bInfo: false,#}
+    {#    dom: 'Bfrtip',#}
+    {#    language: {#}
+    {#        "url": '/static/js/i18n/Spanish.json'#}
+    {#    },#}
+    {#    buttons: []#}
+    {# }); #}
+    {#tablaResp.buttons().container().appendTo('.tabla-responsive .col-md-6:eq(0)');#}
+</script>
+
+{% block jscript %}
+{% endblock %}
+
+</body>
+
+</html>
