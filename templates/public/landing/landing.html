@@ -1,172 +1,6 @@
 {% extends 'public/base.html' %}
 
 {% block head %}
-    <style>
-        .event-schedule {
-            border: 1px solid rgba(0, 0, 0, .125);
-        }
-
-        .schedule-time {
-            min-width: 140px;
-            color: #fd7e14 !important;
-        }
-
-        .schedule-item:not(:last-child) {
-            border-bottom: 1px solid rgba(0, 0, 0, .1);
-            padding-bottom: 1rem;
-        }
-    </style>
-    <style>
-        .accordion-button {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 10px !important;
-            padding: 1.25rem;
-            width: 100%;
-        }
-
-        .button-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            gap: 1rem;
-        }
-
-        .topic-icon {
-            min-width: 45px;
-            height: 45px;
-            background: rgba(0, 43, 73, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #002b49;
-        }
-
-        .topic-header {
-            flex: 1;
-        }
-
-        .header-text h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #002b49;
-        }
-
-        .topic-subtitle {
-            display: block;
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.25rem;
-        }
-
-        .expand-icon {
-            width: 28px;
-            height: 28px;
-            background: #f0f0f0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .expand-icon i {
-            color: #002b49;
-            font-size: 0.8rem;
-        }
-
-        /* Estados del acordeón */
-        .accordion-button:not(.collapsed) {
-            background: #002b49;
-        }
-
-        .accordion-button:not(.collapsed) .expand-icon {
-            background: #FF9900;
-            transform: rotate(180deg);
-        }
-
-        .accordion-button:not(.collapsed) .expand-icon i {
-            color: white;
-        }
-
-        .accordion-button:not(.collapsed) .header-text h3,
-        .accordion-button:not(.collapsed) .topic-subtitle {
-            color: white;
-        }
-
-        .accordion-button:not(.collapsed) .topic-icon {
-            background: rgba(255, 255, 255, 0.2);
-            color: #FF9900;
-        }
-
-        /* Contenido del acordeón */
-        .accordion-body {
-            background: #f8f9fa;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            padding: 1.5rem;
-            margin-top: 2px;
-        }
-
-        .content-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .list-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 1rem;
-            background: white;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .list-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .item-dot {
-            width: 8px;
-            height: 8px;
-            background: #FF9900;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .list-item span {
-            color: #4a5568;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 768px) {
-            .button-content {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .topic-header {
-                width: 100%;
-            }
-
-            .header-text {
-                padding-right: 2rem;
-            }
-
-            .list-item {
-                padding: 0.6rem 0.8rem;
-            }
-        }
-    </style>
 {% endblock %}
 
 {% block content %}
@@ -174,14 +8,18 @@
     <section id="parallax"
              class="slider-area slider-bg second-slider-bg slider-bg2 d-flex align-items-center justify-content-center fix"
              style="background-image:url(/static/images/landing/1.jpg)">
+        {#        <div class="slider-shape ss-one layer" data-depth="0.10"><img src="/static/eventes/img/doddle_6.png" alt="shape"></div>#}
+        {#        <div class="slider-shape ss-two layer" data-depth="0.30"><img src="/static/eventes/img/doddle_8.png" alt="shape"></div>#}
+        {#        <div class="slider-shape ss-three layer" data-depth="0.40"><img src="/static/eventes/img/doddle_9.png" alt="shape"></div>#}
+        {#        <div class="slider-shape ss-four layer" data-depth="0.60"><img src="/static/eventes/img/doddle_7.png" alt="shape"></div>#}
         <div class="slider-active">
             <div class="single-slider">
-                <div class="container" style="margin-top: -50px">
+                <div class="container">
                     <div class="row">
                         <div class="col-12 text-center">
                             <div class="slider-content second-slider-content">
                                 <h2 data-animation="fadeInUp animated" data-delay=".4s">ENCUENTRO <br> IBEROAMERICANO
-                                    <br> DE BIOMETRÍA</h2>
+                                    <br> DE BIOMETRIA</h2>
                                 <ul data-animation="fadeInUp animated" data-delay=".2s">
                                     <li><i class="fas fa-map-marker-alt"></i> Quito, Ecuador</li>
                                     <li><i class="fa fa-clock"></i> 09 al 11 de julio, 2025</li>
@@ -253,19 +91,16 @@
                 <div class="col-lg-6 pt-60">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="feature-box text-left wow fadeInDown animated"
-                                 data-animation="fadeInDown animated"
-                                 data-delay=".2s">
-                                <div class="icon color1">
-                                    <i class="fa fa-globe"></i>
-                                </div>
-                                <div class="content">
-                                    <h5>Networking</h5>
-                                    <p>Impulsar redes científicas para aplicar biometría en disciplinas clave y fomentar
-                                        el desarrollo sostenible.</p>
-                                </div>
-                            </div>
+                    <div class="feature-box text-left wow fadeInDown animated" data-animation="fadeInDown animated"
+                         data-delay=".2s">
+                        <div class="icon color1">
+                            <i class="fa fa-globe"></i>
                         </div>
+                        <div class="content">
+                            <h5>Networking</h5>
+                            <p>Impulsar redes científicas para aplicar biometría en disciplinas clave y fomentar el desarrollo sostenible.</p>
+                        </div>
+                    </div></div>
                         <div class="col-lg-6">
                             <div class="feature-box text-left wow fadeInDown animated"
                                  data-animation="fadeInDown animated"
@@ -279,32 +114,29 @@
                                 </div>
                             </div>
                         </div>
+                    </div></div>
                         <div class="col-lg-6">
-                            <div class="feature-box text-left wow fadeInDown animated"
-                                 data-animation="fadeInDown animated"
-                                 data-delay=".2s">
-                                <div class="icon color4">
-                                    <i class="fa fa-magic"></i>
-                                </div>
-                                <div class="content">
-                                    <h5>Impulsar innovación</h5>
-                                    <p>Proponer soluciones biométricas para desafíos locales y globales.</p>
-                                </div>
-                            </div>
+                    <div class="feature-box text-left wow fadeInDown animated" data-animation="fadeInDown animated"
+                         data-delay=".2s">
+                        <div class="icon color4">
+                            <i class="fa fa-magic"></i>
                         </div>
+                        <div class="content">
+                            <h5>Impulsar innovación</h5>
+                            <p>Proponer soluciones biométricas para desafíos locales y globales.</p>
+                        </div>
+                    </div></div>
                         <div class="col-lg-6">
-                            <div class="feature-box text-left wow fadeInDown animated"
-                                 data-animation="fadeInDown animated"
-                                 data-delay=".2s">
-                                <div class="icon color4">
-                                    <i class="fa fa-magic"></i>
-                                </div>
-                                <div class="content">
-                                    <h5>Impulsar innovación</h5>
-                                    <p>Proponer soluciones biométricas para desafíos locales y globales.</p>
-                                </div>
-                            </div>
+                    <div class="feature-box text-left wow fadeInDown animated" data-animation="fadeInDown animated"
+                         data-delay=".2s">
+                        <div class="icon color4">
+                            <i class="fa fa-magic"></i>
                         </div>
+                        <div class="content">
+                            <h5>Impulsar innovación</h5>
+                            <p>Proponer soluciones biométricas para desafíos locales y globales.</p>
+                        </div>
+                    </div></div>
                     </div>
 
                 </div>
@@ -777,6 +609,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="tab-pane fade" id="two" role="tabpanel">
                             <!-- row loop -->
