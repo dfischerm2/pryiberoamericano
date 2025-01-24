@@ -1,46 +1,117 @@
-<footer class="footer-bg footer-p" style="background-image:url(/static/eventes/img/footer_bg_img.jpg);background-size: cover;">
+<footer class="footer-bg footer-p">
+    <!-- Skyline Background -->
+    <div class="footer-skyline">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#A5C7E4" fill-opacity="0.3" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
 
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row justify-content-between">
-                        <div class="col-xl-12 col-lg-12 col-sm-12 text-center">
-                            <div class="footer-widget pt-120 mb-30">
-                                <div class="logo mb-35">
-                                    <a href="#"><img src="/static/eventes/img/footer_logo.png" alt="logo"></a>
-                                </div>
-                                <div class="footer-text mb-20">
-                                    <p>The issue with any content strategy is time. Time to sit down and think about what kind of content should be created, time to stop and write, or record, edit and publish, and time to engage with your audience to promote the content you created.</p>
-                                </div>
-                                <div class="footer-social">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12 col-lg-12 text-center">
+                <!-- Logo UNEMI -->
+                <div class="footer-logo mb-4">
+                    <img src="/static/eventes/img/unemi-white.png" alt="UNEMI" style="height: 80px;">
+                </div>
 
+                <!-- Event Info -->
+                <div class="footer-info mb-4">
+                    <h4 class="text-white">IX Encuentro Iberoamericano de Biometría 2025</h4>
+                    <p class="text-white">09 al 11 de julio, 2025 • Quito, Ecuador</p>
+                </div>
+
+                <!-- Social Links -->  
+                <div class="footer-social mb-4">
+                    <a href="#" style="background: #0072BC;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="background: #0072BC;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="background: #0072BC;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="background: #0072BC;"><i class="fab fa-youtube"></i></a>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links mb-4">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#about">Acerca de</a></li>
+                        <li class="list-inline-item"><a href="#program">Programa</a></li>
+                        <li class="list-inline-item"><a href="#speakers">Ponentes</a></li>
+                        <li class="list-inline-item"><a href="#register">Registro</a></li>
+                        <li class="list-inline-item"><a href="#venue">Sede</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright-text text-center text-white">
+                        <p>© 2025 Universidad Estatal de Milagro. Todos los derechos reservados.</p>
                     </div>
                 </div>
             </div>
-            <div class="copyright-wrap pb-120">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="copyright-text text-center">
-								<div class="footer-link">
-                                    <ul>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Eventime</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Tickets</a></li>
-                                        <li><a href="#">Venue</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        </div>
+    </div>
+</footer>
+
+<style>
+.footer-bg {
+    background-color: #002691;
+    position: relative; 
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+.footer-skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.footer-logo {
+    margin-bottom: 2rem;
+}
+
+.footer-info h4 {
+    font-size: 24px;
+    margin-bottom: 1rem;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.footer-links ul li a {
+    color: #FFFFFF;
+    padding: 0 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #FF007A;
+}
+
+.copyright-wrap {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 20px 0;
+    margin-top: 50px;
+}
+</style>
