@@ -924,21 +924,21 @@ label {
 /* Media queries para tamaños específicos */
 @media (max-width: 1024px) { /* Tablets */
     .slider-content.second-slider-content h2 {
-        font-size: 7vw; /* Tamaño adaptado para tablets */
+        font-size: 6vw; /* Tamaño adaptado para tablets */
         margin-top: -10px;
     }
 }
 
 @media (max-width: 768px) { /* Teléfonos medianos */
     .slider-content.second-slider-content h2 {
-        font-size: 8vw; /* Tamaño reducido para teléfonos */
+        font-size: 7vw; /* Tamaño reducido para teléfonos */
         margin-top: 0px;
     }
 }
 
 @media (max-width: 480px) { /* Teléfonos pequeños */
     .slider-content.second-slider-content h2 {
-        font-size: 8vw; /* Asegura legibilidad en pantallas pequeñas */
+        font-size: 7vw; /* Asegura legibilidad en pantallas pequeñas */
         line-height: 1.1; /* Más compacto */
     }
 }
