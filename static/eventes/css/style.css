@@ -1540,7 +1540,7 @@ label {
 }
 
 .feature-box .icon.color3 {
-    color: #2a84ff;
+    color: #0d4085;
 }
 
 .feature-box .icon.color4 {
@@ -2375,7 +2375,7 @@ label {
 .circal1 {
     height: 26px;
     width: 26px;
-    background: #ffcece;
+    background: #d1ceff;
     border-radius: 50%;
     position: absolute;
     left: 5%;
@@ -2404,7 +2404,7 @@ label {
 .circal4 {
     height: 380px;
     width: 380px;
-    background: #00f6ff;
+    background: #ffc20a94;
     border-radius: 50%;
     position: absolute;
     right: -9%;
@@ -5826,13 +5826,13 @@ cite {
     background-position: center;
     background-color: #FF9900;
     position: relative;
-    border-bottom: 5px solid #FF9900;
+    /*border-bottom: 5px solid #FF9900;*/
 }
 
 .footer-bg::before {
     position: absolute;
     content: "";
-    background: url(../img/f-overly.png);
+    background: url(../img/footer.png);
     width: 100%;
     height: 100%;
     top: 0;
