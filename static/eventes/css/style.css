@@ -236,10 +236,10 @@ li {
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
     line-height: 28px;
-    color: #47759d;
+    /*color: #47759d;*/
     margin-bottom: 15px;
     position: relative;
     z-index: 8;
@@ -312,7 +312,7 @@ label {
 
 .btn {
     -moz-user-select: none;
-    background: #FF9900;
+    /*background: #FF9900;*/
     border: none;
     border-radius: 50px;
     color: #fff;
@@ -338,7 +338,7 @@ label {
 }
 
 .btn:hover {
-    color: #fff;
+    /*color: #fff;*/
     transition: all .3s;
     box-shadow: 0px 10px 19px 0px #FF990066 !important;
 }
@@ -462,11 +462,12 @@ label {
 
 .main-menu ul li a {
     display: inline-block;
-    color: #002b49;
+    /*color: #0069ac;*/
+    color: white;
     font-family: 'Karla', sans-serif;
     font-weight: bold;
-    padding: 34px 0;
-    font-size: 20px;
+    padding: 38px 0;
+    font-size: 16px;
     position: relative;
 }
 
@@ -573,7 +574,7 @@ label {
 .second-menu {
     position: relative;
     z-index: 9;
-    margin-bottom: -120px;
+    margin-bottom: -130px;
     padding: 15px 2px;
     margin-top: 0;
 }
@@ -759,7 +760,7 @@ label {
 
 .timer .smalltext {
     color: #fff;
-    font-size: 12px;
+    font-size: 10px;
     display: block;
     padding: 0;
     font-family: 'Karla', sans-serif;
@@ -894,7 +895,7 @@ label {
     top: 0;
     height: 100%;
     width: 100%;
-    /*background: url(../img/header-overla.png);*/
+    background: url(../img/overlay2.png);
     opacity: .6;
     z-index: -1;
 }
@@ -914,11 +915,11 @@ label {
 .slider-content.second-slider-content h2 {
     font-family: 'Montserrat', sans-serif; /* Usa Montserrat o Roboto */
     font-size: 5vw; /* Escala el tamaño dinámicamente */
-    color: #0069ac;
+    color: white;
     line-height: 1.2; /* Mejora la separación de líneas */
     margin-bottom: 20px;
     margin-top: -20px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 /* Media queries para tamaños específicos */
@@ -959,15 +960,16 @@ label {
 }
 
 .slider-content.second-slider-content ul {
-    font-size: 1.2rem; /* Ajusta el tamaño de los íconos y texto */
-    margin-top: 10px;
+    font-size: 1.2rem;
+    margin-top: 4px;
+    margin-bottom: 12px;
     display: inline-block;
 }
 
 .slider-content.second-slider-content ul li {
     display: inline-block;
     margin: 0 10px;
-    color: #333; /* Color del texto */
+    color: white; /* Color del texto */
 }
 
 .slider-content.second-slider-content ul li i {
@@ -1374,7 +1376,7 @@ label {
 
 .ss-eight {
     top: 150px !important;
-    left: 60% !important;
+    left: 62% !important;
 }
 
 /* 4. about */
@@ -1978,7 +1980,7 @@ label {
 }
 
 .about-area .s-video-wrap::after {
-    background: #ffc7e2;
+    background: #4bcbc7;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -2268,6 +2270,11 @@ label {
 .single-team {
     background: #fff;
     position: relative;
+    border-radius: 30px;
+}
+
+.single-team img{
+    border-radius: 10px;
 }
 
 .single-team .tag {
@@ -2453,7 +2460,7 @@ label {
 }
 
 .counter-area h2 {
-    font-size: 60px;
+    font-size: 50px;
     margin-bottom: 35px;
     color: #fff;
 }
@@ -2502,7 +2509,7 @@ label {
     background: #05c24ae6;
     padding: 112px 0;
     border-radius: 50%;
-    top: 111px;
+    top: 87px;
     left: 30%;
 }
 

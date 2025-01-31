@@ -18,7 +18,7 @@ from seguridad.models import *
 
 def index(request):
     data = {
-        'titulo': 'Landing page',
+        'titulo': 'Home',
         'ruta': request.path,
         'fecha': datetime.now(),
     }
