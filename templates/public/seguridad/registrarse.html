@@ -171,7 +171,7 @@
                         processData: false
                     }).fail(function () {
                         $.unblockUI();
-                        mensajeDanger("Intente nuevamente");
+                        mensajeDanger("Connection error");
                     });
                 }
             });
@@ -195,7 +195,7 @@
                                 if (object.respuesta) {
                                     isvalid_correo = false;
                                     $('#id_email').val('')
-                                    alertaDanger('Email esta siendo usado por otro usuario.');
+                                    alertaDanger('Email already use.');
                                 } else {
                                     isvalid_correo = true;
                                 }

@@ -9,7 +9,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8">
                     <div class="section-title text-center mb-5">
-                        <h2>Iniciar Sesión</h2>
+                         <h2>Sign In</h2>
                     </div>
                     <div class="contact-wrapper bg-white p-4 rounded shadow-sm">
                         <form method="post" id="frm-logear">
@@ -39,22 +39,23 @@
 
                             <div class="mb-4">
                                 <small class="text-muted">
-                                    <i class="fa fa-info-circle"></i> Nota: si tienes problemas para iniciar sesión prueba estas opciones
+                                    <i class="fa fa-info-circle"></i> Note: if you have trouble signing in, try these
+                                    options
                                 </small>
                             </div>
 
                             <div class="d-flex flex-wrap justify-content-between mb-4">
                                 <a class="text-decoration-none btn-link" href="/restoreusername/">
-                                    ¿Olvidaste tu usuario?
+                                    Forgot your username?
                                 </a>
                                 <a class="text-decoration-none btn-link" href="/restorepass/">
-                                    ¿Olvidaste tu contraseña?
+                                    Forgot your password?
                                 </a>
                             </div>
 
                             <div class="text-center">
-                                <button class="btn w-100" type="submit">
-                                    Iniciar sesión
+                                <button class="btn btn-warning w-100" type="submit">
+                                    Login
                                 </button>
                             </div>
                         </form>
@@ -101,7 +102,7 @@
                         if (jqXHR.status === 403) {
                             console.log('Acceso denegado');
                         }
-                        mensajeDanger('Error de conexión.');
+                        mensajeDanger('Connection error.');
                     });
                 }
             });
