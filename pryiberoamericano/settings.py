@@ -217,8 +217,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    'https://ictiair.tiacon.org',
-    'https://www.ictiair.tiacon.org',
+    'https://iberoamericano.sageformoodle.ec',
+    'https://www.iberoamericano.sageformoodle.ec',
     'http://127.0.0.1:8080',
     'http://127.0.0.1',
     'http://localhost:8000',
@@ -227,13 +227,13 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    'https://ictiair.tiacon.org',
-    'https://www.ictiair.tiacon.org',
+    'https://iberoamericano.sageformoodle.ec',
+    'https://www.iberoamericano.sageformoodle.ec',
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'https://ictiair.tiacon.org',
-    'https://www.ictiair.tiacon.org',
+    'https://iberoamericano.sageformoodle.ec',
+    'https://www.iberoamericano.sageformoodle.ec',
 ]
 
 CORS_ALLOW_METHODS = [
@@ -246,8 +246,8 @@ CORS_ALLOW_METHODS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://ictiair.tiacon.org',
-    'https://www.ictiair.tiacon.org',
+    'https://iberoamericano.sageformoodle.ec',
+    'https://www.iberoamericano.sageformoodle.ec',
 ]
 
 CORS_ALLOW_HEADERS = [
