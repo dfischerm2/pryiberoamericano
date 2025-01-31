@@ -966,6 +966,12 @@ label {
     display: inline-block;
 }
 
+@media (max-width: 768px) {
+    .slider-content.second-slider-content ul {
+        margin-top: 200px !important; /* El !important solo si es necesario sobreescribir otros estilos */
+    }
+}
+
 .slider-content.second-slider-content ul li {
     display: inline-block;
     margin: 0 10px;
