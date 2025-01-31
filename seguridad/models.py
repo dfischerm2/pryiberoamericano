@@ -103,6 +103,8 @@ class Configuracion(ModeloBase):
     ico = models.FileField(upload_to='configuracion/', max_length=600, blank=True, null=True, verbose_name='Favicon', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])])
     logo_sistema = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], max_length=600, blank=True, null=True, verbose_name='Logo')
     logo_sistema_white = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], max_length=600, blank=True, null=True, verbose_name='Logo Blanco')
+    logo_unemi = models.FileField(upload_to='configuracion/',validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Logo UNEMI')
+    logo_investigacion_unemi = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True,verbose_name='Logo Investigación UNEMI')
     fondo_perfil = models.FileField(upload_to='configuracion/fondo_perfil/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo de perfil de usuario', help_text='Se recomienda que la imagen tenga un tamaño de 500x281')
     banner_login = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo Login')
     fondoprincipal = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo Principal')
@@ -115,6 +117,7 @@ class Configuracion(ModeloBase):
     web = models.CharField(max_length=100, blank=True, null=True, verbose_name='Web')
     email_notificacion = models.CharField(max_length=100, blank=True, null=True, verbose_name='Email Notificaciones')
     direccion = models.CharField(max_length=5000, blank=True, null=True, verbose_name='Dirección Empresa')
+
 
     @staticmethod
     def get_instancia():
@@ -221,3 +224,17 @@ class SessionUser(NormalModel):
     def is_not_expired(self):
         from datetime import datetime
         return self.session.expire_date > datetime.now()
+
+
+class RedesSociales(ModeloBase):
+    nombre = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Nombre')
+    icono = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Ícono')
+    href = models.URLField(max_length=1000, blank=True, null=True, verbose_name='Url')
+    publicar = models.BooleanField(default=False, verbose_name='¿Publicar?')
+
+    def __str__(self):
+        return "{} - {} [{}]".format(self.icono, self.href, self.status)
+
+    class Meta:
+        verbose_name = 'Red Social'
+        verbose_name_plural = 'Redes Sociales'

@@ -56,9 +56,6 @@ with open(os.path.join(BASE_DIR, 'credenciales.json')) as json_file:
 
 # CONFIGURACIONES
 
-EXT_EMAILS_COLABORATORS = ['unemi.edu.ec']
-DEFAULT_PASSWORD_REGISTER = 'Ictiair2025*'
-
 WKHTMLTOPDF_CMD_OPTIONS = {'encoding': 'utf8', 'quiet': True, 'enable-local-file-access': True}
 
 # Application definition
@@ -217,6 +214,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
+    'https://iberoamericano.sageformoodle.ec',
     'https://iberoamericano.sageformoodle.ec',
     'https://www.iberoamericano.sageformoodle.ec',
     'http://127.0.0.1:8080',

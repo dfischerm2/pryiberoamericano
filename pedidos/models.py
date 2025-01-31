@@ -151,23 +151,6 @@ class Pedido(ModeloBase):
         # ]
 
 
-class PapersAuthorPedido(ModeloBase):
-    pedido = models.ForeignKey(Pedido, on_delete=models.PROTECT, verbose_name="Pedido")
-    description = models.CharField(verbose_name="Descripción", max_length=500)
-    sheets = models.IntegerField(verbose_name="Hojas", default=0)
-
-    def __str__(self):
-        return f"{self.description} - {self.sheets} hojas"
-
-
-class TopicsAttendeePedido(ModeloBase):
-    pedido = models.ForeignKey(Pedido, on_delete=models.PROTECT, verbose_name="Pedido")
-    topic = models.ForeignKey("landing.TopicCategory", on_delete=models.PROTECT, verbose_name="Tema de interes")
-
-    def __str__(self):
-        return self.topic.__str__()
-
-
 class PagoTransferencia(ModeloBase):
     # GenericForeignKey
     content_type = models.ForeignKey("contenttypes.ContentType", on_delete=models.PROTECT, blank=True, null=True)
