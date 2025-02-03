@@ -24,9 +24,9 @@
 
 
     <div class="mb-3">
-        <a onclick="formModal(0, 'Agregar', 'add')" href="javascript:void(0);" class="btn btn-success"><i
+        <a onclick="formModal(0, 'Agregar Red Social', 'add')" href="javascript:void(0);" class="btn btn-success"><i
                 class="fas fa-plus-circle mr-2"></i>
-            Nuevo Paper</a>
+            Nueva Red Social</a>
     </div>
 
 
@@ -37,22 +37,16 @@
                     <thead class="thead-dark">
                     <tr>
                         <th class="text-center">
-                            Orden
-                        </th>
-                        <th class="text-center">
-                            Tipo de documento
-                        </th>
-                        <th class="text-center">
                             Nombre
                         </th>
                         <th class="text-center">
-                            Icon
+                            Icono
                         </th>
                         <th class="text-center">
-                            Archivo Ejemplo
+                            Href
                         </th>
                         <th class="text-center">
-                            Publico
+                            ¿Publicado?
                         </th>
                         <th class="text-center">
                             Acción
@@ -63,43 +57,17 @@
                     {% for l in listado %}
                         <tr>
                             <td style="text-align: center">
-                                {{ l.order }}
+                                {{ l.nombre|default:'Sin registros' }}
                             </td>
                             <td style="text-align: center">
-                                {{ l.get_type_document_display }}
+                                {{ l.icono|default:'Sin registros' }}
                             </td>
                             <td style="text-align: center">
-                                {{ l.name }}
+                                {{ l.href|default:'Sin registros' }}
                             </td>
                             <td style="text-align: center">
-                                {% if not l.icon %}
-                                    S/A
-                                {% else %}
-                                    <a href="{{ l.icon.url }}" data-lightbox="roadtrip"
-                                       title="{{ l.name }}">
-                                        <img id="presentaimg2" src="{{ l.icon.url }}"
-                                             class="img-thumbnail"
-                                             width="50px" align="middle"
-                                             alt="...">
-                                    </a>
-                                {% endif %}
-                            </td>
-                            <td style="text-align: center">
-                                {% if l.file_example == '' %}
-                                    S/A
-                                {% else %}
-                                    <a target="_blank" href="{{ l.file_example.url }}" data-lightbox="roadtrip"
-                                       title="{{ l.name }}">
-                                        <i class="fa fa-file"></i>
-                                    </a>
-                                {% endif %}
-                            </td>
-                            <td style="text-align: center">
-                                {% if l.public %}
-                                    SI
-                                {% else %}
-                                    NO
-                                {% endif %}
+                                <input type="checkbox" class="publicarred" value="{{ l.pk }}"
+                                       {% if l.publicar %}checked{% endif %}/>
                             </td>
                             <td class="with-btn-group text-center" nowrap>
                                 <div class="btn-group dropleft">
@@ -108,21 +76,14 @@
                                         <i class="fas fa-angle-left mr-1"></i> Acciones
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
-
-                                        <a class="dropdown-item" title="Ver {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Ver registro: {{ l.name }}', 'ver')"
-                                           href="javascript:void(0);">
-                                            <i class="fas fa-eye"></i> Ver
-                                        </a>
-
                                         <a class="dropdown-item" title="Editar {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Editar: {{ l.name }}', 'change')"
+                                           onclick="formModal({{ l.pk }}, 'Editar Red Social {{ l.nombre }}', 'change')"
                                            href="javascript:void(0);">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
 
                                         <a class="dropdown-item" title="Eliminar {{ modulo }}"
-                                           onclick="eliminarajax({{ l.pk }}, '{{ l.name }}', 'delete', '{{ dict_url_vars }}')"
+                                           onclick="eliminarajax({{ l.pk }}, '{{ l.nombre }}', 'delete', '{{ dict_url_vars }}')"
                                            href="javascript:void(0);">
                                             <i class="fas fa-trash"></i> Eliminar
                                         </a>
@@ -147,8 +108,9 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modalDetalle">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form method="post" enctype="multipart/form-data" action="{{ ruta }}"
                       class="form-horizontal form-label-left">
@@ -209,7 +171,6 @@
             })
         }
     </script>
-
     <script>
         function formModal(id, text, action,) {
             pantallaespera()
@@ -237,5 +198,46 @@
                 dataType: "json"
             });
         }
+    </script>
+    <script>
+        $(function () {
+            $('.publicarred').change(function () {
+                var id = $(this).val();
+                var checkElement = $(this);
+                var valor = true;
+                if (checkElement.is(':checked')) {
+                    valor = true;
+                } else {
+                    valor = false;
+                }
+                pantallaespera();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ request.path }}",
+                    data: {'action': 'checkpublicar', 'id': id, 'val': valor},
+                    success: function (data) {
+                        if (data.result) {
+                            $.unblockUI();
+                            console.log(data.retorno)
+                            if (data.retorno === 1) {
+                                alertaSuccess(data.mensaje)
+                            } else {
+                                alertaWarning(data.mensaje)
+                            }
+                            checkElement.prop('checked', valor);
+                        } else {
+                            $.unblockUI();
+                            alertaWarning(data.mensaje);
+                        }
+                    },
+                    error: function () {
+                        $.unblockUI();
+                        checkElement.prop('checked', valor);
+                        alertaWarning("Error al enviar los datos.");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
     </script>
 {% endblock %}

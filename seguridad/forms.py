@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db.models import Value
 from django.db.models.functions import Concat
 from core.custom_models import ModelFormBase
-from seguridad.models import Configuracion, Modulo, ModuloGrupo, GroupModulo
+from seguridad.models import Configuracion, Modulo, ModuloGrupo, GroupModulo, RedesSociales
 
 
 class ConfiguracionForm(ModelFormBase):
@@ -84,3 +84,22 @@ class GroupModuloForm(ModelFormBase):
         super(GroupModuloForm, self).__init__(*args, **kwargs)
         self.fields['modulos'].queryset = self.fields['modulos'].queryset.order_by('orden')
         self.fields["group"].widget = forms.HiddenInput()
+
+
+class RedesSocialesForm(ModelFormBase):
+    class Meta:
+        model = RedesSociales
+        exclude = ('usuario_creacion', 'fecha_registro', 'hora_registro', 'status', 'usuario_modificacion','conference',)
+
+    def __init__(self, *args, **kwargs):
+        ver = kwargs.pop('ver') if 'ver' in kwargs else False
+        instancia = kwargs["instance"] if 'instance' in kwargs else None
+        super(RedesSocialesForm, self).__init__(*args, **kwargs)
+        for k, v in self.fields.items():
+            self.fields[k].widget.attrs['class'] = "form-control"
+            self.fields[k].widget.attrs['col'] = "6"
+            if k in ('publicar',):
+                self.fields[k].widget.attrs['class'] = "js-switch"
+                self.fields[k].widget.attrs['data-render'] = "switchery"
+                self.fields[k].widget.attrs['data-theme'] = "default"
+                self.fields[k].widget.attrs['col'] = "3"

@@ -2,6 +2,12 @@
     .sticky-menu .logo img {
         content: url("/media/{{ confi.logo_sistema_white }}");
     }
+
+    @media (min-width: 991px) {
+        .second-menu .main-menu ul li {
+            margin-left: 50px;
+        }
+    }
 </style>
 
 <header id="home" class="header-area">
@@ -12,7 +18,8 @@
                     <div class="col-xl-3 col-lg-3 d-flex align-items-center justify-content-between">
                         <div class="logo">
                             <a href="/">
-                                <img class="logo" src="/media/{{ confi.logo_sistema_white }}" alt="LOGO" style="width:175px;height: 80px">
+                                <img class="logo" src="/media/{{ confi.logo_sistema_white }}" alt="LOGO"
+                                     style="width:175px;height: 80px">
                             </a>
                         </div>
                         {% if not request.user.is_authenticated %}
@@ -45,7 +52,7 @@
                                     <li class="has-sub ">
                                         <a href="/"> Home</a>
                                     </li>
-                                    <li class="has-sub ">
+                                    <li class="has-sub">
                                         <a href="#aboutus"> About us </a>
                                     </li>
                                     <li class="has-sub ">
@@ -53,6 +60,12 @@
                                     </li>
                                     <li class="has-sub ">
                                         <a href="#register"> Prices</a>
+                                    </li>
+                                    <li class="has-sub ">
+                                        <a href="/members"> Members</a>
+                                    </li>
+                                    <li class="has-sub ">
+                                        <a href="/conferences"> Conferences</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -68,7 +81,8 @@
                                 <nav id="mobile-menu">
                                     <ul>
                                         <li class="active has-sub">
-                                            <a href="javascript:void(0)">Hello, {{ request.user.primernombre }} <i class="fa fa-chevron-down"></i></a>
+                                            <a href="javascript:void(0)">Hello, {{ request.user.primernombre }} <i
+                                                    class="fa fa-chevron-down"></i></a>
                                             <ul>
                                                 {% if request.user.get_perfil_adm %}
                                                     <li><a href="/panel/"><i class="fa fa-lock"></i> Administration</a>

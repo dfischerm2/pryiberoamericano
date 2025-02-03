@@ -10,6 +10,7 @@ from django.db.models import Q
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 
+import landing.models
 from autenticacion.models import Usuario
 from core.custom_models import ModeloBase, NormalModel
 from core.models_utils import FileNameUploadToPath
@@ -227,6 +228,7 @@ class SessionUser(NormalModel):
 
 
 class RedesSociales(ModeloBase):
+    conference = models.ForeignKey('landing.Conference', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Conferencia')
     nombre = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Nombre')
     icono = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Ícono')
     href = models.URLField(max_length=1000, blank=True, null=True, verbose_name='Url')

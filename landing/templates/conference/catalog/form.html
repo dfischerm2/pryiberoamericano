@@ -5,7 +5,7 @@
         {% if field.is_hidden %}
             {{ field }}
         {% else %}
-            <div class="col-lg-{{ field.field.widget.attrs.col }}" id="box_{{ field.name }}">
+            <div class="col-lg-{{ field.field.widget.attrs.col }}">
                 <div class="form-group">
                     <label class="form-label" for="id_{{ field.name }}">{{ field.label }}:</label><br>
                     {{ field }}
@@ -32,9 +32,10 @@
 
 {{ form.media }}
 <script>
-    $(document).ready(function () {
+    $(function () {
+
         $.fn.select2.defaults.set('language', 'es');
-        $('.jselect2').select2();
+        $('.select2-simple').select2();
         $('.dropify').dropify({
             messages: {
                 default: 'Arrastre y suelte un archivo o haga clic aquí.',
@@ -43,5 +44,5 @@
             },
             imgFileExtensions: ["jpg", "jpeg", "png", "tiff", "jfif", "svg"]
         });
-    });
+    })
 </script>

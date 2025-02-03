@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block atras %}{{ request.path }}{% endblock %}
 {% block content %}
     <form method="GET">
         <input type="hidden" name="action" value="{{ action }}">
@@ -13,7 +14,7 @@
                             <button class="btn btn-primary" type="submit" id="button-addon2"><i
                                     class="fa fa-search"></i></button>
                             {% if url_vars %}
-                                <a title="Ver todo" href="{{ ruta }}?action={{ action }}&id={{ cab.pk }}" class="btn btn-primary">
+                                <a title="Ver todo" href="{{ ruta }}?id={{ cab.pk }}&action={{ action }}" class="btn btn-primary">
                                     <i class="fas fa-sync-alt"></i>
                                 </a>
                             {% endif %}
@@ -26,8 +27,8 @@
 
 
     <div class="mb-3">
-        <a onclick="formModal({{ cab.pk }}, 'Agregar', 'addguide')" href="javascript:void(0);" class="btn btn-success"><i class="fas fa-plus-circle mr-2"></i>
-            Nuevo lineamiento</a>
+        <a onclick="formModal({{ cab.pk }}, 'Agregar Detalle', 'adddetail')" href="javascript:void(0);" class="btn btn-success"><i class="fas fa-plus-circle mr-2"></i>
+            Nuevo Detalle</a>
     </div>
 
 
@@ -38,10 +39,10 @@
                     <thead class="thead-dark">
                     <tr>
                         <th class="text-center">
-                            Contenido
+                            Orden
                         </th>
                         <th class="text-center">
-                            Público
+                            Descripción
                         </th>
                         <th class="text-center">
                             Acción
@@ -52,14 +53,10 @@
                     {% for l in listado %}
                         <tr>
                             <td style="text-align: center">
-                                {{ l.content }}
+                                {{ l.order|default:'Sin registros' }}
                             </td>
                             <td style="text-align: center">
-                                {% if l.public %}
-                                    SI
-                                {% else %}
-                                    NO
-                                {% endif %}
+                                {{ l.description|default:'Sin registros' }}
                             </td>
                             <td class="with-btn-group text-center" nowrap>
                                 <div class="btn-group dropleft">
@@ -69,18 +66,13 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
 
-                                        <a class="dropdown-item" title="Ver {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Ver registro: {{ l.name }}', 'verguide')" href="javascript:void(0);">
-                                            <i class="fas fa-eye"></i> Ver
-                                        </a>
-
                                         <a class="dropdown-item" title="Editar {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Editar: {{ l.name }}', 'changeguide')" href="javascript:void(0);">
+                                           onclick="formModal({{ l.pk }}, 'Editar: {{ l.description }}', 'changedetail')" href="javascript:void(0);">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
 
                                         <a class="dropdown-item" title="Eliminar {{ modulo }}"
-                                           onclick="eliminarajax({{ l.pk }}, '{{ l.name }}', 'deleteguide', '{{ dict_url_vars }}')"
+                                           onclick="eliminarajax({{ l.pk }}, '{{ l.description }}', 'deletedetail', '{{ dict_url_vars }}')"
                                            href="javascript:void(0);">
                                             <i class="fas fa-trash"></i> Eliminar
                                         </a>
@@ -105,6 +97,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modalDetalle">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -121,7 +114,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block jscript %}

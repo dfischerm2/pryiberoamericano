@@ -1,0 +1,89 @@
+<div class="row">
+    <input type="hidden" value="{{ filtro.id }}" name="pk">
+    <input type="hidden" name="action" value="{{ action }}"/>
+    {% for field in form %}
+        {% if field.is_hidden %}
+            {{ field }}
+        {% else %}
+            <div class="col-lg-{{ field.field.widget.attrs.col }}">
+                <div class="form-group">
+                    <label class="form-label" for="id_{{ field.name }}">{{ field.label }}:</label><br>
+                    {{ field }}
+                    <div class="invalid-feedback" id="errorMessage{{ field.name }}"></div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="ln_solid"></div>
+
+<div class="form-group">
+    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-offset-3 text-right">
+        <a href="javascript:;" class="btn btn-danger" data-dismiss="modal"><i
+                class="fa fa-window-close"></i>
+            Cancelar</a>
+        <button type="submit"
+                class="btn btn-success">
+            <i class="fa fa-save"></i> Guardar
+        </button>
+    </div>
+</div>
+
+{{ form.media }}
+<link href="/static/assets/plugins/summernote/dist/summernote.css" rel="stylesheet"/>
+<script src="/static/assets/plugins/summernote/dist/summernote.min.js"></script>
+<script>
+    $(function () {
+
+        $.fn.select2.defaults.set('language', 'es');
+        $('.select2-simple').select2();
+        $('.dropify').dropify({
+            messages: {
+                default: 'Arrastre y suelte un archivo o haga clic aquí.',
+                replace: 'Arrastre y suelte un archivo o haga clic aquí.',
+                remove: 'Eliminar',
+            },
+            imgFileExtensions: ["jpg", "jpeg", "png", "tiff", "jfif", "svg"]
+        });
+
+        $('.summernote').summernote({
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+            ],
+            placeholder: 'Ingrese aquí su observación',
+            height: 250,
+            lineWrapping: true,
+            callbacks: {
+                onInit: function () {
+                    var noteEditable = $(this).next('.note-editor').find('.note-editable');
+                    noteEditable.css({
+                        'font-size': '12px',
+                        'font-family': 'sans-serif'
+                    });
+
+                    if (noteEditable.html().trim() === '<p style="text-align: justify;"><br></p>' || noteEditable.html().trim() === '<p><br></p>') {
+                        noteEditable.html('');
+                    }
+                },
+                onKeyup: function (e) {
+                    var noteEditable = $(this).next('.note-editor').find('.note-editable');
+                    noteEditable.find('p').css({
+                        'text-align': 'justify'
+                    });
+                },
+                onPaste: function (e) {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    document.execCommand('insertText', false, bufferText);
+                    var noteEditable = $(this).next('.note-editor').find('.note-editable');
+                    noteEditable.find('p').css({
+                        'text-align': 'justify'
+                    });
+                }
+            }
+        });
+    })
+</script>

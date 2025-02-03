@@ -8,6 +8,7 @@ from .view_grupo import grupo
 from .view_grupourls import grupoUrlsView
 from .view_modulo import modulo
 from .view_modulogrupo import modulo_grupo
+from .view_redes_sociales import redesSocialesView
 
 seguridad_urls = (
     {
@@ -39,6 +40,11 @@ seguridad_urls = (
         "nombre": "Auditoría",
         "url": 'auditoria/',
         "vista": auditoria,
+    },
+    {
+        "nombre": "Social Media",
+        "url": 'social-media/',
+        "vista": redesSocialesView,
     },
 )
 

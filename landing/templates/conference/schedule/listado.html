@@ -24,8 +24,8 @@
 
 
     <div class="mb-3">
-        <a onclick="formModal(0, 'Agregar', 'add')" href="javascript:void(0);"  class="btn btn-success"><i class="fas fa-plus-circle mr-2"></i>
-            Nueva categoría de sponsor</a>
+        <a onclick="formModal(0, 'Agregar horario', 'add')" href="javascript:void(0);" class="btn btn-success"><i class="fas fa-plus-circle mr-2"></i>
+            Nueva Horario</a>
     </div>
 
 
@@ -39,10 +39,16 @@
                             Orden
                         </th>
                         <th class="text-center">
-                            Nombre
+                            Título
                         </th>
                         <th class="text-center">
-                            Público
+                            Fecha Inicio
+                        </th>
+                        <th class="text-center">
+                            Fecha Fin
+                        </th>
+                        <th class="text-center">
+                            Fecha en Cadena
                         </th>
                         <th class="text-center">
                             Acción
@@ -55,15 +61,17 @@
                             <td style="text-align: center">
                                 {{ l.order }}
                             </td>
-                            <td style="text-align: center">
-                                {{ l.name }}
+                            <td class="text-center">
+                                {{ l.title }}
                             </td>
                             <td style="text-align: center">
-                                {% if l.public %}
-                                    SI
-                                {% else %}
-                                    NO
-                                {% endif %}
+                                {{ l.date_start|date:"d/m/Y"|default:'Sin registros' }}
+                            </td>
+                            <td style="text-align: center">
+                                {{ l.date_end|date:"d/m/Y"|default:'Sin registros' }}
+                            </td>
+                            <td style="text-align: center">
+                                {{ l.date_str|default:'Sin registros' }}
                             </td>
                             <td class="with-btn-group text-center" nowrap>
                                 <div class="btn-group dropleft">
@@ -72,24 +80,18 @@
                                         <i class="fas fa-angle-left mr-1"></i> Acciones
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
-
-                                        <a class="dropdown-item" title="Ver {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Ver registro: {{ l.name }}', 'ver')" href="javascript:void(0);">
-                                            <i class="fas fa-eye"></i> Ver
-                                        </a>
-
-                                        <a class="dropdown-item" title="Ver {{ modulo }}"
-                                           href="?action=sponsors&id={{ l.pk }}">
-                                            <i class="fas fa-eye"></i> Sponsors ({{ l.get_sponsors_all.count }})
+                                        <a class="dropdown-item" title="Ver detalles de {{ modulo }}"
+                                           href="?action=details&id={{ l.pk }}">
+                                            <i class="fas fa-eye"></i> Details ({{ l.get_details.count }})
                                         </a>
 
                                         <a class="dropdown-item" title="Editar {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Editar: {{ l.name }}', 'change')" href="javascript:void(0);">
+                                           onclick="formModal({{ l.pk }}, 'Editar horario {{ l.title }}', 'change')" href="javascript:void(0);" >
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
 
                                         <a class="dropdown-item" title="Eliminar {{ modulo }}"
-                                           onclick="eliminarajax({{ l.pk }}, '{{ l.name }}', 'delete', '{{ dict_url_vars }}')"
+                                           onclick="eliminarajax({{ l.pk }}, '{{ l.title }}', 'delete', '{{ dict_url_vars }}')"
                                            href="javascript:void(0);">
                                             <i class="fas fa-trash"></i> Eliminar
                                         </a>
@@ -116,7 +118,7 @@
     </div>
 
     <div class="modal fade" id="modalDetalle">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form method="post" enctype="multipart/form-data" action="{{ ruta }}"
                       class="form-horizontal form-label-left">
@@ -131,7 +133,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block jscript %}
@@ -178,7 +179,6 @@
             })
         }
     </script>
-
     <script>
         function formModal(id, text, action,) {
             pantallaespera()
@@ -207,5 +207,45 @@
             });
         }
     </script>
-
+    <script>
+    $(function () {
+            $('.publicartopic').change(function () {
+                var id = $(this).val();
+                var checkElement = $(this);
+                var valor = true;
+                if (checkElement.is(':checked')) {
+                    valor = true;
+                } else {
+                    valor = false;
+                }
+                pantallaespera();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ request.path }}",
+                    data: {'action': 'checkpublic', 'id': id, 'val': valor},
+                    success: function (data) {
+                        if (data.result) {
+                            $.unblockUI();
+                            console.log(data.retorno)
+                            if (data.retorno === 1) {
+                                alertaSuccess(data.mensaje)
+                            } else {
+                                alertaWarning(data.mensaje)
+                            }
+                            checkElement.prop('checked', valor);
+                        } else {
+                            $.unblockUI();
+                            alertaWarning(data.mensaje);
+                        }
+                    },
+                    error: function () {
+                        $.unblockUI();
+                        checkElement.prop('checked', valor);
+                        alertaWarning("Error al enviar los datos.");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
+    </script>
 {% endblock %}

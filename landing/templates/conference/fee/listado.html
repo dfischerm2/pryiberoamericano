@@ -24,8 +24,9 @@
 
 
     <div class="mb-3">
-        <a onclick="formModal(0, 'Agregar', 'add')" href="javascript:void(0);"  class="btn btn-success"><i class="fas fa-plus-circle mr-2"></i>
-            Nuevo Sponsor</a>
+        <a onclick="formModal(0, 'Agregar tarifa', 'add')" href="javascript:void(0);" class="btn btn-success"><i
+                class="fas fa-plus-circle mr-2"></i>
+            Nueva Tarifa</a>
     </div>
 
 
@@ -36,13 +37,16 @@
                     <thead class="thead-dark">
                     <tr>
                         <th class="text-center">
-                            Titulo
+                            Orden
                         </th>
                         <th class="text-center">
-                            Fecha
+                            Role
                         </th>
                         <th class="text-center">
-                            Publico
+                            Valor
+                        </th>
+                        <th class="text-center">
+                            ¿Publicado?
                         </th>
                         <th class="text-center">
                             Acción
@@ -53,17 +57,17 @@
                     {% for l in listado %}
                         <tr>
                             <td style="text-align: center">
-                                {{ l.title }}
+                                {{ l.order }}
                             </td>
                             <td style="text-align: center">
-                                {{ l.get_formatted_date_range }}
+                                {{ l.get_role_display|default:'Sin registros' }}
                             </td>
                             <td style="text-align: center">
-                                {% if l.public %}
-                                    SI
-                                {% else %}
-                                    NO
-                                {% endif %}
+                                $ {{ l.value|default:'Sin registros' }}
+                            </td>
+                            <td style="text-align: center">
+                                <input type="checkbox" class="publicartarifa" value="{{ l.pk }}"
+                                       {% if l.published %}checked{% endif %}/>
                             </td>
                             <td class="with-btn-group text-center" nowrap>
                                 <div class="btn-group dropleft">
@@ -72,19 +76,19 @@
                                         <i class="fas fa-angle-left mr-1"></i> Acciones
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
-
-                                        <a class="dropdown-item" title="Ver {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Ver registro: {{ l.name }}', 'ver')" href="javascript:void(0);">
-                                            <i class="fas fa-eye"></i> Ver
+                                        <a class="dropdown-item" title="Ver detalles de {{ modulo }}"
+                                           href="?action=details&id={{ l.pk }}">
+                                            <i class="fas fa-eye"></i> Details ({{ l.get_details.count }})
                                         </a>
 
                                         <a class="dropdown-item" title="Editar {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Editar: {{ l.name }}', 'change')" href="javascript:void(0);">
+                                           onclick="formModal({{ l.pk }}, 'Editar tarifa {{ l.get_role_display }}', 'change')"
+                                           href="javascript:void(0);">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
 
                                         <a class="dropdown-item" title="Eliminar {{ modulo }}"
-                                           onclick="eliminarajax({{ l.pk }}, '{{ l.name }}', 'delete', '{{ dict_url_vars }}')"
+                                           onclick="eliminarajax({{ l.pk }}, '{{ l.get_role_display }}', 'delete', '{{ dict_url_vars }}')"
                                            href="javascript:void(0);">
                                             <i class="fas fa-trash"></i> Eliminar
                                         </a>
@@ -109,8 +113,9 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modalDetalle">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form method="post" enctype="multipart/form-data" action="{{ ruta }}"
                       class="form-horizontal form-label-left">
@@ -125,7 +130,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block jscript %}
@@ -172,7 +176,6 @@
             })
         }
     </script>
-
     <script>
         function formModal(id, text, action,) {
             pantallaespera()
@@ -200,5 +203,46 @@
                 dataType: "json"
             });
         }
+    </script>
+    <script>
+        $(function () {
+            $('.publicartarifa').change(function () {
+                var id = $(this).val();
+                var checkElement = $(this);
+                var valor = true;
+                if (checkElement.is(':checked')) {
+                    valor = true;
+                } else {
+                    valor = false;
+                }
+                pantallaespera();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ request.path }}",
+                    data: {'action': 'checkpublished', 'id': id, 'val': valor},
+                    success: function (data) {
+                        if (data.result) {
+                            $.unblockUI();
+                            console.log(data.retorno)
+                            if (data.retorno === 1) {
+                                alertaSuccess(data.mensaje)
+                            } else {
+                                alertaWarning(data.mensaje)
+                            }
+                            checkElement.prop('checked', valor);
+                        } else {
+                            $.unblockUI();
+                            alertaWarning(data.mensaje);
+                        }
+                    },
+                    error: function () {
+                        $.unblockUI();
+                        checkElement.prop('checked', valor);
+                        alertaWarning("Error al enviar los datos.");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
     </script>
 {% endblock %}

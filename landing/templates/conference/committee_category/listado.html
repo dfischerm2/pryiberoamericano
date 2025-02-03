@@ -42,7 +42,10 @@
                             Orden
                         </th>
                         <th class="text-center">
-                            Público
+                            ¿Activo?
+                        </th>
+                        <th class="text-center">
+                            ¿Publicado?
                         </th>
                         <th class="text-center">
                             Acción
@@ -59,11 +62,12 @@
                                 {{ l.order }}
                             </td>
                             <td style="text-align: center">
-                                {% if l.public %}
-                                    SI
-                                {% else %}
-                                    NO
-                                {% endif %}
+                                <input type="checkbox" class="activarcomite" value="{{ l.pk }}"
+                                       {% if l.active %}checked{% endif %}/>
+                            </td>
+                            <td style="text-align: center">
+                                <input type="checkbox" class="publicarcomite" value="{{ l.pk }}"
+                                       {% if l.public %}checked{% endif %}/>
                             </td>
                             <td class="with-btn-group text-center" nowrap>
                                 <div class="btn-group dropleft">
@@ -72,13 +76,6 @@
                                         <i class="fas fa-angle-left mr-1"></i> Acciones
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
-
-                                        <a class="dropdown-item" title="Ver {{ modulo }}"
-                                           onclick="formModal({{ l.pk }}, 'Ver registro: {{ l.name }}', 'ver')"
-                                           href="javascript:void(0);">
-                                            <i class="fas fa-eye"></i> Ver
-                                        </a>
-
                                         <a class="dropdown-item" title="Ver {{ modulo }}"
                                            href="?action=members&id={{ l.pk }}">
                                             <i class="fas fa-eye"></i> Members ({{ l.get_members_all.count }})
@@ -117,7 +114,7 @@
         </div>
     </div>
     <div class="modal fade" id="modalDetalle">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form method="post" enctype="multipart/form-data" action="{{ ruta }}"
                       class="form-horizontal form-label-left">
@@ -206,5 +203,86 @@
                 dataType: "json"
             });
         }
+    </script>
+    <script>
+        $(function () {
+            $('.publicarcomite').change(function () {
+                var id = $(this).val();
+                var checkElement = $(this);
+                var valor = true;
+                if (checkElement.is(':checked')) {
+                    valor = true;
+                } else {
+                    valor = false;
+                }
+                pantallaespera();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ request.path }}",
+                    data: {'action': 'checkpublic', 'id': id, 'val': valor},
+                    success: function (data) {
+                        if (data.result) {
+                            $.unblockUI();
+                            console.log(data.retorno)
+                            if (data.retorno === 1) {
+                                alertaSuccess(data.mensaje)
+                            } else {
+                                alertaWarning(data.mensaje)
+                            }
+                            checkElement.prop('checked', valor);
+                        } else {
+                            $.unblockUI();
+                            alertaWarning(data.mensaje);
+                        }
+                    },
+                    error: function () {
+                        $.unblockUI();
+                        checkElement.prop('checked', valor);
+                        alertaWarning("Error al enviar los datos.");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
+
+        $(function () {
+            $('.activarcomite').change(function () {
+                var id = $(this).val();
+                var checkElement = $(this);
+                var valor = true;
+                if (checkElement.is(':checked')) {
+                    valor = true;
+                } else {
+                    valor = false;
+                }
+                pantallaespera();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ request.path }}",
+                    data: {'action': 'checkactive', 'id': id, 'val': valor},
+                    success: function (data) {
+                        if (data.result) {
+                            $.unblockUI();
+                            console.log(data.retorno)
+                            if (data.retorno === 1) {
+                                alertaSuccess(data.mensaje)
+                            } else {
+                                alertaWarning(data.mensaje)
+                            }
+                            checkElement.prop('checked', valor);
+                        } else {
+                            $.unblockUI();
+                            alertaWarning(data.mensaje);
+                        }
+                    },
+                    error: function () {
+                        $.unblockUI();
+                        checkElement.prop('checked', valor);
+                        alertaWarning("Error al enviar los datos.");
+                    },
+                    dataType: "json"
+                });
+            });
+        });
     </script>
 {% endblock %}

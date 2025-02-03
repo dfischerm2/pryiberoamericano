@@ -19,15 +19,14 @@
                 <!-- Event Info -->
                 <div class="footer-info mb-4">
                     <h4 class="text-white">IX Ibero-American Biometrics Meeting 2025</h4>
-                    <p class="text-white">July 09-11, 2025 • Quito, Ecuador</p>
+                    <p class="text-white">{{ conference.date_str }} • {{ conference.location_str }}</p>
                 </div>
 
                 <!-- Social Links -->
                 <div class="footer-social mb-4">
-                    <a href="#" style="background: #0072BC;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" style="background: #0072BC;"><i class="fab fa-twitter"></i></a>
-                    <a href="#" style="background: #0072BC;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" style="background: #0072BC;"><i class="fab fa-youtube"></i></a>
+                    {% for l in conference_social_medias %}
+                        <a href="{{ l.href }}" style="background: #0072BC;"><i class="{{ l.icono }}"></i></a>
+                    {% endfor %}
                 </div>
 
                 <!-- Quick Links -->

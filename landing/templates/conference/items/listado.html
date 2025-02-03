@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+{% block atras %}{{ request.path }}{% endblock %}
 {% block content %}
     <form method="GET">
+        <input type="hidden" value="{{ action }}" name="action">
+        <input type="hidden" value="{{ cab.pk }}" name="id">
         <div class="form-row">
             <div class="col-md-6 col-sm-12 offset-md-6">
                 <div class="input-group mb-3">
@@ -10,7 +13,7 @@
                         <button class="btn btn-primary" type="submit" id="button-addon2"><i
                                 class="fa fa-search"></i></button>
                         {% if url_vars %}
-                            <a title="Ver todo" href="{{ request.path }}" class="btn btn-default">
+                            <a title="Ver todo" href="{{ request.path }}?action={{ action }}&id={{ cab.pk }}" class="btn btn-default">
                                 <i class="fas fa-sync-alt"></i>
                             </a>
                         {% endif %}
@@ -21,7 +24,7 @@
     </form>
 
     <div class="mb-3">
-        <a href="javascript:void(0)" onclick="formModal(0, 'Add {{ titulo }}', 'add')" class="btn btn-success"><i
+        <a href="javascript:void(0)" onclick="formModal({{ cab.pk }}, 'Add {{ titulo }}', 'additem')" class="btn btn-success"><i
                 class="fas fa-plus-circle mr-2"></i> New {{ titulo }}</a>
     </div>
 
@@ -32,22 +35,13 @@
                     <thead>
                     <tr>
                         <th class="text-left">
-                            Image
+                            Texto Principal
                         </th>
                         <th class="text-left">
-                            Title
-                        </th>
-                        <th class="text-left">
-                            Subtitle
+                            Texto Secundario
                         </th>
                         <th class="text-center">
-                            Start Date
-                        </th>
-                        <th class="text-center">
-                            End Date
-                        </th>
-                        <th class="text-center">
-                            ¿Active?
+                            Color
                         </th>
                         <th class="text-center">
                             Acción
@@ -57,33 +51,14 @@
                     <tbody>
                     {% for l in listado %}
                         <tr>
-                            <td class="text-center">
-                                {% if l.image_principal %}
-                                    <img width="50px" height="50px" src="/media/{{ l.image_principal }}"
-                                         class="img-thumbnail"
-                                        data-width="2048"
-                                                   data-height="1365"
-                                         data-fancybox="image"
-                                         alt="LOGO">
-                                {% else %}
-                                    <span class="text-muted"><i class="fa fa-info"></i> Sin registrar</span>
-                                {% endif %}
+                            <td class="text-left">
+                                {{ l.principal_text }}
                             </td>
                             <td class="text-left">
-                                {{ l.title }}
-                            </td>
-                            <td class="text-left">
-                                {{ l.subtitle }}
+                                {{ l.secondary_text }}
                             </td>
                             <td class="text-center">
-                                {{ l.start_date|date:"d/m/Y" }}
-                            </td>
-                            <td class="text-center">
-                                {{ l.end_date|date:"d/m/Y" }}
-                            </td>
-                            <td class="text-center">
-                                <input type="checkbox" class="publicarevento" value="{{ l.pk }}"
-                                       {% if l.active %}checked{% endif %}/>
+                                <i class="fa fa-square" style="color: {{ l.color|safe }}; font-size: 25px"></i>
                             </td>
                             <td class="with-btn-group text-center" nowrap>
                                 <div class="btn-group dropleft">
@@ -93,25 +68,12 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item"
-                                           href="?action=items&id={{ l.pk }}">
-                                            <i class="fas fa-eye"></i> Items ({{ l.get_items.count }})
-                                        </a>
-                                        <a class="dropdown-item"
-                                           href="?action=catalog&id={{ l.pk }}">
-                                            <i class="fas fa-eye"></i> Catalog ({{ l.get_catalog.count }})
-                                        </a>
-                                        <a class="dropdown-item"
-                                           href="?action=carrousel&id={{ l.pk }}">
-                                            <i class="fas fa-eye"></i> Carousel ({{ l.get_carousel.count }})
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item"
-                                           onclick="formModal({{ l.pk }}, 'Change {{ l.title }}', 'change')"
+                                           onclick="formModal({{ l.pk }}, 'Change {{ l.title }}', 'changeitem')"
                                            href="javascript:void(0);">
                                             <i class="fas fa-edit"></i> Change
                                         </a>
                                         <a class="dropdown-item"
-                                           onclick="eliminarajax({{ l.pk }}, '{{ l.title }}', 'delete')"
+                                           onclick="eliminarajax({{ l.pk }}, '{{ l.title }}', 'deleteitem')"
                                            href="javascript:void(0);">
                                             <i class="fas fa-trash"></i> Delete
                                         </a>
@@ -183,46 +145,5 @@
                 dataType: "json"
             });
         }
-    </script>
-    <script>
-        $(function () {
-            $('.publicarevento').change(function () {
-                var id = $(this).val();
-                var checkElement = $(this);
-                var valor = true;
-                if (checkElement.is(':checked')) {
-                    valor = true;
-                } else {
-                    valor = false;
-                }
-                pantallaespera();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ request.path }}",
-                    data: {'action': 'checkactive', 'id': id, 'val': valor},
-                    success: function (data) {
-                        if (data.result) {
-                            $.unblockUI();
-                            console.log(data.retorno)
-                            if (data.retorno === 1) {
-                                alertaSuccess(data.mensaje)
-                            } else {
-                                alertaWarning(data.mensaje)
-                            }
-                            checkElement.prop('checked', valor);
-                        } else {
-                            $.unblockUI();
-                            alertaWarning(data.mensaje);
-                        }
-                    },
-                    error: function () {
-                        $.unblockUI();
-                        checkElement.prop('checked', valor);
-                        alertaWarning("Error al enviar los datos.");
-                    },
-                    dataType: "json"
-                });
-            });
-        });
     </script>
 {% endblock %}

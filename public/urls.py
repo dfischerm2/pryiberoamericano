@@ -3,7 +3,10 @@ from django.urls import path, re_path
 
 from .acerade import acercade
 from .index import index
+from .index2 import index2
 from .view_changepass import changepass
+from .view_conferences import conferences
+from .view_members import members
 
 #from .view_pago import pagoView
 from .view_registro import registerView
@@ -15,6 +18,9 @@ from .view_perfil import perfil
 
 urlpatterns = [
     path('', index),
+    path('landing2', index2),
+    path('members/', members),
+path('conferences/', conferences),
     re_path(r'^acercade/', acercade),
     #path('pago/<str:pedido_id>/', pagoView),
     re_path(r'^perfil/', perfil),

@@ -64,6 +64,24 @@ def committeeCategoryView(request):
                     messages.success(request, "Categoría de comité eliminada exitosamente")
                     res_json.append({'error': False})
 
+                elif action == 'checkactive':
+                    pk, estado = request.POST['id'], request.POST['val']
+                    mensaje = 'Comite Activado' if estado == 'true' else 'Comite Desactivado'
+                    retorno = 1 if estado == 'true' else 2
+                    qsbase = model.objects.get(pk=pk)
+                    qsbase.active = True if retorno == 1 else False
+                    qsbase.save()
+                    res_json = {'result': True, 'mensaje': mensaje, 'retorno': retorno}
+
+                elif action == 'checkpublic':
+                    pk, estado = request.POST['id'], request.POST['val']
+                    mensaje = 'Comite Publicado' if estado == 'true' else 'Comite Despublicado'
+                    retorno = 1 if estado == 'true' else 2
+                    qsbase = model.objects.get(pk=pk)
+                    qsbase.public = True if retorno == 1 else False
+                    qsbase.save()
+                    res_json = {'result': True, 'mensaje': mensaje, 'retorno': retorno}
+
                 if action == 'addmember':
                     filtro = model.objects.get(pk=int(request.POST['pk']))
                     form = CommitteeMemberForm(request.POST, request.FILES, request=request)
@@ -96,6 +114,15 @@ def committeeCategoryView(request):
                     messages.success(request, "Miembro del comité eliminado exitosamente")
                     res_json.append({'error': False})
 
+                elif action == 'checkpublicmember':
+                    pk, estado = request.POST['id'], request.POST['val']
+                    mensaje = 'Miembro Publicado' if estado == 'true' else 'Miembro Despublicado'
+                    retorno = 1 if estado == 'true' else 2
+                    qsbase = CommitteeMember.objects.get(pk=pk)
+                    qsbase.public = True if retorno == 1 else False
+                    qsbase.save()
+                    res_json = {'result': True, 'mensaje': mensaje, 'retorno': retorno}
+
         except ValueError as ex:
             res_json.append({'error': True, "message": str(ex)})
         except FormError as ex:
@@ -113,23 +140,15 @@ def committeeCategoryView(request):
             data["action"] = action = request.GET['action']
             if action == 'add':
                 data["form"] = Formulario()
-                template = get_template("conference/summary/form_summary.html")
+                template = get_template("conference/committee_category/form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
             elif action == 'change':
                 pk = int(request.GET['id'])
-                committee_category = model.objects.get(pk=pk)
+                data['filtro'] = filtro = model.objects.get(pk=pk)
                 data["id"] = pk
-                data["form"] = Formulario(instance=committee_category)
-                template = get_template("conference/summary/form_summary.html")
-                return JsonResponse({"result": True, 'data': template.render(data)})
-
-            elif action == 'ver':
-                pk = int(request.GET['id'])
-                committee_category = model.objects.get(pk=pk)
-                data["id"] = pk
-                data["form"] = Formulario(instance=committee_category, ver=True)
-                template = get_template("conference/summary/form_summary.html")
+                data["form"] = Formulario(instance=filtro)
+                template = get_template("conference/committee_category/form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
             elif action == 'members':
@@ -162,14 +181,6 @@ def committeeCategoryView(request):
                 data['filtro'] = filtro = CommitteeMember.objects.get(pk=pk)
                 data["form"] = CommitteeMemberForm(instance=filtro)
                 template = get_template("conference/committee_category/members/form.html")
-                return JsonResponse({"result": True, 'data': template.render(data)})
-
-            elif action == 'vermember':
-                pk = int(request.GET['id'])
-                filtro = CommitteeMember.objects.get(pk=pk)
-                data["id"] = pk
-                data["form"] = CommitteeMemberForm(instance=filtro, ver=True)
-                template = get_template("conference/guidelinetype/guidelines/form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
         # Filtrado y listado

@@ -9,13 +9,19 @@ class Conference(ModeloBase):
     subtitle = models.CharField(max_length=200, verbose_name='Subtítulo')
     start_date = models.DateField(verbose_name='Fecha de Inicio')
     end_date = models.DateField(verbose_name='Fecha de Fin')
-    date_str = models.CharField(max_length=200, verbose_name='Fecha')
-    location_str = models.CharField(max_length=200, verbose_name='Ubicación')
-    image_princial = models.ImageField(upload_to='conference/images/', verbose_name='Imagen Principal')
+    date_str = models.CharField(blank=True, null=True, max_length=200, verbose_name='Fecha en Cadena')
+    location_str = models.CharField(blank=True, null=True, max_length=200, verbose_name='Ubicación')
+    image_principal = models.ImageField(blank=True, null=True, upload_to='conference/images/', verbose_name='Imagen Principal')
     active = models.BooleanField(default=True, verbose_name='Activo')
 
-    def get_summary(self):
-        return self.summary_set.filter(status=True, activo=True, public=True).order_by('-id').first()
+    def get_items(self):
+        return self.itemdetailconference_set.filter(status=True).order_by('-id')
+
+    def get_catalog(self):
+        return self.photocatalogconference_set.filter(status=True).order_by('-id')
+
+    def get_carousel(self):
+        return self.landingconferececarousel_set.filter(status=True).order_by('-id')
 
     def get_topics(self):
         return self.topiccategory_set.filter(public=True, status=True)
@@ -33,8 +39,8 @@ class Conference(ModeloBase):
 
 class ItemDetailConference(ModeloBase):
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True)
-    principal_text = models.CharField(verbose_name='Texto Principal')
-    secondary_text = models.CharField(verbose_name='Texto Secundario')
+    principal_text = models.CharField(blank=True, null=True, verbose_name='Texto Principal')
+    secondary_text = models.CharField(blank=True, null=True, verbose_name='Texto Secundario')
     color = models.CharField(default='', blank=True, null=True, max_length=200, verbose_name=u"Color")
 
     def __str__(self):
@@ -47,7 +53,7 @@ class ItemDetailConference(ModeloBase):
 
 class PhotoCatalogConference(ModeloBase):
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True)
-    image = models.ImageField(upload_to='conference/catalog/', verbose_name='Imagen')
+    image = models.ImageField(blank=True, null=True, upload_to='conference/catalog/', verbose_name='Imagen')
     public = models.BooleanField(default=True)
 
     def __str__(self):
@@ -61,7 +67,7 @@ class PhotoCatalogConference(ModeloBase):
 class LandingConfereceCarousel(ModeloBase):
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True)
     order = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='landing_conference_carousel/')
+    image = models.ImageField(blank=True, null=True, upload_to='landing_conference_carousel/')
     public = models.BooleanField(default=True)
 
     def __str__(self):
@@ -70,13 +76,16 @@ class LandingConfereceCarousel(ModeloBase):
 
 class CommitteeCategory(ModeloBase):
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(blank=True, null=True, max_length=200)
     order = models.IntegerField(default=0, null=True, blank=True)
     active = models.BooleanField(default=True, verbose_name='Activo')
     public = models.BooleanField(default=True, verbose_name='Publicado en landing')
 
     def get_members_all(self):
-        return self.members.filter(status=True)
+        return self.members.filter(status=True).order_by('order')
+
+    def get_members(self):
+        return self.members.filter(status=True, public=True).order_by('order')
 
     def __str__(self):
         return self.name
@@ -93,13 +102,13 @@ class CommitteeMember(ModeloBase):
         ("FEMENINO", "Femenino"),
         ("NINGUNO", "Sin definir"),
     )
-    order = models.IntegerField(default=0)
-    category = models.ForeignKey(CommitteeCategory, related_name='members', on_delete=models.CASCADE)
+    order = models.IntegerField(blank=True, null=True, verbose_name='Orden')
+    category = models.ForeignKey(CommitteeCategory, related_name='members', blank=True, null=True, on_delete=models.CASCADE)
     sexo = models.CharField(verbose_name="Sexo", max_length=50, choices=SEXO, default="NINGUNO",  null=True, blank=True)
-    name = models.CharField(max_length=200)
-    degree = models.CharField(max_length=100)
-    rol = models.CharField(max_length=500, default='')
-    description_rol = models.TextField(default='')
+    name = models.CharField(blank=True, null=True, max_length=200, verbose_name='Nombre')
+    degree = models.CharField(blank=True, null=True, max_length=100, verbose_name='Grado')
+    rol = models.CharField(blank=True, null=True, max_length=500, verbose_name='Rol')
+    description_rol = models.TextField(blank=True, null=True, verbose_name='Descripción del Rol')
     photo = models.ImageField(upload_to='committee_members/', null=True, blank=True)
     linkedin = models.URLField(blank=True, null=True)
     public = models.BooleanField(default=True, verbose_name='Publicado en landing')
@@ -114,11 +123,11 @@ class CommitteeMember(ModeloBase):
 
 
 class TopicCategory(ModeloBase):
-    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True)
-    icon = models.CharField(max_length=200, null=True, blank=True)
-    name = models.CharField(max_length=200)
-    description = models.TextField(null=True, blank=True)
-    public = models.BooleanField(default=True)
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Conferencia')
+    icon = models.CharField(max_length=200, null=True, blank=True, verbose_name='Icono')
+    name = models.CharField(blank=True, null=True, max_length=200, verbose_name='Nombre')
+    description = models.TextField(null=True, blank=True, verbose_name='Descripción')
+    public = models.BooleanField(default=True , verbose_name='Publicado en landing')
 
     def get_topics(self):
         return self.topics.filter(status=True, public=True)
@@ -137,9 +146,9 @@ class TopicCategory(ModeloBase):
 
 
 class Topic(ModeloBase):
-    category = models.ForeignKey(TopicCategory, related_name='topics', on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
-    public = models.BooleanField(default=True)
+    category = models.ForeignKey(TopicCategory, related_name='topics', on_delete=models.CASCADE, verbose_name='Categoría')
+    name = models.CharField(blank=True, null=True, max_length=200, verbose_name='Nombre')
+    public = models.BooleanField(default=True, verbose_name='Publicado en landing')
 
     def __str__(self):
         return self.name
@@ -151,12 +160,15 @@ class Topic(ModeloBase):
 
 
 class ScheduleConference(ModeloBase):
-    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True)
-    order = models.IntegerField(default=0)
-    title = models.CharField(max_length=200, verbose_name='Título')
-    date_start = models.DateField(verbose_name='Fecha de Inicio')
-    date_end = models.DateField(verbose_name='Fecha de Fin')
-    date_str = models.CharField(max_length=200, verbose_name='Fecha')
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Conferencia')
+    order = models.IntegerField(blank=True, null=True, verbose_name='Orden')
+    title = models.CharField(blank=True, null=True, max_length=200, verbose_name='Título')
+    date_start = models.DateField(blank=True, null=True, verbose_name='Fecha de Inicio')
+    date_end = models.DateField(blank=True, null=True, verbose_name='Fecha de Fin')
+    date_str = models.CharField(blank=True, null=True, max_length=200, verbose_name='Fecha en Cadena')
+
+    def get_details(self):
+        return self.details.filter(status=True)
 
     def __str__(self):
         return self.title
@@ -168,11 +180,11 @@ class ScheduleConference(ModeloBase):
 
 class DetailScheduleConference(ModeloBase):
     cab = models.ForeignKey(ScheduleConference, related_name='details', on_delete=models.CASCADE, verbose_name='Cabecera')
-    order = models.IntegerField(default=0, verbose_name='Orden')
-    title = models.CharField(max_length=200, verbose_name='Título')
-    time_start = models.TimeField(verbose_name='Hora de Inicio')
-    time_end = models.TimeField(verbose_name='Hora de Fin')
-    description = models.TextField(verbose_name='Descripción')
+    order = models.IntegerField(blank=True, null=True, verbose_name='Orden')
+    title = models.CharField(blank=True, null=True, max_length=200, verbose_name='Título')
+    time_start = models.TimeField(blank=True, null=True, verbose_name='Hora de Inicio')
+    time_end = models.TimeField(blank=True, null=True, verbose_name='Hora de Fin')
+    description = models.TextField(blank=True, null=True, verbose_name='Descripción')
 
     def __str__(self):
         return self.title
@@ -191,10 +203,10 @@ ROLES_FEE_CHOICE = (
 
 
 class ConferenceFee(ModeloBase):
-    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True)
-    order = models.IntegerField(default=0, verbose_name='Orden')
-    role = models.IntegerField(choices=ROLES_FEE_CHOICE, verbose_name='Rol')
-    value = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Valor')
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Conferencia')
+    order = models.IntegerField(blank=True, null=True, verbose_name='Orden')
+    role = models.IntegerField(default=1, choices=ROLES_FEE_CHOICE, verbose_name='Rol')
+    value = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2, verbose_name='Valor')
     published = models.BooleanField(default=True, verbose_name='Publicado')
 
     def get_public(self):
@@ -217,8 +229,8 @@ class ConferenceFee(ModeloBase):
 
 class DetailConferenceFee(ModeloBase):
     cab = models.ForeignKey(ConferenceFee, related_name='details', on_delete=models.CASCADE, verbose_name='Cabecera')
-    order = models.IntegerField(default=0, verbose_name='Orden')
-    description = models.CharField(max_length=200, verbose_name='Descripción')
+    order = models.IntegerField(blank=True, null=True, verbose_name='Orden')
+    description = models.CharField(blank=True, null=True, max_length=200, verbose_name='Descripción')
 
     def __str__(self):
         return self.description

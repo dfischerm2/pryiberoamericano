@@ -36,6 +36,7 @@ def topicCategoryView(request):
                 if action == 'add':
                     form = Formulario(request.POST, request=request)
                     if form.is_valid():
+                        form.instance.conference = conference
                         form.save()
                         log(f"Registró una nueva categoría de tema {form.instance.__str__()}", request, "add",
                             obj=form.instance.id)
@@ -62,6 +63,15 @@ def topicCategoryView(request):
                     log(f"Eliminó la categoría de tema {filtro.__str__()}", request, "del", obj=filtro.id)
                     messages.success(request, "Categoría de tema eliminada exitosamente")
                     res_json.append({'error': False})
+
+                elif action == 'checkpublic':
+                    pk, estado = request.POST['id'], request.POST['val']
+                    mensaje = 'Categoria Activada' if estado == 'true' else 'Categoria Desactivada'
+                    retorno = 1 if estado == 'true' else 2
+                    qsbase = model.objects.get(pk=pk)
+                    qsbase.public = True if retorno == 1 else False
+                    qsbase.save()
+                    res_json = {'result': True, 'mensaje': mensaje, 'retorno': retorno}
 
                 if action == 'addtopic':
                     filtro = TopicCategory.objects.get(pk=int(request.POST['pk']))
@@ -94,6 +104,15 @@ def topicCategoryView(request):
                     messages.success(request, "Tema eliminado exitosamente")
                     res_json.append({'error': False})
 
+                elif action == 'checkpublictopic':
+                    pk, estado = request.POST['id'], request.POST['val']
+                    mensaje = 'Tema Activado' if estado == 'true' else 'Tema Desactivado'
+                    retorno = 1 if estado == 'true' else 2
+                    qsbase = Topic.objects.get(pk=pk)
+                    qsbase.public = True if retorno == 1 else False
+                    qsbase.save()
+                    res_json = {'result': True, 'mensaje': mensaje, 'retorno': retorno}
+
 
         except ValueError as ex:
             res_json.append({'error': True, "message": str(ex)})
@@ -112,23 +131,15 @@ def topicCategoryView(request):
             data["action"] = action = request.GET['action']
             if action == 'add':
                 data["form"] = Formulario()
-                template = get_template("autenticacion/usuario/formmodal.html")
+                template = get_template("conference/topic_category/form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
             elif action == 'change':
                 pk = int(request.GET['id'])
-                topic_category = model.objects.get(pk=pk)
+                data['filtro'] = filtro = model.objects.get(pk=pk)
                 data["id"] = pk
-                data["form"] = Formulario(instance=topic_category)
-                template = get_template("autenticacion/usuario/formmodal.html")
-                return JsonResponse({"result": True, 'data': template.render(data)})
-
-            elif action == 'ver':
-                pk = int(request.GET['id'])
-                topic_category = model.objects.get(pk=pk)
-                data["id"] = pk
-                data["form"] = Formulario(instance=topic_category, ver=True)
-                template = get_template("autenticacion/usuario/formmodal.html")
+                data["form"] = Formulario(instance=filtro)
+                template = get_template("conference/topic_category/form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
             elif action == 'topics':
@@ -160,14 +171,6 @@ def topicCategoryView(request):
                 pk = int(request.GET['id'])
                 data['filtro'] = filtro = Topic.objects.get(pk=pk)
                 data["form"] = TopicForm(instance=filtro)
-                template = get_template("conference/topic_category/topics/form.html")
-                return JsonResponse({"result": True, 'data': template.render(data)})
-
-            elif action == 'vertopic':
-                pk = int(request.GET['id'])
-                topic = Topic.objects.get(pk=pk)
-                data["id"] = pk
-                data["form"] = TopicForm(instance=topic, ver=True)
                 template = get_template("conference/topic_category/topics/form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
