@@ -20,7 +20,7 @@ urlpatterns = [
     path('', index),
     path('landing2', index2),
     path('members/', members),
-path('conferences/', conferences),
+path('eventos-anteriores/', conferences),
     re_path(r'^acercade/', acercade),
     #path('pago/<str:pedido_id>/', pagoView),
     re_path(r'^perfil/', perfil),

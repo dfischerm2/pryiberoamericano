@@ -24,7 +24,7 @@ def members(request):
     }
     addData(request, data)
     confi_ = Configuracion.get_instancia()
-    conference = request.session['conference']
+    conference = Conference.objects.filter(status=True, active=True).order_by('-active', '-end_date').first()
     if request.method == 'POST':
         res_json = []
         try:

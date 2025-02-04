@@ -21,7 +21,7 @@ from seguridad.templatetags.templatefunctions import encrypt
 
 def conferences(request):
     data = {
-        'titulo': 'Conferences',
+        'titulo': 'Eventos Anteriores',
         'ruta': request.path,
         'fecha': datetime.now(),
     }
@@ -44,6 +44,7 @@ def conferences(request):
                 id = int(encrypt(request.GET['id']))
                 data['conference'] = conference = Conference.objects.get(pk=id)
                 data['catalog'] = PhotoCatalogConference.objects.filter(conference=conference, public=True, status=True)
+                data['conference_social_medias'] = RedesSociales.objects.filter(conference=conference, publicar=True, status=True)
                 return render(request, 'public/landing/catalog.html', data)
 
         # CONTADOR ENTORNO
@@ -60,4 +61,5 @@ def conferences(request):
                                              hora_visita=datetime.now().time(), user_id=request.user.pk,
                                              dispositivo=dispositivo)
         data['conferences'] = Conference.objects.filter(status=True, active=True).order_by('-id')
+
         return render(request, 'public/landing/conferences.html', data)

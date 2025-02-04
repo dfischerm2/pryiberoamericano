@@ -24,7 +24,7 @@ def index2(request):
     }
     addData(request, data)
     confi_ = Configuracion.get_instancia()
-    conference = request.session['conference']
+
     if request.method == 'POST':
         res_json = []
         try:
@@ -65,7 +65,7 @@ def index2(request):
                 VisitaEntorno.objects.create(fecha_visita=datetime.now().date(), ip=ipresult,
                                              hora_visita=datetime.now().time(), user_id=request.user.pk,
                                              dispositivo=dispositivo)
-        data['conference'] = conference
+        data['conference'] = conference = Conference.objects.filter(status=True, active=True).order_by('-active', '-end_date').first()
         data['conference_items'] = conference.get_items()
         data['conference_catalog'] = conference.get_catalog().filter(public=True)
         data['conference_carrousel'] = conference.get_carousel().filter(public=True)
