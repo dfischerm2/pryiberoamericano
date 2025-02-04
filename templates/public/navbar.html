@@ -53,13 +53,13 @@
                                         <a href="/"> Home</a>
                                     </li>
                                     <li class="has-sub">
-                                        <a href="#aboutus"> About us </a>
+                                        <a href="{% if request.path == '/' %}/#aboutus{% else %}/{% endif %}"> About us </a>
                                     </li>
                                     <li class="has-sub ">
-                                        <a href="#schedule"> Calendar</a>
+                                        <a href="{% if request.path == '/' %}/#schedule{% else %}/{% endif %}"> Calendar</a>
                                     </li>
                                     <li class="has-sub ">
-                                        <a href="#register"> Prices</a>
+                                        <a href="{% if request.path == '/' %}/#register{% else %}/{% endif %}"> Prices</a>
                                     </li>
                                     <li class="has-sub ">
                                         <a href="/members"> Members</a>
