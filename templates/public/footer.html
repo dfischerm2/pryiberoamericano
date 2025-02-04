@@ -28,8 +28,15 @@
                 {% if conference_social_medias %}
                     <div class="footer-social mb-4">
                         {% for l in conference_social_medias %}
-                            <a href="{{ l.href }}" style="background: #0072BC;"><i class="{{ l.icono }}"></i></a>
+                            <a href="{{ l.href }}" style="background: #0072BC;" target="_blank"><i class="{{ l.icono }}"></i></a>
                         {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="footer-social mb-4">
+                        <a href="https://www.facebook.com/IXEncuentroBio/" style="background: #0072BC;" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/IXEncuentroBio/" style="background: #0072BC;" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@UNEMIDivulga/" style="background: #0072BC;" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/IXEncuentroBio/" style="background: #0072BC;" target="_blank"><i class="fab fa-twitter"></i></a>
                     </div>
                 {% endif %}
 
