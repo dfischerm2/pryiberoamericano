@@ -118,6 +118,8 @@ class Configuracion(ModeloBase):
     web = models.CharField(max_length=100, blank=True, null=True, verbose_name='Web')
     email_notificacion = models.CharField(max_length=100, blank=True, null=True, verbose_name='Email Notificaciones')
     direccion = models.CharField(max_length=5000, blank=True, null=True, verbose_name='Dirección Empresa')
+    # LANDING
+    descripcion_landing = models.TextField(blank=True, null=True, verbose_name='Descripción Landing')
 
 
     @staticmethod

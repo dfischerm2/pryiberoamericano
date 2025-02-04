@@ -162,7 +162,7 @@ def committeeCategoryView(request):
                         data["criterio"] = criterio
                         url_vars += '&criterio=' + criterio
 
-                    listado = CommitteeMember.objects.filter(filtros)
+                    listado = CommitteeMember.objects.filter(filtros).order_by('order')
                     data["list_count"] = listado.count()
                     data["url_vars"] = url_vars
                     paginador(request, listado, 20, data, url_vars)

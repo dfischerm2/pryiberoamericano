@@ -165,7 +165,7 @@
         }
     </style>
     <style>
-        {% if request.path != '/' %}
+        {% if request.path != '/' and request.path != '/landing2' %}
             .header-area {
                 background-color: #002b49 !important;
             }
@@ -175,8 +175,8 @@
                     margin-bottom: 100px;
                 }
             }
-
         {% endif %}
+
 
         @media (max-width: 1200px) {
             .header-btn.second-header-btn {

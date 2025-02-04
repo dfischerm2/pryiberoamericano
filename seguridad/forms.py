@@ -36,6 +36,9 @@ class ConfiguracionForm(ModelFormBase):
             if k in ('valor_mensual', 'valor_anual'):
                 self.fields[k].widget.attrs['title'] = "Sólo números"
                 self.fields[k].widget.attrs['onKeyPress'] = "return soloNumeros1(event)"
+            if k in ('descripcion_landing',):
+                self.fields[k].widget.attrs['col'] = "6"
+                self.fields[k].widget.attrs['rows'] = "3"
 
 
 class ModuloForm(ModelFormBase):

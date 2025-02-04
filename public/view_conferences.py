@@ -21,13 +21,12 @@ from seguridad.templatetags.templatefunctions import encrypt
 
 def conferences(request):
     data = {
-        'titulo': 'Eventos Anteriores',
+        'titulo': 'Previous Events',
         'ruta': request.path,
         'fecha': datetime.now(),
     }
     addData(request, data)
     confi_ = Configuracion.get_instancia()
-    conference = request.session['conference']
     if request.method == 'POST':
         res_json = []
         try:

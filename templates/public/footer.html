@@ -19,15 +19,20 @@
                 <!-- Event Info -->
                 <div class="footer-info mb-4">
                     <h4 class="text-white">IX Ibero-American Biometrics Meeting 2025</h4>
-                    <p class="text-white">{{ conference.date_str }} • {{ conference.location_str }}</p>
+                    {% if conference %}
+                        <p class="text-white">{{ conference.date_str|default:'' }} • {{ conference.location_str|default:'' }}</p>
+                    {% endif %}
                 </div>
 
                 <!-- Social Links -->
-                <div class="footer-social mb-4">
-                    {% for l in conference_social_medias %}
-                        <a href="{{ l.href }}" style="background: #0072BC;"><i class="{{ l.icono }}"></i></a>
-                    {% endfor %}
-                </div>
+                {% if conference_social_medias %}
+                    <div class="footer-social mb-4">
+                        {% for l in conference_social_medias %}
+                            <a href="{{ l.href }}" style="background: #0072BC;"><i class="{{ l.icono }}"></i></a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
 
                 <!-- Quick Links -->
                 {#                <div class="footer-links mb-4">#}

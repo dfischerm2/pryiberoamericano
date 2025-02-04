@@ -135,7 +135,7 @@ def scheduleConferenceView(request):
                     listado = DetailScheduleConference.objects.filter(filtros)
                     data["list_count"] = listado.count()
                     data["url_vars"] = url_vars
-                    paginador(request, listado.order_by('-order'), 20, data, url_vars)
+                    paginador(request, listado.order_by('order'), 20, data, url_vars)
                     return render(request, 'conference/schedule/detail/listado.html', data)
                 except Exception as ex:
                     pass
@@ -163,5 +163,5 @@ def scheduleConferenceView(request):
         listado = model.objects.filter(filtros)
         data["list_count"] = listado.count()
         data["url_vars"] = url_vars
-        paginador(request, listado.order_by('-order'), 20, data, url_vars)
+        paginador(request, listado.order_by('order'), 20, data, url_vars)
         return render(request, 'conference/schedule/listado.html', data)
