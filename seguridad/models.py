@@ -110,6 +110,7 @@ class Configuracion(ModeloBase):
     banner_login = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo Login')
     fondoprincipal = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo Principal')
     imagenprincipal = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Imagen Sobre Nosotros')
+    descripcion_landing = models.TextField(blank=True, null=True, verbose_name='Descripción Landing')
     nombre_empresa = models.CharField(max_length=1000, verbose_name='Nombre de la Empresa')
     alias = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Alias')
     descripcion = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Descripción')
@@ -119,7 +120,6 @@ class Configuracion(ModeloBase):
     email_notificacion = models.CharField(max_length=100, blank=True, null=True, verbose_name='Email Notificaciones')
     direccion = models.CharField(max_length=5000, blank=True, null=True, verbose_name='Dirección Empresa')
     # LANDING
-    descripcion_landing = models.TextField(blank=True, null=True, verbose_name='Descripción Landing')
 
 
     @staticmethod

@@ -26,7 +26,7 @@ class ConfiguracionForm(ModelFormBase):
         self.fields['fondoprincipal'].widget.attrs['data-allowed-file-extensions'] = "jpg jpeg png tiff svg jfif"
 
         for k, v in self.fields.items():
-            if k in ('ico', 'logo_sistema', 'logo_sistema_white', 'direccion', 'fondoprincipal', 'nombre_empresa', 'alias', 'descripcion', 'telefono', 'email',  'email_notificacion', 'textoprincipal', 'textosecundario', 'web'):
+            if k in ('ico', 'logo_sistema', 'logo_sistema_white', 'direccion', 'fondoprincipal', 'nombre_empresa', 'alias', 'descripcion', 'telefono', 'email',  'email_notificacion', 'textoprincipal', 'textosecundario', 'web', 'logo_investigacion_unemi', 'logo_unemi',):
                 self.fields[k].widget.attrs['col'] = "6"
             if k in ('telefono', 'telefono_emergencia'):
                 self.fields[k].widget.attrs['pattern'] = "\d*"
@@ -37,7 +37,7 @@ class ConfiguracionForm(ModelFormBase):
                 self.fields[k].widget.attrs['title'] = "Sólo números"
                 self.fields[k].widget.attrs['onKeyPress'] = "return soloNumeros1(event)"
             if k in ('descripcion_landing',):
-                self.fields[k].widget.attrs['col'] = "6"
+                self.fields[k].widget.attrs['col'] = "12"
                 self.fields[k].widget.attrs['rows'] = "3"
 
 
