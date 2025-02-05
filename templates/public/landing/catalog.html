@@ -386,19 +386,30 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                {% for l in catalog %}
+            {% for l in catalog %}
+                <div class="row">
                     <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
                          data-delay=".2s">
                         <div class="single-team text-center pt-50  pb-50 mb-30">
                             <div class="team-thumb" style="width: 80%; margin: auto;">
-                                <img src="{% if l.image %}/media/{{ l.image }}{% else %}/static/images/sin-perfil.png{% endif %}"
+                                <img src="{% if l.image %}/media/
+                                    {{ l.image }}{% else %}/static/images/sin-perfil.png{% endif %}"
                                      alt="img">
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% empty %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div class="p-4 rounded shadow-lg wow fadeInUp" data-animation="fadeInUp"
+                             data-delay=".6s">
+                            <p class="mb-0" style="font-style: normal">There is no photos available, come back
+                                soon!.</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </section>
 

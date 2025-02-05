@@ -386,15 +386,14 @@
                     </div>
                 </div>
             </div>
-            {% if l.conferences %}
+            {% if conferences %}
                 <div class="row">
                     {% for l in conferences %}
                         <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
                              data-delay=".2s">
                             <div class="single-team text-center pt-50  pb-50 mb-30">
                                 <div class="team-thumb" style="width: 80%; margin: auto;">
-                                    <img src="{% if l.image_principal %}/media/
-                                        {{ l.image_principal }}{% else %}/static/images/sin-perfil.png{% endif %}"
+                                    <img src="{% if l.image_principal %}/media/{{ l.image_principal }}{% else %}/static/images/sin-perfil.png{% endif %}"
                                          alt="img">
                                 </div>
                                 <div class="team-info">
