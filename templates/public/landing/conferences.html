@@ -386,35 +386,42 @@
                     </div>
                 </div>
             </div>
-            {#            <div class="row">#}
-            {#                {% for l in conferences %}#}
-            {#                    <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"#}
-            {#                         data-delay=".2s">#}
-            {#                        <div class="single-team text-center pt-50  pb-50 mb-30">#}
-            {#                            <div class="team-thumb" style="width: 80%; margin: auto;">#}
-            {#                                <img src="{% if l.image_principal %}/media/{{ l.image_principal }}{% else %}/static/images/sin-perfil.png{% endif %}"#}
-            {#                                     alt="img">#}
-            {#                            </div>#}
-            {#                            <div class="team-info">#}
-            {#                                <h5>{{ l.title|upper }}</h5>#}
-            {#                                <a href="/previous-events?action=catalog&id={{ l.pk|encrypt }}" class="btn btn-primary">#}
-            {#                                    View Photos#}
-            {#                                </a>#}
-            {#                            </div>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                {% endfor %}#}
-            {#            </div>#}
-            <div class="row justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <div class="p-4 rounded shadow-lg wow fadeInUp" data-animation="fadeInUp"
-                         data-delay=".6s">
-                        <h4 class="mb-2">Available Soon</h4>
-                        <p class="mb-0" style="font-style: normal">Stay tuned! We'll be updating this section with our past conferences and
-                            events.</p>
+            {% if l.conferences %}
+                <div class="row">
+                    {% for l in conferences %}
+                        <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                             data-delay=".2s">
+                            <div class="single-team text-center pt-50  pb-50 mb-30">
+                                <div class="team-thumb" style="width: 80%; margin: auto;">
+                                    <img src="{% if l.image_principal %}/media/
+                                        {{ l.image_principal }}{% else %}/static/images/sin-perfil.png{% endif %}"
+                                         alt="img">
+                                </div>
+                                <div class="team-info">
+                                    <h5>{{ l.title|upper }}</h5>
+                                    <a href="/previous-events?action=catalog&id={{ l.pk|encrypt }}"
+                                       class="btn btn-primary">
+                                        View Photos
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div class="p-4 rounded shadow-lg wow fadeInUp" data-animation="fadeInUp"
+                             data-delay=".6s">
+                            <h4 class="mb-2">Available Soon</h4>
+                            <p class="mb-0" style="font-style: normal">Stay tuned! We'll be updating this section with
+                                our past conferences and
+                                events.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
+
         </div>
     </section>
 
