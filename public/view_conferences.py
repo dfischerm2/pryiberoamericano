@@ -27,6 +27,7 @@ def conferences(request):
     }
     addData(request, data)
     confi_ = Configuracion.get_instancia()
+    data['conference'] = Conference.objects.filter(status=True, active=True).order_by('-id').first()
     if request.method == 'POST':
         res_json = []
         try:
@@ -41,9 +42,8 @@ def conferences(request):
             data["action"] = action = request.GET['action']
             if action == 'catalog':
                 id = int(encrypt(request.GET['id']))
-                data['conference'] = conference = Conference.objects.get(pk=id)
+                data['past_conference'] = conference = Conference.objects.get(pk=id)
                 data['catalog'] = PhotoCatalogConference.objects.filter(conference=conference, public=True, status=True)
-                data['conference_social_medias'] = RedesSociales.objects.filter(conference=conference, publicar=True, status=True)
                 return render(request, 'public/landing/catalog.html', data)
 
         # CONTADOR ENTORNO
@@ -59,6 +59,6 @@ def conferences(request):
                 VisitaEntorno.objects.create(fecha_visita=datetime.now().date(), ip=ipresult,
                                              hora_visita=datetime.now().time(), user_id=request.user.pk,
                                              dispositivo=dispositivo)
-        data['conferences'] = Conference.objects.filter(status=True, active=True).order_by('-id')
+        data['conferences'] = Conference.objects.filter(status=True, active=False).order_by('start_date')
 
         return render(request, 'public/landing/conferences.html', data)

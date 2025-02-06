@@ -21,13 +21,15 @@
                     <h4 class="text-white">IX Ibero-American Biometrics Meeting 2025</h4>
                     {% if conference %}
                         <p class="text-white">{{ conference.date_str|default:'' }} • {{ conference.location_str|default:'' }}</p>
+                    {% else %}
+                        <p class="text-white">9 - 11 July, 2025 • Quito, Ecuador</p>
                     {% endif %}
                 </div>
 
                 <!-- Social Links -->
-                {% if conference_social_medias %}
+                {% if conference.get_social_medias %}
                     <div class="footer-social mb-4">
-                        {% for l in conference_social_medias %}
+                        {% for l in conference.get_social_medias %}
                             <a href="{{ l.href }}" style="background: #0072BC;" target="_blank"><i class="{{ l.icono }}"></i></a>
                         {% endfor %}
                     </div>

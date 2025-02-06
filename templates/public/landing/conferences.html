@@ -397,7 +397,7 @@
                                          alt="img">
                                 </div>
                                 <div class="team-info">
-                                    <h5>{{ l.title|upper }}</h5>
+                                    <h5>{% if l.number %}{{ l.number }}{% endif %} {{ l.title|upper }}</h5>
                                     <a href="/previous-events?action=catalog&id={{ l.pk|encrypt }}"
                                        class="btn btn-primary">
                                         View Photos
@@ -412,7 +412,6 @@
                     <div class="col-lg-6 text-center">
                         <div class="p-4 rounded shadow-lg wow fadeInUp" data-animation="fadeInUp"
                              data-delay=".6s">
-                            <h4 class="mb-2">Available Soon</h4>
                             <p class="mb-0" style="font-style: normal">Stay tuned! We'll be updating this section with
                                 our past conferences and
                                 events.</p>

@@ -5,6 +5,7 @@ from core.custom_models import ModeloBase
 # Create your models here.
 
 class Conference(ModeloBase):
+    number = models.CharField(blank=True, null=True, max_length=200, verbose_name='Número')
     title = models.CharField(max_length=200, verbose_name='Título')
     subtitle = models.CharField(max_length=200, verbose_name='Subtítulo')
     start_date = models.DateField(verbose_name='Fecha de Inicio')
@@ -23,6 +24,9 @@ class Conference(ModeloBase):
     def get_carousel(self):
         return self.landingconferececarousel_set.filter(status=True).order_by('-id')
 
+    def get_social_medias(self):
+        return self.redessociales_set.filter(publicar=True, status=True)
+
     def get_topics(self):
         return self.topiccategory_set.filter(public=True, status=True)
 
@@ -30,7 +34,7 @@ class Conference(ModeloBase):
         return 'text-success fa fa-check-circle' if self.active else 'text-danger fa fa-times-circle'
 
     def __str__(self):
-        return self.title
+        return f'{self.number} {self.title}'
 
     class Meta:
         verbose_name = 'Conference'

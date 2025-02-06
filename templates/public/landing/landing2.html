@@ -396,7 +396,7 @@
                                     <li><i class="fas fa-map-marker-alt"></i> {{ conference.location_str }}</li>
                                     <li><i class="far fa-clock"></i> {{ conference.date_str }}</li>
                                 </ul>
-                                <h2 data-animation="fadeInUp animated" data-delay=".4s">{{ conference.title }}</h2>
+                                <h2 data-animation="fadeInUp animated" data-delay=".4s">{% if conference.number %}<span>{{ conference.number }}</span>{% endif %} {{ conference.title }}</h2>
 
                                 <span class="texto-white fadeInUp animated">{{ conference.subtitle }}</span>
 

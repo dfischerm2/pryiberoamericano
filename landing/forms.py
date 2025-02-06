@@ -145,7 +145,10 @@ class ConferenceForm(ModelFormBase):
 
             if k in ('start_date','end_date','date_str', 'location_str',):
                 self.fields[k].widget.attrs['col'] = "6"
-
+            if k in ('title',):
+                self.fields[k].widget.attrs['col'] = "11"
+            if k in ('number',):
+                self.fields[k].widget.attrs['col'] = "1"
             if k in ('active',):
                 self.fields[k].widget.attrs['class'] = "js-switch"
                 self.fields[k].widget.attrs['data-render'] = "switchery"

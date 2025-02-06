@@ -70,7 +70,7 @@
                                 {% endif %}
                             </td>
                             <td class="text-left">
-                                {{ l.title }}
+                                {% if l.number %}{{ l.number }}{% endif %} {{ l.title }}
                             </td>
                             <td class="text-left">
                                 {{ l.subtitle }}
