@@ -50,12 +50,15 @@
                         <tr>
                             <td class="text-center">
                                 {% if l.image %}
-                                    <img width="50px" height="50px" src="/media/{{ l.image }}"
-                                         class="img-thumbnail"
-                                        data-width="2048"
+                                    <a href="/media/{{ l.image }}"
+                                                   data-fancybox="image"
+                                                   data-width="2048"
                                                    data-height="1365"
-                                         data-fancybox="image"
-                                         alt="LOGO">
+                                                   title="{{ l }}">
+                                                    <img id="presentaimg2" class="img-thumbnail"
+                                                         src="/media/{{ l.image }}" width="50px"
+                                                         height="50px">
+                                                </a>
                                 {% else %}
                                     <span class="text-muted"><i class="fa fa-info"></i> Sin registrar</span>
                                 {% endif %}
