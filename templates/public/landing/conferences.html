@@ -389,22 +389,26 @@
             {% if conferences %}
                 <div class="row">
                     {% for l in conferences %}
-                        <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
-                             data-delay=".2s">
-                            <div class="single-team text-center pt-50  pb-50 mb-30">
-                                <div class="team-thumb" style="width: 80%; margin: auto;">
-                                    <img src="{% if l.image_principal %}/media/{{ l.image_principal }}{% else %}/static/images/sin-perfil.png{% endif %}"
-                                         alt="img">
-                                </div>
-                                <div class="team-info">
-                                    <h5>{% if l.number %}{{ l.number }}{% endif %} {{ l.title|upper }}</h5>
-                                    <a href="/previous-events?action=catalog&id={{ l.pk|encrypt }}"
-                                       class="btn btn-primary">
-                                        View Photos
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp" data-delay=".2s">
+    <div class="single-team text-center pt-20 pb-20 mb-30">
+        <div class="team-thumb" style="width: 85%; margin: auto;">
+            <img src="{% if l.image_principal %}/media/{{ l.image_principal }}{% else %}/static/images/sin-perfil.png{% endif %}"
+                 alt="Event Image" class="img-fluid rounded">
+        </div>
+        <div class="team-info mt-3">
+            <h5>{{ l.number }} {{ l.title|upper }}</h5>
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <span class="text-muted font-weight-bold">
+                    {% if l.start_date %}{{ l.start_date.year }}{% endif %}
+                </span>
+                <a href="/previous-events?action=catalog&id={{ l.pk|encrypt }}" class="btn btn-primary px-3 py-2">
+                    <i class="fa fa-folder-open"></i>View Photos
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
                     {% endfor %}
                 </div>
             {% else %}
