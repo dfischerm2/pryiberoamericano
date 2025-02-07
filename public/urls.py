@@ -17,8 +17,8 @@ from .view_perfil import perfil
 
 
 urlpatterns = [
-    path('', index),
-    path('landing2', index2),
+    # path('', index),
+    path('', index2),
     path('members/', members),
 path('previous-events/', conferences),
     re_path(r'^acercade/', acercade),
