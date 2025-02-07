@@ -377,7 +377,7 @@
         <div class="container">
             {% for l in committes %}
                 <h3 class="mt-4">{{ l.name }}</h3>
-                {% for member in l.get_members %}
+                {% for member in l.get_members_all %}
                     <div class="ml-4">
                         <p>{{ member.name }}</p>
                     </div>
