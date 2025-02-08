@@ -358,22 +358,22 @@
     </style>
 
     <style>
-    .team-thumb {
-    width: 100%; /* Ajusta al 100% del contenedor */
-    max-width: 296px; /* Ancho máximo fijo para todas las imágenes */
-    height: 296px; /* Altura fija */
-    overflow: hidden; /* Oculta cualquier parte sobrante */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .team-thumb {
+            width: 100%; /* Ajusta al 100% del contenedor */
+            max-width: 296px; /* Ancho máximo fijo para todas las imágenes */
+            height: 296px; /* Altura fija */
+            overflow: hidden; /* Oculta cualquier parte sobrante */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.team-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill; /* Recorta la imagen para que encaje sin deformarla */
-    display: block;
-}
+        .team-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill; /* Recorta la imagen para que encaje sin deformarla */
+            display: block;
+        }
 
 
     </style>
@@ -417,7 +417,8 @@
                                     <li><i class="fas fa-map-marker-alt"></i> {{ conference.location_str }}</li>
                                     <li><i class="far fa-clock"></i> {{ conference.date_str }}</li>
                                 </ul>
-                                <h2 data-animation="fadeInUp animated" data-delay=".4s">{% if conference.number %}<span>{{ conference.number }}</span>{% endif %} {{ conference.title }}</h2>
+                                <h2 data-animation="fadeInUp animated" data-delay=".4s">{% if conference.number %}
+                                    <span>{{ conference.number }}</span>{% endif %} {{ conference.title }}</h2>
 
                                 <span class="texto-white fadeInUp animated">{{ conference.subtitle }}</span>
 
@@ -516,7 +517,8 @@
                          data-delay=".2s">
                         <div class="single-team text-center pt-50  pb-50 mb-30">
                             <div class="team-thumb" style="width: 80%; margin: auto;">
-                                <img src="{% if l.photo %}/media/{{ l.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
+                                <img src="{% if l.photo %}/media/
+                                    {{ l.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
                             </div>
                             <div class="team-info">
                                 <h5>{{ l.name }}</h5>
@@ -527,6 +529,13 @@
                     </div>
                 {% endfor %}
             </div>
+            {% if conference_committes_first %}
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-12 text-center">
+                        <a href="/members/" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
     <div class="counter-area pt-120 pb-120"
@@ -607,7 +616,8 @@
                              data-delay=".2s">
                             <div class="single-team text-center pt-50  pb-50 mb-30">
                                 <div class="team-thumb" style="width: 80%; margin: auto;">
-                                    <img src="{% if member.photo %}/media/{{ member.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
+                                    <img src="{% if member.photo %}/media/
+                                        {{ member.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
                                 </div>
                                 <div class="team-info">
                                     <h5>{{ member.name }}</h5>
@@ -621,6 +631,13 @@
             </div>
         </section>
     {% endfor %}
+    {% if conference_committes %}
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-12 text-center">
+                <a href="/members/" class="btn btn-primary">View More</a>
+            </div>
+        </div>
+    {% endif %}
 
 
     <section id="important" class="about-area about-p pt-120 pb-50 p-relative">
@@ -873,8 +890,8 @@
                                     <p>{{ detail.description }}</p>
                                 {% endfor %}
                                 <div class="pricing-btn mt-40">
-                                        <a href="#" class="btn"><i class="fa fa-ticket-alt"></i> Join Now</a>
-                                    </div>
+                                    <a href="#" class="btn"><i class="fa fa-ticket-alt"></i> Join Now</a>
+                                </div>
                             </div>
 
                         </div>
