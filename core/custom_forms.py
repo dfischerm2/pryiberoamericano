@@ -36,19 +36,19 @@ class NormalModel(models.Model):
 
 
 class FormError(Exception):
-    def __init__(self, form):
+    def __init__(self, form, prefix="", sufix=""):
         super().__init__("Error en el formulario")
         if isinstance(form, list) or isinstance(form, tuple):
             self.errors = []
             for x in form:
                 for k, v in x.errors.items():
-                    self.errors.append({k: v[0]})
+                    self.errors.append({prefix+k+sufix: v[0]})
         else:
-            self.errors = [{k: v[0]} for k, v in form.errors.items()]
+            self.errors = [{prefix+k+sufix: v[0]} for k, v in form.errors.items()]
         self.dict_error = {
             'error': True,
             "form": self.errors,
-            "message": "Los datos enviados son inconsistentes"
+            "message": "Datos incorrectos, revise la información registrada."
         }
 
 
