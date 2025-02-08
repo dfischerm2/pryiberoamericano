@@ -128,8 +128,7 @@ def committeeCategoryView(request):
         except FormError as ex:
             res_json.append(ex.dict_error)
         except Exception as ex:
-            salva_logs(request, __file__, request.method, action, type(ex).__name__,
-                       'Error on line {}'.format(sys.exc_info()[-1].tb_lineno), ex)
+            salva_logs(request, __file__, request.method, action, type(ex).__name__, 'Error on line {}'.format(sys.exc_info()[-1].tb_lineno), ex)
             res_json.append({'error': True, "message": "Intente nuevamente"})
 
         return JsonResponse(res_json, safe=False)
