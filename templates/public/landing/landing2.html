@@ -517,8 +517,7 @@
                          data-delay=".2s">
                         <div class="single-team text-center pt-50  pb-50 mb-30">
                             <div class="team-thumb" style="width: 80%; margin: auto;">
-                                <img src="{% if l.photo %}/media/
-                                    {{ l.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
+                                <img src="{% if l.photo %}/media/{{ l.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
                             </div>
                             <div class="team-info">
                                 <h5>{{ l.name }}</h5>
@@ -528,14 +527,15 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
-            {% if conference_committes_first %}
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-12 text-center">
-                        <a href="/members/" class="btn btn-primary">View More</a>
+                {% if conference_committes_first %}
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="col-lg-12 text-center">
+                            <a href="/members/" class="btn btn-primary">View More</a>
+                        </div>
                     </div>
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
+
         </div>
     </section>
     <div class="counter-area pt-120 pb-120"
@@ -616,8 +616,7 @@
                              data-delay=".2s">
                             <div class="single-team text-center pt-50  pb-50 mb-30">
                                 <div class="team-thumb" style="width: 80%; margin: auto;">
-                                    <img src="{% if member.photo %}/media/
-                                        {{ member.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
+                                    <img src="{% if member.photo %}/media/{{ member.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
                                 </div>
                                 <div class="team-info">
                                     <h5>{{ member.name }}</h5>
@@ -627,17 +626,18 @@
                             </div>
                         </div>
                     {% endfor %}
+                    {% if conference_committes %}
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="col-lg-12 text-center">
+                            <a href="/members/" class="btn btn-primary">View More</a>
+                        </div>
+                    </div>
+                {% endif %}
                 </div>
             </div>
         </section>
     {% endfor %}
-    {% if conference_committes %}
-        <div class="row d-flex justify-content-center">
-            <div class="col-lg-12 text-center">
-                <a href="/members/" class="btn btn-primary">View More</a>
-            </div>
-        </div>
-    {% endif %}
+
 
 
     <section id="important" class="about-area about-p pt-120 pb-50 p-relative">

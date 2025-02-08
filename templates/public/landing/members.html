@@ -374,7 +374,21 @@
     display: block;
 }
 
+.btn-custom {
+    background-color: #f5f4f4 !important; /* Color de fondo */
+    color: #034d78 !important; /* Color de texto */
+    padding: .8rem 1rem; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Evita subrayado en enlaces */
+    display: inline-block; /* Se comporta como un botón */
+    transition: all 0.3s ease-in-out; /* Transición suave */
+}
 
+.btn-custom:hover {
+    background-color: #e0e0e0 !important; /* Color más oscuro al pasar el mouse */
+    color: #022c47 !important; /* Color de texto un poco más oscuro */
+    box-shadow: none !important;
+}
     </style>
 {% endblock %}
 
@@ -398,14 +412,14 @@
 
         <div class="container">
             <div class="row">
-    <div class="col-lg-12">
-        <div class="d-flex flex-wrap gap-2">
-            {% for l in committes %}
-                <a href="#comite_{{ l.id }}" class="btn btn-primary btn-sm">{{ l.name }}</a>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+                <div class="col-lg-12 mb-3">
+                    <div class="d-flex flex-wrap justify-content-end" style="gap: 10px">
+                        {% for l in committes %}
+                            <a href="#comite_{{ l.id }}" class="btn btn-custom btn-sm">{{ l.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
 
                 {% for l in committes %}
                     <div id="comite_{{ l.id }}"><h2 class="text-center">{{ l.name }}</h2></div>
