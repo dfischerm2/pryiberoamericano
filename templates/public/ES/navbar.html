@@ -8,6 +8,12 @@
             margin-left: 40px;
         }
     }
+
+    @media (max-width: 576px) {
+        .dropdown-toggle {
+            padding: 11px 25px !important;
+        }
+    }
 </style>
 
 <header id="home" class="header-area">
@@ -15,20 +21,40 @@
         <div class="container">
             <div class="second-menu">
                 <div class="row align-items-center">
-                    <div class="col-xl-3 col-lg-3 d-flex align-items-center justify-content-between">
+                    <div class="col-xl-3 d-flex align-items-center justify-content-between">
                         <div class="logo">
                             <a href="/es/">
                                 <img class="logo" src="/media/{{ confi.logo_sistema_white }}" alt="LOGO"
                                      style="width:175px;height: 80px">
                             </a>
                         </div>
-                        {% if not request.user.is_authenticated %}
-                            <div class="header-btn second-header-btn d-flex d-xl-none gap-2">
-                                <a href="/es/login/" class="btn btn-sm">Ingresar</a>
+                        <div class="d-flex align-items-center justify-content-center gap-2">
+                            {% if not request.user.is_authenticated %}
+                                <div class="header-btn second-header-btn d-flex d-xl-none gap-2">
+                                    <a href="/es/login/" class="btn btn-sm">Ingresar</a>
+                                </div>
+                            {% else %}
+                                <div class="responsive d-xl-none"><i class="icon dripicons-align-right"></i></div>
+                            {% endif %}
+                            <div class="dropdown ml-3 d-xl-none">
+                                <button class="btn btn-light dropdown-toggle d-flex align-items-center text-dark" style="padding: 6px 25px; font-size: 14px;" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/static/images/spanish.webp" alt="ES" width="15" height="12" class="mr-1"> ES
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center text-dark" href="/es/" style="font-size: 14px;">
+                                            <img src="/static/images/spanish.webp" alt="ES" width="15" height="12" class="mr-1"> Español
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center text-dark" href="/" style="font-size: 14px;">
+                                            <img src="/static/images/english.png" alt="EN" width="15" height="12" class="mr-1"> Inglés
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        {% else %}
-                            <div class="responsive d-xl-none"><i class="icon dripicons-align-right"></i></div>
-                        {% endif %}
+                        </div>
+
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="main-menu text-right text-xl-center">
@@ -71,7 +97,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-3 d-flex justify-content-end align-items-center">
                         {% if not request.user.is_authenticated %}
                             <div class="header-btn second-header-btn d-none d-xl-block">
                                 <a href="/es/login/" class="btn">Iniciar sesión</a>
@@ -81,18 +107,16 @@
                                 <nav id="mobile-menu">
                                     <ul>
                                         <li class="active has-sub">
-                                            <a href="javascript:void(0)">Hello, {{ request.user.primernombre }} <i
-                                                    class="fa fa-chevron-down"></i></a>
+                                            <a href="javascript:void(0)">Hello, {{ request.user.primernombre }} <i class="fa fa-chevron-down"></i></a>
                                             <ul>
                                                 {% if request.user.get_perfil_adm %}
-                                                    <li><a href="/panel/"><i class="fa fa-lock"></i> Administración</a>
-                                                    </li>
+                                                    <li><a href="/panel/"><i class="fa fa-lock"></i> Administración</a></li>
                                                 {% endif %}
-                                                <li><a href="/es/logout/"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
-                                                </li>
+                                                <li><a href="/es/logout/"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
                                                 {% if sesion_anterior %}
                                                     <li><a href="/seguridad/regresar-sesion/?path={{ request.path }}">
-                                                        <i class="fa fa-user"></i> Regresar a mi sesión</a></li>
+                                                        <i class="fa fa-user"></i> Regresar a mi sesión</a>
+                                                    </li>
                                                 {% endif %}
                                             </ul>
                                         </li>
@@ -100,6 +124,26 @@
                                 </nav>
                             </div>
                         {% endif %}
+
+                        <!-- Botón de idioma con dropdown -->
+                        <div class="dropdown ml-3 d-none d-xl-block">
+                            <button class="btn btn-light dropdown-toggle d-flex align-items-center text-dark" style="padding: 18px;" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/static/images/spanish.webp" alt="ES" width="20" height="15" class="mr-1"> ES
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center text-dark" href="/es/">
+                                        <img src="/static/images/spanish.webp" alt="ES" width="20" height="15" class="mr-1"> Español
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center text-dark" href="/">
+                                        <img src="/static/images/english.png" alt="EN" width="20" height="15" class="mr-1"> Inglés
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>

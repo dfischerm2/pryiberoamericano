@@ -966,7 +966,7 @@ label {
     display: inline-block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     .slider-content.second-slider-content ul {
         margin-top: 200px !important; /* El !important solo si es necesario sobreescribir otros estilos */
     }

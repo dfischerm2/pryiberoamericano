@@ -17,7 +17,7 @@ from .view_perfil import perfil
 
 
 urlpatterns = [
-    # path('', index),
+    path('original/', index),
     path('', index2),
     path('members/', members),
 path('previous-events/', conferences),
