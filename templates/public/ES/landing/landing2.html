@@ -517,21 +517,84 @@
                 </div>
             </div>
             <div class="row">
-                {% for l in conference_committes_first.get_members %}
-                    <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
-                         data-delay=".2s">
-                        <div class="single-team text-center pt-50  pb-50 mb-30">
-                            <div class="team-thumb" style="width: 80%; margin: auto;">
-                                <img src="{% if l.photo %}/media/{{ l.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
-                            </div>
-                            <div class="team-info">
-                                <h5>{{ l.name }}</h5>
-                                <strong>{{ l.rol }}</strong><br>
-                                <span>{{ l.description_rol }}</span><br>
-                            </div>
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                     data-delay=".2s">
+                    <div class="single-team text-center pt-50  pb-50 mb-30">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/media/committee_members/GUEVARA-VIEJO-JORGE-FABRICIO-1-scaled.jpg" alt="img">
+                        </div>
+                        <div class="team-info">
+                            <h5>Dr. Fabricio Guevara Viejo</h5>
+                            <strong>Presidente</strong><br>
+                            <span>Rector UNEMI. Milagro. Ecuador</span><br>
                         </div>
                     </div>
-                {% endfor %}
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                     data-delay=".2s">
+                    <div class="single-team text-center pt-50  pb-50 mb-30">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
+                        </div>
+                        <div class="team-info">
+                            <h5>Dra. Adriana Pérez</h5>
+                            <strong>Vicepresidenta</strong><br>
+                            <span>Presidenta de la Región de Centroamérica y el Caribe</span><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                     data-delay=".2s">
+                    <div class="single-team text-center pt-50  pb-50 mb-30">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
+                        </div>
+                        <div class="team-info">
+                            <h5>Mt. Jessica Vera Bermúdez</h5>
+                            <strong>Vicepresidenta</strong><br>
+                            <span>Presidenta de la sociedad estadística ecuatoriana</span><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                     data-delay=".2s">
+                    <div class="single-team text-center pt-50  pb-50 mb-30">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
+                        </div>
+                        <div class="team-info">
+                            <h5>Dra. Susana Pérez-Álvarez</h5>
+                            <strong>Vicepresidenta</strong><br>
+                            <span>Presidenta del Grupo Español de Biometría</span><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                     data-delay=".2s">
+                    <div class="single-team text-center pt-50  pb-50 mb-30">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
+                        </div>
+                        <div class="team-info">
+                            <h5>Lic. Silvia Suhring</h5>
+                            <strong>Vicepresidenta</strong><br>
+                            <span>Presidenta del Grupo Argentino de Biometría</span><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                     data-delay=".2s">
+                    <div class="single-team text-center pt-50  pb-50 mb-30">
+                        <div class="team-thumb" style="width: 80%; margin: auto;">
+                            <img src="/static/images/sin-perfil.png" alt="img">
+                        </div>
+                        <div class="team-info">
+                            <h5>Dra. Carolina Marchant</h5>
+                            <strong>Vicepresidenta</strong><br>
+                            <span>Presidenta del Grupo Chileno de Biometría</span><br>
+                        </div>
+                    </div>
+                </div>
                 {% if conference_committes_first %}
                     <div class="d-flex justify-content-center w-100">
                         <div class="col-lg-12 text-center">
@@ -616,21 +679,45 @@
                     </div>
                 </div>
                 <div class="row">
-                    {% for member in comite.get_members %}
-                        <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
-                             data-delay=".2s">
-                            <div class="single-team text-center pt-50  pb-50 mb-30">
-                                <div class="team-thumb" style="width: 80%; margin: auto;">
-                                    <img src="{% if member.photo %}/media/{{ member.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
-                                </div>
-                                <div class="team-info">
-                                    <h5>{{ member.name }}</h5>
-                                    <strong>{{ member.rol }}</strong><br>
-                                    <span>{{ member.description_rol }}</span><br>
-                                </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                         data-delay=".2s">
+                        <div class="single-team text-center pt-50  pb-50 mb-30">
+                            <div class="team-thumb" style="width: 80%; margin: auto;">
+                                <img src="/media/committee_members/CARRASQUERO-RODRIGUEZ-EDWUIN-JESUS-scaled_1.jpg" alt="img">
+                            </div>
+                            <div class="team-info">
+                                <h5>Dr. Edwin Carrasquero</h5>
+                                <strong>Presidente</strong><br>
+                                <span>Vicepresidente de Investigación y Posgrado. UNEMI. Ecuador</span><br>
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                         data-delay=".2s">
+                        <div class="single-team text-center pt-50  pb-50 mb-30">
+                            <div class="team-thumb" style="width: 80%; margin: auto;">
+                                <img src="/media/committee_members/purificacion_galindo_villardon.jpg_2_aehBss7.jpg" alt="img">
+                            </div>
+                            <div class="team-info">
+                                <h5>Dra. Purificación Galindo Villardón</h5>
+                                <strong>Vicepresidenta</strong><br>
+                                <span>Profesora visitante UNEMI. Ecuador</span><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                         data-delay=".2s">
+                        <div class="single-team text-center pt-50  pb-50 mb-30">
+                            <div class="team-thumb" style="width: 80%; margin: auto;">
+                                <img src="/media/committee_members/PAOLO-FABRE.png" alt="img">
+                            </div>
+                            <div class="team-info">
+                                <h5>Dr. Paolo Geovanny Fabre Merchán</h5>
+                                <strong>Vicepresidente</strong><br>
+                                <span>Decano de Investigación. UNEMI. Ecuador</span><br>
+                            </div>
+                        </div>
+                    </div>
                     {% if conference_committes %}
                     <div class="d-flex justify-content-center w-100">
                         <div class="col-lg-12 text-center">
