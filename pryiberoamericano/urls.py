@@ -96,6 +96,7 @@ urlpatterns = [
     # select2
     path("select2/", include("django_select2.urls")),
     path('', include('public.urls')),
+    path('es/', include('es.urls')),
 ]
 
 if settings.DEBUG:

@@ -395,7 +395,7 @@ def addData(request, data):
     data["campos_no_mostrados"] = []
     data["full_url"] = full_url = request.path + "?" + "&".join(["{}={}".format(k, v) for k, v in request.GET.items()])
     data["full_url_hash"] = get_encrypt(full_url)[1]
-    confi = Configuracion.get_instancia()
+    confi = ConfiguracionEspanol.get_instancia() if request.path.startswith("/es/") else Configuracion.get_instancia()
     from django.contrib.sessions.models import Session
     hoy = custom_get_timezone(request)
     hora_actual = hoy.time()

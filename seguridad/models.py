@@ -141,6 +141,47 @@ class Configuracion(ModeloBase):
         )
 
 
+class ConfiguracionEspanol(ModeloBase):
+    ico = models.FileField(upload_to='configuracion/', max_length=600, blank=True, null=True, verbose_name='Favicon', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])])
+    logo_sistema = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], max_length=600, blank=True, null=True, verbose_name='Logo')
+    logo_sistema_white = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], max_length=600, blank=True, null=True, verbose_name='Logo Blanco')
+    logo_unemi = models.FileField(upload_to='configuracion/',validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Logo UNEMI')
+    logo_investigacion_unemi = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True,verbose_name='Logo Investigación UNEMI')
+    fondo_perfil = models.FileField(upload_to='configuracion/fondo_perfil/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo de perfil de usuario', help_text='Se recomienda que la imagen tenga un tamaño de 500x281')
+    banner_login = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo Login')
+    fondoprincipal = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Fondo Principal')
+    imagenprincipal = models.FileField(upload_to='configuracion/', validators=[FileExtensionValidator(['jpg', 'jpeg', 'png', 'tiff', 'svg', "jfif"])], blank=True, null=True, verbose_name='Imagen Sobre Nosotros')
+    descripcion_landing = models.TextField(blank=True, null=True, verbose_name='Descripción Landing')
+    nombre_empresa = models.CharField(max_length=1000, verbose_name='Nombre de la Empresa')
+    alias = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Alias')
+    descripcion = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Descripción')
+    telefono = models.CharField(max_length=20, blank=True, null=True, verbose_name='Teléfono Empresa')
+    email = models.CharField(max_length=100, blank=True, null=True, verbose_name='Email Empresa')
+    web = models.CharField(max_length=100, blank=True, null=True, verbose_name='Web')
+    email_notificacion = models.CharField(max_length=100, blank=True, null=True, verbose_name='Email Notificaciones')
+    direccion = models.CharField(max_length=5000, blank=True, null=True, verbose_name='Dirección Empresa')
+    # LANDING
+
+
+    @staticmethod
+    def get_instancia():
+        from core.funciones import db_table_exists
+        try:
+            # confi = ConfiguracionEspanol.objects.first()
+            confi = ConfiguracionEspanol.objects.first() if db_table_exists(
+                ConfiguracionEspanol._meta.db_table) and ConfiguracionEspanol.objects.count() > 0 else ConfiguracionEspanol()
+        except Exception as ex:
+            confi = ConfiguracionEspanol()
+        return confi
+
+    class Meta:
+        verbose_name = 'Configuración'
+        verbose_name_plural = 'Configuración'
+        permissions = (
+            ("can_view_auditoria", "Puede ver auditorías"),
+        )
+
+
 class Modulo(ModeloBase):
     url = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)

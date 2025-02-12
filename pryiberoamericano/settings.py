@@ -261,3 +261,11 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+#
+# LOCALE_PATHS = (
+#     os.path.join(BASE_DIR, 'locale'),
+# )
+# LANGUAGES = (
+#     ('es', 'Spanish'),
+#     ('en', 'English'),
+# )

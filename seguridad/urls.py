@@ -4,6 +4,7 @@ from .cambiar_sesion_view import cambiarSesionView, regresarSesionView
 from .view_arbol_modulogrupo import arbol_modulo_grupo
 from .view_auditoria import auditoria
 from .view_configuracion import configuracion
+from .view_configuracion_es import configuracionEs
 from .view_grupo import grupo
 from .view_grupourls import grupoUrlsView
 from .view_modulo import modulo
@@ -15,6 +16,11 @@ seguridad_urls = (
         "nombre": "Administración del Sitio",
         "url": 'configuracion/',
         "vista": configuracion,
+    },
+{
+        "nombre": "Administración del Sitio Español",
+        "url": 'configuracion-es/',
+        "vista": configuracionEs,
     },
     {
         "nombre": "Roles de Usuario",

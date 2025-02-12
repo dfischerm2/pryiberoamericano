@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db.models import Value
 from django.db.models.functions import Concat
 from core.custom_models import ModelFormBase
-from seguridad.models import Configuracion, Modulo, ModuloGrupo, GroupModulo, RedesSociales
+from seguridad.models import Configuracion, Modulo, ModuloGrupo, GroupModulo, RedesSociales, ConfiguracionEspanol
 
 
 class ConfiguracionForm(ModelFormBase):
@@ -14,6 +14,40 @@ class ConfiguracionForm(ModelFormBase):
 
     def __init__(self, *args, **kwargs):
         super(ConfiguracionForm, self).__init__(*args, **kwargs)
+        self.fields["ico"].widget.attrs['data-default-file'] = self.instance.ico.url if self.instance.ico else ""
+        self.fields["logo_sistema"].widget.attrs['data-default-file'] = self.instance.logo_sistema.url if self.instance.logo_sistema else ""
+        self.fields["logo_sistema_white"].widget.attrs['data-default-file'] = self.instance.logo_sistema_white.url if self.instance.logo_sistema_white else ""
+        # self.fields["imagenprincipal"].widget.attrs['data-default-file'] = self.instance.imagenprincipal.url if self.instance.imagenprincipal else ""
+        self.fields["fondoprincipal"].widget.attrs['data-default-file'] = self.instance.fondoprincipal.url if self.instance.fondoprincipal else ""
+        self.fields['ico'].widget.attrs['data-allowed-file-extensions'] = "jpg jpeg png tiff svg jfif"
+        self.fields['logo_sistema'].widget.attrs['data-allowed-file-extensions'] = "jpg jpeg png tiff svg jfif"
+        self.fields['logo_sistema_white'].widget.attrs['data-allowed-file-extensions'] = "jpg jpeg png tiff svg jfif"
+        # self.fields['imagenprincipal'].widget.attrs['data-allowed-file-extensions'] = "jpg jpeg png tiff svg jfif"
+        self.fields['fondoprincipal'].widget.attrs['data-allowed-file-extensions'] = "jpg jpeg png tiff svg jfif"
+
+        for k, v in self.fields.items():
+            if k in ('ico', 'logo_sistema', 'logo_sistema_white', 'direccion', 'fondoprincipal', 'nombre_empresa', 'alias', 'descripcion', 'telefono', 'email',  'email_notificacion', 'textoprincipal', 'textosecundario', 'web', 'logo_investigacion_unemi', 'logo_unemi',):
+                self.fields[k].widget.attrs['col'] = "6"
+            if k in ('telefono', 'telefono_emergencia'):
+                self.fields[k].widget.attrs['pattern'] = "\d*"
+                self.fields[k].widget.attrs['title'] = "Sólo números"
+                self.fields[k].widget.attrs['onKeyPress'] = "return soloNumeros(event)"
+                self.fields[k].widget.attrs['pattern'] = "\d*"
+            if k in ('valor_mensual', 'valor_anual'):
+                self.fields[k].widget.attrs['title'] = "Sólo números"
+                self.fields[k].widget.attrs['onKeyPress'] = "return soloNumeros1(event)"
+            if k in ('descripcion_landing',):
+                self.fields[k].widget.attrs['col'] = "12"
+                self.fields[k].widget.attrs['rows'] = "3"
+
+
+class ConfiguracionEspanolForm(ModelFormBase):
+    class Meta:
+        model = ConfiguracionEspanol
+        exclude = ('usuario_modificacion', 'fecha_modificacion', 'usuario_creacion',  'fondo_perfil', 'banner_login',)
+
+    def __init__(self, *args, **kwargs):
+        super(ConfiguracionEspanolForm, self).__init__(*args, **kwargs)
         self.fields["ico"].widget.attrs['data-default-file'] = self.instance.ico.url if self.instance.ico else ""
         self.fields["logo_sistema"].widget.attrs['data-default-file'] = self.instance.logo_sistema.url if self.instance.logo_sistema else ""
         self.fields["logo_sistema_white"].widget.attrs['data-default-file'] = self.instance.logo_sistema_white.url if self.instance.logo_sistema_white else ""

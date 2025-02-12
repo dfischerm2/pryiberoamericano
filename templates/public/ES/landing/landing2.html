@@ -1,0 +1,1349 @@
+{% extends 'public/ES/base.html' %}
+
+{% block head %}
+    <style>
+        :root {
+            --primary-blue: #0066CC;
+            --secondary-orange: #ff9900;
+        }
+
+        .texto-white {
+            color: white;
+            font-weight: 500;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(rgb(182 191 191 / 85%), rgb(0 105 171 / 38%));
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 80px;
+        }
+
+        .logo-container {
+            max-width: 600px;
+            margin: 0 auto 0rem;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .event-title {
+            color: var(--secondary-orange);
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .event-tagline {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .event-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+        }
+
+        .meta-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 15px;
+        }
+
+        .meta-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-orange);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #eaf5ff;
+            backdrop-filter: blur(4px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card h3 {
+        {#color: var(--secondary-orange);#}
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .main-research {
+            background: #eaf5ff;
+            backdrop-filter: blur(4px);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .main-research h4 {
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-orange);
+            border: none;
+            padding: 1rem 2rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #e68a00;
+        }
+
+        .btn-outline-light {
+            border: 2px solid #fff;
+            padding: 1rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .event-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .meta-divider {
+                display: none;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .event-title {
+                font-size: 2rem;
+            }
+
+            .event-tagline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <style>
+        /* Estilos base del parallax */
+        .slider-area {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Estilos para las formas del fondo */
+        .slider-shape {
+            position: absolute;
+            z-index: 1;
+        }
+
+        /* Estilos para el contenido principal */
+        .slider-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        /* Estilos para la sección de imagen */
+        .hero-img-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+        }
+
+        .hero-img {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .hero-img img {
+            margin-top: 20px;
+            width: 90%;
+            height: auto;
+            border-radius: 30px;
+        }
+
+        .hero-img-bg {
+            content: "";
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-orange));
+            width: 100%;
+            height: 100%;
+            transform: rotate(10deg);
+            border-radius: 50px;
+            z-index: -1;
+        }
+
+        /* Estilos para el countdown */
+        .event-countdown {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ff9900);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        .countdown-timer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .time-block {
+            text-align: center;
+        }
+
+        .time-block .number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .time-block .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .time-separator {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Estilos para estadísticas */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        /* Media queries */
+        @media (max-width: 992px) {
+            .hero-img-wrap {
+                margin: 2rem auto;
+                max-width: 400px;
+            }
+
+            .event-countdown {
+                right: 0;
+                left: 0;
+                bottom: -30px;
+                width: 90%;
+                margin: 0 auto;
+            }
+
+            .slider-content {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .countdown-timer {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .time-block {
+                flex: 0 0 45%;
+            }
+        }
+    </style>
+    <style>
+        .key-benefits {
+            margin-top: 2rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .key-benefits li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .key-benefits i {
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .text-primary {
+            color: #0066CC !important;
+        }
+
+        .feature-box {
+            transition: transform 0.3s ease;
+            padding: 2rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box .icon {
+            margin-bottom: 1rem;
+        }
+
+        .feature-box h5 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+
+    <style>
+        .team-thumb {
+            width: 100%; /* Ajusta al 100% del contenedor */
+            max-width: 296px; /* Ancho máximo fijo para todas las imágenes */
+            height: 296px; /* Altura fija */
+            overflow: hidden; /* Oculta cualquier parte sobrante */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .team-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Recorta la imagen para que encaje sin deformarla */
+            display: block;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section id="parallax"
+             class="slider-area slider-bg second-slider-bg d-flex align-items-center justify-content-center fix"
+             style="background-image:url(/static/eventes/img/header1_bg_img.jpg)">
+        <div class="slider-shape ss-one layer" data-depth="0.10"><img src="/static/eventes/img/shape/slider_shape01.png"
+                                                                      alt="shape">
+        </div>
+        <div class="slider-shape ss-two layer" data-depth="0.30"><img src="/static/eventes/img/shape/slider_shape02.png"
+                                                                      alt="shape">
+        </div>
+        <div class="slider-shape ss-three layer" data-depth="0.40"><img
+                src="/static/eventes/img/shape/slider_shape03.png" alt="shape">
+        </div>
+        <div class="slider-shape ss-four layer" data-depth="0.60"><img
+                src="/static/eventes/img/shape/slider_shape04.png" alt="shape">
+        </div>
+        <div class="slider-shape ss-five layer" data-depth="0.20"><img
+                src="/static/eventes/img/shape/slider_shape05.png" alt="shape">
+        </div>
+        <div class="slider-shape ss-six layer" data-depth="0.15"><img src="/static/eventes/img/shape/slider_shape06.png"
+                                                                      alt="shape">
+        </div>
+        <div class="slider-shape ss-eight layer" data-depth="0.50">
+            <div class="hero-img">
+                <img src="/static/eventes/img/bio2.jpg" alt="Conference" id="conferenceimg">
+            </div>
+        </div>
+        <div class="slider-active">
+            <div class="single-slider">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="slider-content second-slider-content">
+                                <ul data-animation="fadeInUp animated" data-delay=".2s">
+                                    <li><i class="fas fa-map-marker-alt"></i> {{ conference.location_str }}</li>
+                                    <li><i class="far fa-clock"></i> 9 - 11 Julio, 2025</li>
+                                </ul>
+                                <h2 data-animation="fadeInUp animated" data-delay=".4s"><span>IX</span> Iberoamericano Biometría</h2>
+
+                                <span class="texto-white fadeInUp animated">Contribuciones de la biometría al desarrollo local, el bienestar humano y la sostenibilidad</span>
+
+                                <div countdown class="conterdown wow fadeInDown animated"
+                                     data-animation="fadeInDown animated" data-delay=".2s"
+                                     data-date="Jan 1 2022 00:00:00">
+                                    <div class="timer">
+                                        <div class="timer-outer bdr1">
+                                            <span class="expected" data-expected>150+</span>
+                                            <div class="smalltext">Participantes esperados</div>
+                                            <div class="value-bar"></div>
+                                        </div>
+                                        <div class="timer-outer bdr2">
+                                            <span class="days" data-days>3</span>
+                                            <div class="smalltext">Días de conferencia</div>
+                                        </div>
+                                        <div class="timer-outer bdr3">
+                                            <span class="keynote" data-keynote>6+</span>
+                                            <div class="smalltext">Personal Principal</div>
+                                        </div>
+                                        <p id="time-up"></p>
+                                    </div>
+                                </div>
+
+                                <div class="action-buttons">
+                                    <a href="#register" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-ticket-alt me-2"></i>Registrarse ahora
+                                    </a>
+                                    <a href="#schedule" class="btn btn-outline-light btn-lg">
+                                        <i class="fas fa-calendar-alt me-2"></i>Ver horarios
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="aboutus" class="about-area about-p pt-120 pb-120 p-relative">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content s-about-content pl-30">
+                        <div class="about-title second-atitle">
+                            <div class="text-outline wow fadeInUp animated" data-animation="fadeInUp animated"
+                                 data-delay=".2s">
+                            </div>
+
+                            <img src="/media/{{ confi.logo_sistema }}" alt="IX Ibero-American Biometrics Meeting Logo">
+                        </div>
+                        <div class="wow fadeInDown animated" data-animation="fadeInUp animated" data-delay=".2s">
+                            <p>{{ confi.descripcion_landing }}</p>
+                        </div>
+                        {#                        <div class="stats-container">#}
+                        {#                            <div class="stat-card">#}
+                        {#                                <h3 class="h2 mb-0">150+</h3>#}
+                        {#                                <b class="mb-0">Expected Participants</b>#}
+                        {#                            </div>#}
+                        {#                            <div class="stat-card">#}
+                        {#                                <h3 class="h2 mb-0">3</h3>#}
+                        {#                                <b class="mb-0">Conference Days</b>#}
+                        {#                            </div>#}
+                        {#                            <div class="stat-card">#}
+                        {#                                <h3 class="h2 mb-0">6+</h3>#}
+                        {#                                <b class="mb-0">Keynote Speakers</b>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="s-video-wrap" style="background-image:url(/media/{{ confi.imagenprincipal }})">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="teamscientific" class="team-area p-relative pt-120 pb-120 fix">
+        <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
+             data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
+             data-paroller-direction="horizontal"><h2>Comité</h2></div>
+        <div class="circal1 item-zoom-inout"></div>
+        <div class="circal2 item-zoom-inout"></div>
+        <div class="circal3 item-zoom-inout"></div>
+        <div class="circal4 item-zoom-inout"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="section-title text-center mb-80">
+                        <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
+                              data-delay=".2s">Comité</span>
+                        <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated"
+                            data-delay=".4s">Comité Científico</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for l in conference_committes_first.get_members %}
+                    <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                         data-delay=".2s">
+                        <div class="single-team text-center pt-50  pb-50 mb-30">
+                            <div class="team-thumb" style="width: 80%; margin: auto;">
+                                <img src="{% if l.photo %}/media/{{ l.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
+                            </div>
+                            <div class="team-info">
+                                <h5>{{ l.name }}</h5>
+                                <strong>{{ l.rol }}</strong><br>
+                                <span>{{ l.description_rol }}</span><br>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if conference_committes_first %}
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="col-lg-12 text-center">
+                            <a href="/members/" class="btn btn-primary">Ver más</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+    <div class="counter-area pt-120 pb-120"
+         style="background-image:url(/static/eventes/img/counter_bg.jpg);background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    <div class="about-title second-atitle">
+                        <span class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Beneficios Especiales</span>
+                        <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">
+                            Obtenga acceso a dos eventos académicos de primer nivel
+                        </h2>
+                        <h5 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">
+                            Tu inscripción incluye acceso gratuito al Simposio Internacional de Estadística 2025
+                        </h5>
+                    </div>
+                    <ul class="wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s">
+                        <li>
+                            <img src="/static/eventes/img/calendar.png" alt="img">
+                            <span>Acceso tanto al IX Encuentro Iberoamericano de Biometría como al Simposio Internacional de Estadística 2025</span>
+                        </li>
+                        <li>
+                            <img src="/static/eventes/img/comments.png" alt="img">
+                            <span>Amplíe su red con expertos de ambos eventos y mejore su experiencia académica a través de la colaboración interdisciplinaria</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="single-counter text-center mb-30 cr1">
+                        <div class="counter p-relative">
+                            <span class="count">2</span>
+                        </div>
+                        <p>Eventos académicos</p>
+                    </div>
+                    <div class="single-counter text-center mb-30 cr2">
+                        <div class="counter p-relative">
+                            <span class="count">1</span>
+                        </div>
+                        <p>Cuota de inscripción</p>
+                    </div>
+                    <div class="single-counter text-center mb-30 cr3">
+                        <div class="counter p-relative">
+                            <span class="count">100</span>
+                            <small>%</small>
+                        </div>
+                        <p>Valor agregado</p>
+                    </div>
+                    <div class="cr4"></div>
+                    <div class="cr5"></div>
+                    <div class="cr6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for comite in conference_committes %}
+        <section id="teamorganizing" class="team-area p-relative pt-120 pb-120 fix">
+            <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
+                 data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
+                 data-paroller-direction="horizontal"><h2>Comité</h2></div>
+            <div class="circal1 item-zoom-inout"></div>
+            <div class="circal2 item-zoom-inout"></div>
+            <div class="circal3 item-zoom-inout"></div>
+            <div class="circal4 item-zoom-inout"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-8">
+                        <div class="section-title text-center mb-80">
+                        <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
+                              data-delay=".2s">Comité</span>
+                            <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated"
+                                data-delay=".4s">Comité Organizacional</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for member in comite.get_members %}
+                        <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
+                             data-delay=".2s">
+                            <div class="single-team text-center pt-50  pb-50 mb-30">
+                                <div class="team-thumb" style="width: 80%; margin: auto;">
+                                    <img src="{% if member.photo %}/media/{{ member.photo }}{% else %}/static/images/sin-perfil.png{% endif %}" alt="img">
+                                </div>
+                                <div class="team-info">
+                                    <h5>{{ member.name }}</h5>
+                                    <strong>{{ member.rol }}</strong><br>
+                                    <span>{{ member.description_rol }}</span><br>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if conference_committes %}
+                    <div class="d-flex justify-content-center w-100">
+                        <div class="col-lg-12 text-center">
+                            <a href="/members/" class="btn btn-primary">Ver más</a>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+
+
+
+    <section id="important" class="about-area about-p pt-120 pb-50 p-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-content s-about-content pl-30">
+                        <div class="about-title second-atitle">
+                            <div class="text-outline">
+                                <span>Nosotros</span>
+                            </div>
+                            <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">
+                                Excelencia científica desde 2007
+                            </h2>
+                        </div>
+                        <p class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".4s">
+                            El IX Encuentro Iberoamericano de Biometría es un congreso académico internacional que tiene
+                            reúne a expertos desde 2007. Organizado originalmente por la Universidad de Salamanca y
+                            del Consejo Español de Estudios Iberoamericanos, este evento promueve el intercambio de conocimientos
+                            en métodos estadísticos y matemáticos aplicados a disciplinas como Biología, Medicina,
+                            Psicología, Farmacología y Agricultura.
+                        </p>
+
+                        <ul class="key-benefits wow fadeInDown animated" data-animation="fadeInDown animated"
+                            data-delay=".2s">
+                            <li>
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Acceda a investigaciones de vanguardia en biometría aplicada a la salud pública, el desarrollo sostenible y metodologías estadísticas.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Establezca contactos con destacados expertos e investigadores de toda Iberoamérica en un entorno colaborativo.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Comparta su investigación a través de presentaciones y contribuya al avance de las aplicaciones biométricas.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="feature-box text-left wow fadeInDown animated"
+                                 data-animation="fadeInDown animated" data-delay=".2s">
+                                <div class="icon color1">
+                                    <i class="fa fa-globe"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Redes globales</h5>
+                                    <p>Conecta con expertos internacionales e impulsa redes científicas para la sostenibilidad desarrollo.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="feature-box text-left wow fadeInDown animated"
+                                 data-animation="fadeInDown animated" data-delay=".2s">
+                                <div class="icon color3">
+                                    <i class="fa fa-cogs"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Excelencia en investigación</h5>
+                                    <p>Fomentar debates interdisciplinarios y avanzar en metodologías biométricas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="feature-box text-left wow fadeInDown animated"
+                                 data-animation="fadeInDown animated" data-delay=".2s">
+                                <div class="icon color3">
+                                    <i class="fa fa-magic"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Impacto de la innovación</h5>
+                                    <p>Desarrollar soluciones de vanguardia para desafíos locales y globales.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="feature-box text-left wow fadeInDown animated"
+                                 data-animation="fadeInDown animated" data-delay=".2s">
+                                <div class="icon color4">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="content">
+                                    <h5>Intercambio de conocimientos</h5>
+                                    <p>Compartir experiencia en investigación sobre salud, bienestar y sostenibilidad.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="event-topics py-5">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h2 class="section-title">Temas a Desarrollar</h2>
+                        <div class="divider mb-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="accordion custom-accordion" id="topicsAccordion">
+                        <!-- Public Health -->
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#topic2">
+                                    <div class="button-content">
+                                        <div class="topic-icon">
+                                            <i class="fas fa-heartbeat"></i>
+                                        </div>
+                                        <div class="topic-header w-100">
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <div class="header-text">
+                                                    <h3>Biometría Aplicada a la Salud Pública</h3>
+                                                    <span class="topic-subtitle">Aplicaciones en medicina y bienestar humano integral</span>
+                                                </div>
+                                                <div class="expand-icon ms-3">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="topic2" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                                <div class="accordion-body">
+                                    <ul class="content-list">
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Métodos biométricos para análisis epidemiológicos.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Aplicación de modelos estadísticos en medicina personalizada.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Biometría para la evaluación de políticas de salud pública.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Uso de la biometría para medir y mejorar el bienestar humano</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sustainable Development -->
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#topic3">
+                                    <div class="button-content">
+                                        <div class="topic-icon">
+                                            <i class="fas fa-leaf"></i>
+                                        </div>
+                                        <div class="topic-header w-100">
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <div class="header-text">
+                                                    <h3>Biometría y Desarrollo Sostenible</h3>
+                                                    <span class="topic-subtitle">Gestión de recursos y sostenibilidad ambiental.</span>
+                                                </div>
+                                                <div class="expand-icon ms-3">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="topic3" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                                <div class="accordion-body">
+                                    <ul class="content-list">
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Análisis biométrico para la gestión de recursos naturales.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Estadísticas aplicadas para la mitigación y adaptación al cambio climático</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Herramientas biométricas en agricultura sostenible y seguridad alimentaria</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Modelos matemáticos para el análisis de impacto ambiental y energético.</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Methodological Advances -->
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#topic4">
+                                    <div class="button-content">
+                                        <div class="topic-icon">
+                                            <i class="fas fa-microchip"></i>
+                                        </div>
+                                        <div class="topic-header w-100">
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <div class="header-text">
+                                                    <h3>Avances metodológicos en biometría</h3>
+                                                    <span class="topic-subtitle">Innovación en métodos y tecnologías.</span>
+                                                </div>
+                                                <div class="expand-icon ms-3">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="topic4" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                                <div class="accordion-body">
+                                    <ul class="content-list">
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Innovaciones en métodos estadísticos y computacionales.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Modelos de big data y aprendizaje automático</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Diseño experimental avanzado y análisis multivariado.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Uso de software y tecnologías emergentes.</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Collaboration -->
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#topic5">
+                                    <div class="button-content">
+                                        <div class="topic-icon">
+                                            <i class="fas fa-network-wired"></i>
+                                        </div>
+                                        <div class="topic-header w-100">
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <div class="header-text">
+                                                    <h3>Colaboración interdisciplinaria</h3>
+                                                    <span class="topic-subtitle">Redes internacionales y proyectos colaborativos.</span>
+                                                </div>
+                                                <div class="expand-icon ms-3">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="topic5" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                                <div class="accordion-body">
+                                    <ul class="content-list">
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Fortalecimiento de las redes internacionales de investigación</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Proyectos colaborativos entre la academia, el sector público y privado.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Impacto en la educación superior y la formación profesional</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Global Issues -->
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#topic6">
+                                    <div class="button-content">
+                                        <div class="topic-icon">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                        <div class="topic-header w-100">
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <div class="header-text">
+                                                    <h3>Estadísticas aplicadas a cuestiones globales</h3>
+                                                    <span class="topic-subtitle">Análisis de los desafíos sociales y demográficos</span>
+                                                </div>
+                                                <div class="expand-icon ms-3">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="topic6" class="accordion-collapse collapse" data-bs-parent="#topicsAccordion">
+                                <div class="accordion-body">
+                                    <ul class="content-list">
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Métodos estadísticos para abordar las desigualdades sociales</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Uso de la biometría en estudios migratorios y demográficos.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="list-item">
+                                                <div class="item-dot"></div>
+                                                <span>Estadísticas y análisis de datos en seguridad y justicia social.</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="schedule" class="event fix pt-120 pb-120">
+        <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
+             data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
+             data-paroller-direction="horizontal"><h2>Evento</h2></div>
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8">
+                <div class="section-title text-center mb-80">
+                    <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
+                          data-delay=".2s">Calendario</span>
+                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Evento
+                        Calendario</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s">
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active show" id="nav-home-tab" data-bs-toggle="tab"
+                               data-bs-target="#one">
+                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">
+                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">
+                                <div class="nav-content">
+                                    <strong>Primer día</strong>
+                                    <span>Miércoles, Julio 9, 2025</span>
+                                </div>
+                            </a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#two"
+                               aria-selected="false">
+                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">
+                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">
+                                <div class="nav-content">
+                                    <strong>Segundo día</strong>
+                                    <span>Jueves, Julio 10, 2025</span>
+                                </div>
+                            </a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                               data-bs-target="#three" aria-selected="false">
+                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">
+                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">
+                                <div class="nav-content">
+                                    <strong>Tercer día</strong>
+                                    <span>Viernes, Julio 11, 2025</span>
+                                </div>
+                            </a>
+                        </div>
+                    </nav>
+                    <div class="tab-content py-3 px-3 px-sm-0 wow fadeInDown animated"
+                         data-animation="fadeInDown animated" data-delay=".2s" id="nav-tabContent">
+                        <div class="tab-pane fade active show" id="one" role="tabpanel">
+                            <!-- row loop -->
+                            <div class="row mb-30">
+                                <div class="col-lg-12">
+                                    <div class="event-list-content fix">
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30</span>
+                                            <b>Registro y entrega de materiales</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 11:00 </span><b>Ceremonia inaugural</b></p>
+                                        <p style="margin-left:10px">
+                                            ° Bienvenida a cargo del Dr. Jorge Fabricio Guevara Viejó (Rector de UNEMI).<br>
+                                            ° Palabras del comité organizador. <br>
+                                            <b>Intervención especial</b> <br>
+                                            Ph.D. Jesennia Del Pilar Cárdenas Cobo (Vicerrectora Académica de Formación de Grado, UNEMI)
+                                            <br>
+                                            <b>Tema: </b>La importancia de la formación académica en eventos científicos de alto impacto.
+                                            <br>
+                                            Ph.D. Mayra D’Armas Regnault (Vicerrectora de Vinculación, UNEMI) <br>
+                                            <b>Tema: </b>El papel de la vinculación universitaria en la proyección internacional de la investigación.
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 11:00 - 12:00 </span><b>Conferencia magistral 1</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Ponente:</b> Dra. Purificación Galindo Villardón (USAL, España).<br>
+                                            ° <b>Tema:</b> Innovación en métodos biométricos para el desarrollo sostenible.<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesión plenaria 1</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Tema:</b> Avances en biometría aplicada a la salud pública.<br>
+                                            ° <b>Moderador:</b> Dra. Carolina Marchant (Grupo Chileno de Biometría).<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee break</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 17:00 </span><b>Conferencia magistral 2</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Ponente:</b> Dr. Sergio Bramardi (Universidad Nacional del Comahue, Argentina). Cdla. Universitaria Dr. Rómulo Minchala Murillo, km 1,5 vía Milagro @UNEMIEcuador www.unemi.edu.ec<br>
+                                            ° <b>Tema:</b> Desafíos y oportunidades en biometría para el desarrollo local.<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 17:00 - 18:00 </span><b>Panel de discusión</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Tema:</b> Rol de la biometría en el bienestar humano integral.<br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="two" role="tabpanel">
+                            <!-- row loop -->
+                            <div class="row mb-30">
+                                <div class="col-lg-12">
+                                    <div class="event-list-content fix">
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 08:30 - 10:00 </span><b>Conferencia magistral 3</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Ponente: </b>Dr. Luís Fernando Grajales (UNAL, Colombia).<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30 </span><b>Coffee
+                                            Break</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 12:00 </span><b>Sesión plenaria 2</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Tema:</b> Biometría y desarrollo sostenible.<br>
+                                            ° <b>Moderador:</b> Dr. Claudio Ruff Escobar (UBO, Chile).<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesiones simultáneas (Salones A, B y C)</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Salón A:</b> Estadística aplicada en biología<br>
+                                            ° <b>Salón B:</b> Modelos biométricos en farmacología<br>
+                                            ° <b>Salón C:</b> Innovaciones en análisis de datos para la sostenibilidad<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee
+                                            Break</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 16:30 </span><b>Conferencia magistral 4</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Ponente:</b> Dra. Adriana Pérez (Presidenta Región Centroamericana y del Caribe).<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 16:30 - 18:30 </span><b>Recorrido cultural</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Lugar:</b> Ciudad y Museo Mitad del Mundo.<br>
+                                            ° Incluye visitas guiadas y actividades de integración para los asistentes.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="three" role="tabpanel">
+                            <div class="row mb-30">
+                                <div class="col-lg-12">
+                                    <div class="event-list-content fix">
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 08:30 - 10:00 </span><b>Conferencia magistral 5</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Ponente: </b>Dr. Raúl Macchiavelli (UPR, Puerto Rico).<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30 </span><b>Coffee
+                                            Break</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 12:00 </span><b>Sesión plenaria 3</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Tema:</b> Estadística y desarrollo sostenible.<br>
+                                            ° <b>Moderador:</b> Dra. Anabel Forte Deltell (Universidad de Valencia, España).<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesiones simultáneas (Salones A, B y C)</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Salón A:</b> Biometría y agricultura sostenible<br>
+                                            ° <b>Salón B:</b> Métodos innovadores en estadística aplicada<br>
+                                            ° <b>Salón C:</b> Análisis de datos para el bienestar humano<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee
+                                            Break</b></p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 16:30 </span><b>Conferencia magistral 6</b></p>
+                                        <p style="margin-left:10px">
+                                            ° <b>Ponente:</b> Dr. Carles Cuadras Avellana (Universidad Central de Barcelona, España).<br>
+                                        </p>
+                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 16:30 - 17:00 </span><b>Clausura del evento</b></p>
+                                        <p style="margin-left:10px">
+                                            ° Resumen de los principales aportes.<br>
+                                            ° Palabras finales del comité organizador <br>
+                                            Palabras finales: Ph.D. Edwuin Jesús Carrasquero (UNEMI) - Vicerrector de Investigación y Posgrado.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="register" class="pricing-area pt-113 pb-90 fix"
+             style="background-image:url(/static/eventes/img/pricing_bg.jpg);background-size: cover;">
+        <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
+             data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
+             data-paroller-direction="horizontal"><h2>Planes</h2></div>
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8">
+                <div class="section-title text-center mb-80">
+                <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
+                      data-delay=".2s">Nuestras Tarifas</span>
+                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".4s">Registrarse ahora</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row" style="justify-content: center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-box active text-center mb-30 wow fadeInDown animated"
+                         data-animation="fadeInDown animated" data-delay=".2s">
+                        <div class="pricing-head">
+                            <h4>PONENTES</h4>
+                            <div class="price-count mb-30">
+                                <h2><small>$</small>300</h2>
+                            </div>
+                        </div>
+                        <div class="pricing-body mb-40">
+                            <p>Se aplicará un 25% de descuento para Profesorado UNEMI</p>
+                            <div class="pricing-btn mt-40">
+                                <a href="#" class="btn"><i class="fa fa-ticket-alt"></i> Únete ahora</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-box active text-center mb-30 wow fadeInDown animated"
+                         data-animation="fadeInDown animated" data-delay=".2s">
+                        <div class="pricing-head">
+                            <h4>ASISTENTES</h4>
+                            <div class="price-count mb-30">
+                                <h2><small>$</small>100</h2>
+                            </div>
+                        </div>
+                        <div class="pricing-body mb-40">
+                            <p>Se aplicará un 25% de descuento para Profesorado UNEMI</p>
+                            <div class="pricing-btn mt-40">
+                                <a href="#" class="btn"><i class="fa fa-ticket-alt"></i> Únete ahora</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-box active text-center mb-30 wow fadeInDown animated"
+                         data-animation="fadeInDown animated" data-delay=".2s">
+                        <div class="pricing-head">
+                            <h4>ALUMNO</h4>
+                            <div class="price-count mb-30">
+                                <h2><small>$</small>50</h2>
+                            </div>
+                        </div>
+                        <div class="pricing-body mb-40">
+                            <p>Por presentación o asistencia (Si se requiere certificado de asistencia)</p>
+                            <div class="pricing-btn mt-40">
+                                <a href="#" class="btn"><i class="fa fa-ticket-alt"></i> Únete ahora</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block jscript %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const adjustColumnHeights = () => {
+                // Selecciona todas las columnas
+                const columns = document.querySelectorAll('.single-team');
+                let maxHeight = 0;
+
+                // Restablece las alturas para recalcular
+                columns.forEach(column => {
+                    column.style.height = 'auto';
+                });
+
+                // Encuentra la altura máxima entre todas las columnas
+                columns.forEach(column => {
+                    const height = column.offsetHeight;
+                    if (height > maxHeight) {
+                        maxHeight = height;
+                    }
+                });
+
+                // Aplica la altura máxima a todas las columnas
+                columns.forEach(column => {
+                    column.style.height = `${maxHeight}px`;
+                });
+            };
+
+            // Ajusta las alturas al cargar la página
+            adjustColumnHeights();
+
+            // Ajusta las alturas al redimensionar la ventana
+            window.addEventListener("resize", adjustColumnHeights);
+        });
+    </script>
+    <script>
+        // Función para cambiar la imagen de manera aleatoria
+        function changeConferenceImage() {
+            // Array con los nombres de las imágenes
+            const images = [];
+            {% for l in conference_carrousel %}
+                images.push('{{ l.image }}');
+            {% endfor %}
+
+            // Obtener un índice aleatorio
+            const randomIndex = Math.floor(Math.random() * images.length);
+
+            // Obtener el elemento de la imagen
+            const imgElement = document.getElementById('conferenceimg');
+
+            // Construir la nueva ruta de la imagen
+            const newSrc = `/media/${images[randomIndex]}`;
+
+            // Agregar una transición suave
+            imgElement.style.opacity = '0';
+
+            // Cambiar la imagen después de que se complete la transición de opacidad
+            setTimeout(() => {
+                imgElement.src = newSrc;
+                imgElement.style.opacity = '1';
+            }, 300);
+        }
+
+        // Aplicar estilos de transición al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            const imgElement = document.getElementById('conferenceimg');
+            imgElement.style.transition = 'opacity 0.3s ease-in-out';
+        });
+
+        setInterval(changeConferenceImage, 15000);
+
+        // Ejecutar una vez al inicio para no esperar un minuto la primera vez
+        changeConferenceImage();
+    </script>
+{% endblock %}
+
+
+
