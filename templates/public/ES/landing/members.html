@@ -433,7 +433,8 @@
                                 <div class="team-info">
                                     <h5>{{ member.name }}</h5>
                                     <strong>{{ member.rol }}</strong><br>
-                                    <span>{{ member.description_rol }}</span><br>
+                                    <span>{{ member.description_rol }}</span>
+                                    {% if member.degree %}<br><span>{{ member.degree }}</span>{% else %}{% endif %}
                                 </div>
                             </div>
                         </div>
