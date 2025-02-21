@@ -1,0 +1,1019 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-21 15:23-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\es\index.py:14 .\public\index2.py:23 .\templates\public\navbar.html:96
+msgid "Home"
+msgstr "Inicio"
+
+#: .\landing\models.py:276
+msgid "Speaker"
+msgstr "Ponentes"
+
+#: .\landing\models.py:277
+msgid "Attendees"
+msgstr "Asistentes"
+
+#: .\landing\models.py:278
+msgid "Student"
+msgstr "Alumno"
+
+#: .\pryiberoamericano\translations_dummy.py:5
+#: .\templates\public\landing\landing2.html:851
+msgid "Event"
+msgstr "Evento"
+
+# CUSTOMS
+#: .\pryiberoamericano\translations_dummy.py:6
+msgid "9 - 11 July, 2025"
+msgstr "9 - 11 Julio, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:7
+msgid "Scientific Committee"
+msgstr "Comité Científico"
+
+#: .\pryiberoamericano\translations_dummy.py:8
+msgid "Organizing Committee"
+msgstr "Comité Organizacional"
+
+#: .\pryiberoamericano\translations_dummy.py:9
+msgid "Ibero-American Biometrics"
+msgstr "Encuentro Iberoamericano de Biometria"
+
+#: .\pryiberoamericano\translations_dummy.py:10
+msgid ""
+"Contributions of biometrics to local development, human wellbeing and "
+"sustainability"
+msgstr ""
+"Contribuciones de la biometría al desarrollo local, el bienestar humano y la "
+"sostenibilidad"
+
+#: .\pryiberoamericano\translations_dummy.py:13
+msgid "Keynote Speakers"
+msgstr "Oradores Principales"
+
+#: .\pryiberoamericano\translations_dummy.py:14
+msgid "Conference Days"
+msgstr "Dias de Conferencia"
+
+#: .\pryiberoamericano\translations_dummy.py:15
+msgid "Expected Participants"
+msgstr "Participantes Esperados"
+
+#: .\pryiberoamericano\translations_dummy.py:18
+msgid "Registration"
+msgstr "Registro"
+
+#: .\pryiberoamericano\translations_dummy.py:19
+msgid "Acceptance Notification"
+msgstr "Carta de Aceptación"
+
+#: .\pryiberoamericano\translations_dummy.py:20
+msgid "March 1 - April 4, 2025"
+msgstr "Marzo 1 - Abril 4, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:21
+msgid "May 26, 2025"
+msgstr "Mayo 26, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:22
+msgid "Camera Ready"
+msgstr "Cámara lista"
+
+#: .\pryiberoamericano\translations_dummy.py:23
+msgid "June 24, 2025"
+msgstr "Junio 24, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:24
+msgid "Conference Dates"
+msgstr "Fechas de la conferencia"
+
+# CUSTOMS
+#: .\pryiberoamericano\translations_dummy.py:25
+msgid "July 9-11, 2025"
+msgstr "Julio 9-11, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:28
+msgid "President"
+msgstr "Presidente"
+
+#: .\pryiberoamericano\translations_dummy.py:29
+msgid "Vice President"
+msgstr "Vicepresidente"
+
+#: .\pryiberoamericano\translations_dummy.py:30
+msgid "Vice President of Research and Graduate Studies. UNEMI. Ecuador"
+msgstr "Vicepresidente de Investigación y Posgrado. UNEMI. Ecuador"
+
+#: .\pryiberoamericano\translations_dummy.py:31
+msgid "Visiting Professor UNEMI. Ecuador"
+msgstr "Profesor visitante UNEMI. Ecuador"
+
+#: .\pryiberoamericano\translations_dummy.py:32
+msgid "Dean of Research. UNEMI. Ecuador"
+msgstr "Decano de Investigación. UNEMI. Ecuador"
+
+#: .\pryiberoamericano\translations_dummy.py:33
+msgid "President of the Central American and Caribbean Region"
+msgstr "Presidente de la Región de Centroamérica y el Caribe"
+
+#: .\pryiberoamericano\translations_dummy.py:34
+msgid "President of the Ecuadorian Statistical Society"
+msgstr "Presidente de la sociedad estadística ecuatoriana"
+
+#: .\pryiberoamericano\translations_dummy.py:35
+msgid "President of the Spanish Biometrics Group"
+msgstr "Presidente del Grupo Español de Biometría"
+
+#: .\pryiberoamericano\translations_dummy.py:36
+msgid "President of the Argentine Biometrics Group"
+msgstr "Presidente del Grupo Argentino de Biometría"
+
+#: .\pryiberoamericano\translations_dummy.py:37
+msgid "President of the Chilean Biometrics Group"
+msgstr "Presidente del Grupo Chileno de Biometría"
+
+#: .\pryiberoamericano\translations_dummy.py:41
+msgid ""
+"Advanced Multivariate Analysis Methods in Social Sciences, Economics, "
+"Political Science, and Behavioral Sciences"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:42
+msgid "Applications of Multivariate Data Science in Medicine and Public Health"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:43
+msgid "Challenges and Opportunities in Multivariate Analysis with Complex Data"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:44
+msgid ""
+"Education and Training in Multivariate Analysis: Challenges and Opportunities"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:45
+msgid ""
+"Interaction Between Multivariate Methods and Other Advanced Statistical "
+"Techniques"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:46
+msgid "Interdisciplinary Connections"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:47
+msgid "Methodological Innovations"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:48
+msgid "Multivariate Analysis in Circular Economy"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:49
+msgid ""
+"Multivariate Analysis in Circular Economy: Toward a Sustainable Production "
+"and Consumption Model"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:50
+msgid ""
+"Multivariate Analysis in Citizen Security in Ecuador: Approaches for "
+"Violence Prevention and Control"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:51
+msgid ""
+"Multivariate Analysis in Ecology and Environmental Sciences: Biodiversity, "
+"Sustainability, and Climate Change"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:52
+msgid "Multivariate Analysis in Education and Academic Performance Evaluation"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:53
+msgid "Multivariate Analysis in Risk Management and Decision-Making"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:55
+msgid ""
+"This section of the Congress would allow for an in-depth analysis of "
+"Ecuador's current social issues and how multivariate analysis-based "
+"approaches can offer more effective solutions to improve public safety and "
+"social coexistence."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:59
+msgid ""
+"Analysis of Social and Psychological Factors Influencing Political Decision-"
+"Making."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:60
+msgid ""
+"Applications in Public Opinion Research and the dynamics of social movements."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:61
+msgid ""
+"Applications of Multivariate Analysis in Research on Poverty, Inequality, "
+"and Other Social Indicators."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:62
+msgid ""
+"Evaluating the Effectiveness of Public Policies through multivariate data "
+"analysis."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:63
+msgid ""
+"Integration of Socio-Demographic and Economic Variables in predictive and "
+"causal studies."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:64
+msgid ""
+"Modeling Political Preferences and Electoral Behavior using multivariate "
+"techniques."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:65
+msgid "Models for Analyzing Economic Behavior in Globalized Markets."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:66
+msgid ""
+"Multivariate Analysis Techniques for Economic Prediction and Public Policy "
+"Evaluation."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:67
+msgid ""
+"Analysis of Complex Clinical Data to identify patterns and risk factors."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:68
+msgid ""
+"Applications of Multivariate Analysis in Personalized Treatments and "
+"Precision Medicine."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:69
+msgid ""
+"Integration of Data from Multiple Sources (genomics, radiology, clinical "
+"history) for clinical decision-making."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:70
+msgid ""
+"Multivariate Models in Epidemiological Studies: Prediction and diagnosis."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:71
+msgid "Analysis of High-Dimensional Data: Current techniques and challenges."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:72
+msgid "Handling Missing Data and Outliers in Multivariate Analysis"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:73
+msgid ""
+"Methods to Address Multicollinearity and Other Common Issues in multivariate "
+"data."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:74
+msgid "Validation and Robustness in Complex Multivariate Models."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:75
+msgid ""
+"Development of Tools and Educational Resources for teaching multivariate "
+"analysis."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:76
+msgid ""
+"New Methodologies to Train Researchers and Professionals in advanced "
+"statistical techniques."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:77
+msgid ""
+"Promotion of Interdisciplinary Collaboration through international courses "
+"and seminars."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:78
+msgid ""
+"Teaching Strategies and Dissemination of Multivariate Analysis across "
+"different disciplines."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:79
+msgid ""
+"Combination of Multivariate Techniques with Social Network Analysis and Text "
+"Analysis."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:80
+msgid ""
+"Integration of Multivariate Analysis with Time Series Models and Cohort "
+"Analysis."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:81
+msgid ""
+"Joint Application of Regression Models and Multivariate Classification "
+"Techniques"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:82
+msgid ""
+"Synergies Between Optimization Techniques and Multivariate Statistical "
+"Models."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:83
+msgid ""
+"Circular economy strategies could involve human and material resource "
+"recycling for social reintegration of former offenders, creating models that "
+"are not only safe but also economically inclusive and"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:84
+msgid ""
+"Security policies in vulnerable communities may be influenced by poverty "
+"levels, lack of access to basic services, and the absence of inclusive "
+"economic development models—issues also addressed by sus"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:85
+msgid ""
+"Advances in Factorial Statistical Techniques: Principal Component Analysis "
+"(PCA), BIPLOT methods, STATIS methods, TUCKER models, Clustering, and "
+"Decision Trees"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:86
+msgid ""
+"Applications of Neural Network Techniques for integrating multivariate data "
+"across various fields."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:87
+msgid ""
+"Innovative Related Methodologies: Systematic reviews, meta-analysis, and "
+"text mining to help decision-makers collaborate on evidence-based solutions."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:88
+msgid ""
+"Multivariate Analysis in the Context of Big Data and its real-time "
+"implementation."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:89
+msgid ""
+"Use of Machine Learning and Artificial Intelligence Algorithms in "
+"Multivariate Analysis."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:90
+msgid ""
+"Circular Supply Chain: Using advanced statistical methods to optimize supply "
+"chains from production to recycling and material reuse."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:91
+msgid ""
+"Evaluating the Transition to a Circular Economy: Analyzing the adoption of "
+"circular economy practices by businesses and governments using multivariate "
+"methods to identify key factors and barriers."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:92
+msgid ""
+"Impact of Circular Economy on Business Performance: Applying multivariate "
+"models to evaluate how implementing circular economy principles affects "
+"profitability, competitiveness, and business sustainab"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:93
+msgid ""
+"Interaction Between Sustainability and Circular Economy: Using multivariate "
+"analysis to identify best practices and assess their environmental, social, "
+"and economic impact."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:94
+msgid ""
+"Modeling Circular Systems: Using multivariate techniques to model the flow "
+"of materials, energy, and products within a circular economy system."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:95
+msgid ""
+"Product Lifecycle and Waste Management: Using multivariate techniques to "
+"assess product life cycles and manage waste efficiently in a circular "
+"context."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:96
+msgid ""
+"Public Policy Analysis in Circular Economy: Assessing the impact of "
+"incentive policies and regulations on the implementation of the circular "
+"economy across regions and sectors."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:97
+msgid ""
+"Circular Economy Business Models: Investigating how businesses can adopt "
+"circular models using multivariate data analysis on profitability, "
+"efficiency, and sustainability."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:98
+msgid ""
+"Circular Supply Chains: Optimizing circular supply chains with multivariate "
+"techniques to identify opportunities for material reuse and waste reduction."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:99
+msgid ""
+"Economic Impact of Circular Economy on Sustainability: Statistical analysis "
+"of the economic effects of circular practices in sectors like manufacturing, "
+"construction, and technology."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:100
+msgid ""
+"Environmental Impact of Industrial Sectors: Using multivariate analysis to "
+"measure the environmental impact of key sectors like agriculture, energy, "
+"and manufacturing."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:101
+msgid ""
+"Modeling Material Flows in the Circular Economy: Using multivariate analysis "
+"to model product and material life cycles from extraction to recycling."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:102
+msgid ""
+"Public Policies for Circular Economy: Evaluating the implementation of "
+"circular economy policies through multivariate analysis, assessing their "
+"effectiveness across economic and social contexts."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:103
+msgid ""
+"Challenges in Security Data Collection and Analysis: Discussing difficulties "
+"in collecting reliable and comprehensive crime and violence data and how "
+"multivariate analysis techniques can overcome thes"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:104
+msgid ""
+"Crime and Public Safety: Analyzing data on theft, assaults, and violent "
+"crimes across various cities using clustering and spatial multivariate "
+"analysis to optimize public security resource allocation"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:105
+msgid ""
+"Crime Prevention Strategies: Multivariate evaluation of crime prevention "
+"programs across Ecuadorian cities, analyzing the effectiveness of police "
+"presence, social reintegration programs, and inter-ins"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:106
+msgid ""
+"Domestic and Gender-Based Violence: Using multivariate models to study "
+"factors contributing to domestic violence, particularly gender-based "
+"violence."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:107
+msgid ""
+"Impact of Public Security Policies: Analyzing the effectiveness of public "
+"security policies, such as police strengthening, judicial reforms, and the "
+"use of technology in crime monitoring."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:108
+msgid ""
+"Perception of Security and Trust in Institutions: Using sentiment analysis "
+"and text mining techniques to analyze surveys and social media data "
+"regarding public trust in law enforcement and the judicia"
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:109
+msgid ""
+"Study of Urban and Rural Violence: Applying multivariate analysis to "
+"identify patterns and factors associated with violence in urban and rural "
+"areas of Ecuador."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:110
+msgid ""
+"Violent Deaths and Homicides: Studying factors influencing homicide rates "
+"and violent deaths and their correlation with socioeconomic, demographic, "
+"and political variables."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:111
+msgid ""
+"Ecological Footprint Assessment: Using multivariate methods to analyze the "
+"relationship between resource consumption and ecosystem carrying capacity."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:112
+msgid ""
+"Environmental Policy Analysis: Multivariate evaluation of global and local "
+"environmental policy effectiveness."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:113
+msgid "Multivariate Analysis for Biodiversity and Climate Change Evaluation."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:114
+msgid ""
+"Natural Resource Management: Multivariate analysis in decision-making for "
+"sustainable resource use (water, energy, biodiversity)."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:115
+msgid ""
+"Predictive Models of Climate Change: Applying multivariate techniques to "
+"forecast climate change impacts on ecosystems and communities."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:116
+msgid ""
+"Sustainability Assessment Using Multivariate Indicators: Advanced "
+"statistical methods for measuring sustainability across sectors "
+"(agriculture, industry, energy) and regions."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:117
+msgid ""
+"Sustainability in Smart Cities: Integrating multivariate data for "
+"sustainable urban planning, green mobility, and energy efficiency."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:118
+msgid ""
+"Application of Multivariate Statistical Techniques for large-scale "
+"educational data analysis."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:119
+msgid ""
+"Longitudinal and Multivariate Studies on the evolution of academic "
+"performance."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:120
+msgid ""
+"Multivariate Models for Assessing Academic Performance and identifying "
+"influential factors."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:121
+msgid ""
+"Using Multivariate Data to Improve Educational Quality and teaching-learning "
+"strategies."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:122
+msgid ""
+"Applying Multivariate Analysis to Strategic Planning and decision-making in "
+"uncertain environments."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:123
+msgid ""
+"Multivariate Predictive Models in Crisis Management and Emergency Response."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:124
+msgid ""
+"Multivariate Statistical Techniques for Predicting and Managing Natural "
+"Risks (earthquakes, floods, etc.)."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:125
+msgid ""
+"Using Multivariate Models to Assess and Mitigate Financial and Business "
+"Risks."
+msgstr ""
+
+#: .\pryiberoamericano\translations_dummy.py:129
+msgid "FIRST DAY"
+msgstr "PRIMER DIA"
+
+#: .\pryiberoamericano\translations_dummy.py:130
+msgid "SECOND DAY"
+msgstr "SEGUNDO DIA"
+
+#: .\pryiberoamericano\translations_dummy.py:131
+msgid "THIRD DAY"
+msgstr "TERCER DIA"
+
+#: .\pryiberoamericano\translations_dummy.py:134
+msgid "Wednesday, July 9, 2025"
+msgstr "Miércoles, Julio 9, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:135
+msgid "Thursday, July 10, 2025"
+msgstr "Jueves, Julio 10, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:136
+msgid "Friday, July 11, 2025"
+msgstr "Viernes, Julio 11, 2025"
+
+#: .\pryiberoamericano\translations_dummy.py:140
+msgid "Registration and Materials Distribution"
+msgstr "Registro y distribución de materiales"
+
+#: .\pryiberoamericano\translations_dummy.py:141
+msgid "Opening Ceremony"
+msgstr "Ceremonia inaugural"
+
+#: .\pryiberoamericano\translations_dummy.py:142
+msgid "Keynote Lecture 1"
+msgstr "Conferencia magistral 1"
+
+#: .\pryiberoamericano\translations_dummy.py:143
+msgid "Plenary Session 1"
+msgstr "Sesión plenaria 1"
+
+#: .\pryiberoamericano\translations_dummy.py:144
+msgid "Coffee break"
+msgstr "Coffee break"
+
+#: .\pryiberoamericano\translations_dummy.py:145
+msgid "Keynote Lecture 2"
+msgstr "Conferencia magistral 2"
+
+#: .\pryiberoamericano\translations_dummy.py:146
+msgid "Panel Discussion"
+msgstr "Panel de discusión"
+
+#: .\pryiberoamericano\translations_dummy.py:147
+msgid "Keynote Lecture 3"
+msgstr "Conferencia magistral 3"
+
+#: .\pryiberoamericano\translations_dummy.py:148
+msgid "Plenary Session 2"
+msgstr "Sesión plenaria 2"
+
+#: .\pryiberoamericano\translations_dummy.py:149
+msgid "Lunch Break"
+msgstr "Almuerzo libre"
+
+#: .\pryiberoamericano\translations_dummy.py:150
+msgid "Concurrent Sessions (Rooms A, B and C)"
+msgstr "Sesiones simultáneas (Salones A, B y C)"
+
+#: .\pryiberoamericano\translations_dummy.py:151
+msgid "Keynote Lecture 4"
+msgstr "Conferencia magistral 4"
+
+#: .\pryiberoamericano\translations_dummy.py:152
+msgid "Cultural Tour"
+msgstr "Recorrido cultural"
+
+#: .\pryiberoamericano\translations_dummy.py:153
+msgid "Keynote Lecture 5"
+msgstr "Conferencia magistral 5"
+
+#: .\pryiberoamericano\translations_dummy.py:154
+msgid "Plenary Session 3"
+msgstr "Sesión plenaria 3"
+
+#: .\pryiberoamericano\translations_dummy.py:155
+msgid "Keynote Lecture 6"
+msgstr "Conferencia magistral 6"
+
+#: .\pryiberoamericano\translations_dummy.py:156
+msgid "Closing Ceremony"
+msgstr "Clausura del evento"
+
+#: .\pryiberoamericano\translations_dummy.py:160
+#, python-format
+msgid "A 25% discount will be applied for UNEMI Faculty"
+msgstr "Se aplicará un 25% de descuento para Profesorado UNEMI"
+
+#: .\pryiberoamericano\translations_dummy.py:161
+msgid "For presentation or attendance (If attendance certificate is required)"
+msgstr ""
+"Por presentación o asistencia (Si se requiere certificado de asistencia)"
+
+#: .\public\view_conferences.py:24
+#: .\templates\public\landing\conferences.html:386
+#: .\templates\public\navbar.html:117
+msgid "Previous Events"
+msgstr "Eventos"
+
+#: .\public\view_members.py:22 .\templates\public\landing\members.html:400
+#: .\templates\public\landing\members.html:405
+#: .\templates\public\navbar.html:114
+msgid "Members"
+msgstr "Miembros"
+
+#: .\templates\public\footer.html:23
+msgid "IX Ibero-American Biometrics Meeting 2025"
+msgstr "IX Encuentro Iberoamericano de biometria 2025"
+
+# CUSTOMS
+#: .\templates\public\footer.html:29
+msgid "9 - 11 July, 2025 • Quito, Ecuador"
+msgstr "9 - 11 Julio, 2025 • Quito, Ecuador"
+
+#: .\templates\public\footer.html:70
+msgid "© 2025 State University of Milagro. All rights reserved."
+msgstr "© 2025 Universidad Estatal de Milagro. Reservados todos los derechos."
+
+#: .\templates\public\landing\catalog.html:373
+msgid "Events"
+msgstr "Evento"
+
+#: .\templates\public\landing\catalog.html:383
+msgid "Catalog"
+msgstr "Catalogo"
+
+#: .\templates\public\landing\catalog.html:415
+msgid "There is no photos available, come back soon!."
+msgstr "No hay fotos disponibles, ¡vuelve pronto!."
+
+#: .\templates\public\landing\conferences.html:374
+#: .\templates\public\landing\conferences.html:384
+msgid "Conferences"
+msgstr "Conferencias"
+
+#: .\templates\public\landing\conferences.html:406
+msgid "View Photos"
+msgstr "Ver fotos"
+
+#: .\templates\public\landing\conferences.html:420
+msgid ""
+"Stay tuned! We'll be updating this section withour past conferences and "
+"events."
+msgstr ""
+"¡Manténganse al tanto! Actualizaremos esta sección con nuestras conferencias "
+"y eventos anteriores."
+
+#: .\templates\public\landing\landing2.html:460
+#: .\templates\public\landing\landing2.html:919
+msgid "Register Now"
+msgstr "Registrarse ahora"
+
+#: .\templates\public\landing\landing2.html:463
+msgid "View Schedule"
+msgstr "Ver horarios"
+
+#: .\templates\public\landing\landing2.html:516
+msgid "Timeline"
+msgstr "Linea de Tiempo"
+
+#: .\templates\public\landing\landing2.html:523
+msgid "Key Dates"
+msgstr "Fechas claves"
+
+#: .\templates\public\landing\landing2.html:524
+msgid "Important Dates"
+msgstr "Fechas importantes"
+
+#: .\templates\public\landing\landing2.html:549
+#: .\templates\public\landing\landing2.html:559
+#: .\templates\public\landing\landing2.html:647
+#: .\templates\public\landing\landing2.html:657
+msgid "Committee"
+msgstr "Comité"
+
+#: .\templates\public\landing\landing2.html:584
+#: .\templates\public\landing\landing2.html:682
+msgid "View More"
+msgstr "Ver mas"
+
+#: .\templates\public\landing\landing2.html:597
+msgid "Special Benefits"
+msgstr "Beneficios especiales"
+
+#: .\templates\public\landing\landing2.html:599
+msgid "Get access to two premier academic events"
+msgstr "Obtenga acceso a dos eventos académicos de primer nivel"
+
+#: .\templates\public\landing\landing2.html:602
+msgid ""
+"Your registration includes free access to the 2025 International Statistics "
+"Symposium"
+msgstr ""
+"Tu inscripción incluye acceso gratuito al Simposio Internacional de "
+"Estadística 2025"
+
+#: .\templates\public\landing\landing2.html:608
+msgid ""
+"Access to both the IX Ibero-American Biometrics Meeting and the "
+"International Statistics Symposium 2025"
+msgstr ""
+"Acceso tanto al IX Encuentro Iberoamericano de Biometría como al Simposio "
+"Internacional de Estadística 2025"
+
+#: .\templates\public\landing\landing2.html:612
+msgid ""
+"Expand your network with experts from both events and enhance your academic "
+"experience through interdisciplinary collaboration"
+msgstr ""
+"Amplíe su red con expertos de ambos eventos y mejore su experiencia "
+"académica a través de la colaboración interdisciplinaria"
+
+#: .\templates\public\landing\landing2.html:621
+msgid "Academic Events"
+msgstr "Eventos académicos"
+
+#: .\templates\public\landing\landing2.html:627
+msgid "Registration Fee"
+msgstr "Cuota de inscripción"
+
+#: .\templates\public\landing\landing2.html:634
+msgid "Value Added"
+msgstr "Valor añadido"
+
+#: .\templates\public\landing\landing2.html:700
+msgid "About"
+msgstr "Sobre"
+
+#: .\templates\public\landing\landing2.html:703
+msgid "Scientific Excellence Since 2007"
+msgstr "Excelencia científica desde 2007"
+
+#: .\templates\public\landing\landing2.html:707
+msgid ""
+"The IX Ibero-American Biometrics Meeting is an international academic "
+"congress that has\n"
+"                            brought together experts since 2007. Originally "
+"organized by the University of Salamanca and\n"
+"                            the Spanish Council of Ibero-American Studies, "
+"this event promotes the exchange of knowledge\n"
+"                            in statistical and mathematical methods applied "
+"to disciplines such as Biology, Medicine,\n"
+"                            Psychology, Pharmacology, and Agriculture."
+msgstr ""
+"El IX Encuentro Iberoamericano de Biometría es un congreso académico "
+"internacional que tiene reúne a expertos desde 2007. Organizado "
+"originalmente por la Universidad de Salamanca y del Consejo Español de "
+"Estudios Iberoamericanos, este evento promueve el intercambio de "
+"conocimientos  en métodos estadísticos y matemáticos aplicados a disciplinas "
+"como Biología, Medicina, Psicología, Farmacología y Agricultura."
+
+#: .\templates\public\landing\landing2.html:718
+msgid ""
+"Access cutting-edge research in biometrics applied to public health, "
+"sustainable development, and statistical methodologies"
+msgstr ""
+"Acceda a investigaciones de vanguardia en biometría aplicada a la salud "
+"pública, el desarrollo sostenible y metodologías estadísticas."
+
+#: .\templates\public\landing\landing2.html:722
+msgid ""
+"Network with leading experts and researchers from across Ibero-America in a "
+"collaborative environment"
+msgstr ""
+"Establezca contactos con destacados expertos e investigadores de toda "
+"Iberoamérica en un entorno colaborativo."
+
+#: .\templates\public\landing\landing2.html:726
+msgid ""
+"Share your research through presentations and contribute to the advancement "
+"of biometric applications"
+msgstr ""
+"Comparta su investigación a través de presentaciones y contribuya al avance "
+"de las aplicaciones biométricas."
+
+#: .\templates\public\landing\landing2.html:740
+msgid "Global Networking"
+msgstr "Redes globales"
+
+#: .\templates\public\landing\landing2.html:741
+msgid ""
+"Connect with international experts and boost scientific networks for "
+"sustainable development."
+msgstr ""
+"Conéctate con expertos internacionales e impulsa redes científicas para el "
+"desarrollo sostenible."
+
+#: .\templates\public\landing\landing2.html:752
+msgid "Research Excellence"
+msgstr "Excelencia en investigación"
+
+#: .\templates\public\landing\landing2.html:753
+msgid "Foster interdisciplinary debates and advance biometric methodologies."
+msgstr ""
+"Fomentar debates interdisciplinarios y avanzar en metodologías biométricas."
+
+#: .\templates\public\landing\landing2.html:764
+msgid "Innovation Impact"
+msgstr "Impacto de la innovación"
+
+#: .\templates\public\landing\landing2.html:765
+msgid "Develop cutting-edge solutions for local and global challenges."
+msgstr "Desarrollar soluciones de vanguardia para desafíos locales y globales."
+
+#: .\templates\public\landing\landing2.html:776
+msgid "Knowledge Exchange"
+msgstr "Intercambio de conocimientos"
+
+#: .\templates\public\landing\landing2.html:777
+msgid "Share expertise in health, wellness, and sustainability research."
+msgstr ""
+"Compartir experiencia en investigación sobre salud, bienestar y "
+"sostenibilidad."
+
+#: .\templates\public\landing\landing2.html:792
+msgid "Topics to be Developed"
+msgstr "Temas a Desarrollar"
+
+#: .\templates\public\landing\landing2.html:856
+#: .\templates\public\navbar.html:105
+msgid "Calendar"
+msgstr "Calendario"
+
+#: .\templates\public\landing\landing2.html:857
+msgid "Event Calendar"
+msgstr "Calendario"
+
+#: .\templates\public\landing\landing2.html:913
+msgid "Plans"
+msgstr "Planes"
+
+#: .\templates\public\landing\landing2.html:918
+msgid "Our Rates"
+msgstr "Nuestras Tarifas"
+
+#: .\templates\public\landing\landing2.html:941
+msgid "Join Now"
+msgstr "Únete ahora"
+
+#: .\templates\public\navbar.html:35 .\templates\public\navbar.html:126
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: .\templates\public\navbar.html:58 .\templates\public\navbar.html:171
+msgid "Spanish"
+msgstr "Español"
+
+#: .\templates\public\navbar.html:68 .\templates\public\navbar.html:161
+#: .\templates\public\navbar.html:181
+msgid "English"
+msgstr "Inglés"
+
+#: .\templates\public\navbar.html:83 .\templates\public\navbar.html:137
+msgid "Administration"
+msgstr "Administración"
+
+#: .\templates\public\navbar.html:86 .\templates\public\navbar.html:140
+msgid "Sign out"
+msgstr "Cerrar sesión"
+
+#: .\templates\public\navbar.html:91 .\templates\public\navbar.html:144
+msgid "Return to my session"
+msgstr "Regresar a mi sesión"
+
+#: .\templates\public\navbar.html:100
+msgid "About us"
+msgstr "Nosotros"
+
+#: .\templates\public\navbar.html:110
+msgid "Prices"
+msgstr "Precios"
+
+#: .\templates\public\navbar.html:133
+msgid "Hello"
+msgstr "Hola"
+
+#: .\templates\public\navbar.html:159
+msgid "Español"
+msgstr ""
