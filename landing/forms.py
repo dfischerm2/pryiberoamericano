@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from .models import TopicCategory, Topic, CommitteeCategory, \
     CommitteeMember, Conference, \
     ConferenceFee, DetailConferenceFee, ItemDetailConference, PhotoCatalogConference, LandingConfereceCarousel, \
-    ScheduleConference, DetailScheduleConference
+    ScheduleConference, DetailScheduleConference, ImportantDates
 from core.custom_models import ModelFormBase
 
 
@@ -251,6 +251,17 @@ class DetailConferenceFeeForm(ModelFormBase):
             self.fields[k].widget.attrs['col'] = "12"
 
 
+class ImportantDatesForm(ModelFormBase):
+    class Meta:
+        model = ImportantDates
+        exclude = ('usuario_creacion', 'fecha_registro', 'hora_registro', 'status', 'usuario_modificacion','conference',)
 
+    def __init__(self, *args, **kwargs):
+        ver = kwargs.pop('ver') if 'ver' in kwargs else False
+        instancia = kwargs["instance"] if 'instance' in kwargs else None
+        super(ImportantDatesForm, self).__init__(*args, **kwargs)
+        for k, v in self.fields.items():
+            self.fields[k].widget.attrs['class'] = "form-control"
+            self.fields[k].widget.attrs['col'] = "6"
 
 

@@ -244,3 +244,18 @@ class DetailConferenceFee(ModeloBase):
         verbose_name_plural = 'Detail Conference Fees'
         ordering = ['order']
 
+
+class ImportantDates(ModeloBase):
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Conferencia')
+    order = models.IntegerField(blank=True, null=True, verbose_name='Orden')
+    icon = models.CharField(max_length=200, null=True, blank=True, verbose_name='Icono')
+    title = models.CharField(blank=True, null=True, max_length=200, verbose_name='Titulo')
+    description = models.TextField(null=True, blank=True, verbose_name='Descripción')
+
+    def __str__(self):
+        return f'{self.title} - {self.description}'
+
+    class Meta:
+        verbose_name = 'Important Date'
+        verbose_name_plural = 'Important Dates'
+        ordering = ['order']

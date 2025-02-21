@@ -7,7 +7,8 @@ from django.template.loader import get_template
 
 from area_geografica.models import Pais, Ciudad
 from autenticacion.models import PerfilPersona
-from landing.models import Conference, ConferenceFee, CommitteeCategory, TopicCategory, ScheduleConference
+from landing.models import Conference, ConferenceFee, CommitteeCategory, TopicCategory, ScheduleConference, \
+    ImportantDates
 
 from pryiberoamericano import settings
 from core.email_config import send_html_mail
@@ -77,4 +78,5 @@ def index2(request):
         data['conference_topics'] = TopicCategory.objects.filter(conference=conference, public=True, status=True)
         data['conference_schedules'] = ScheduleConference.objects.filter(conference=conference, status=True).order_by('order')
         data['conference_social_medias'] = RedesSociales.objects.filter(conference=conference, publicar=True, status=True)
+        data['important_dates'] = ImportantDates.objects.filter(conference=conference, status=True).order_by('order')
         return render(request, 'public/landing/landing2.html', data)

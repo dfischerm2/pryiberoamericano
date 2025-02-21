@@ -374,8 +374,24 @@
             object-fit: contain; /* Recorta la imagen para que encaje sin deformarla */
             display: block;
         }
+    </style>
+    <style>
+        .event-list-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
 
+        .event-list-content:hover {
+            transform: translateY(-5px);
+        }
 
+        .event-list-content h4 {
+            margin: 1rem 0;
+            font-weight: 600;
+        }
     </style>
 {% endblock %}
 
@@ -496,6 +512,54 @@
             </div>
         </div>
     </section>
+
+    <div id="importantdates" class="event fix pt-120 pb-120">
+        <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
+             data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
+             data-paroller-direction="horizontal"><h2>Linea de Tiempo</h2>
+        </div>
+        <div class="container">
+            <!-- Important Dates Section -->
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="section-title text-center mb-80">
+                        <span class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Fechas Claves</span>
+                        <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".4s">Fechas Importantes</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="event-list-content text-center mb-4 wow fadeInUp animated" data-animation="fadeInUp"
+                             data-delay=".2s" style="width: 23%; margin: 0 1%;">
+                            <i class="fas fa-user-plus fa-2x mb-3" style="color: #ff9900"></i>
+                            <h4>Registro</h4>
+                            <p>Marzo 1 - Abril 4, 2025</p>
+                        </div>
+                        <div class="event-list-content text-center mb-4 wow fadeInUp animated" data-animation="fadeInUp"
+                             data-delay=".4s" style="width: 23%; margin: 0 1%;">
+                            <i class="fas fa-envelope-open fa-2x mb-3" style="color: #ff9900"></i>
+                            <h4>Notificación de aceptación</h4>
+                            <p>Mayo 26, 2025</p>
+                        </div>
+                        <div class="event-list-content text-center mb-4 wow fadeInUp animated" data-animation="fadeInUp"
+                             data-delay=".6s" style="width: 23%; margin: 0 1%;">
+                            <i class="fas fa-file-alt fa-2x mb-3" style="color: #ff9900"></i>
+                            <h4>Cámara lista</h4>
+                            <p>Junio 24, 2025</p>
+                        </div>
+                        <div class="event-list-content text-center mb-4 wow fadeInUp animated" data-animation="fadeInUp"
+                             data-delay=".8s" style="width: 23%; margin: 0 1%;">
+                            <i class="fas fa-calendar-check fa-2x mb-3" style="color: #ff9900"></i>
+                            <h4>Fechas de la conferencia</h4>
+                            <p>Julio 9-11, 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="teamscientific" class="team-area p-relative pt-120 pb-120 fix">
         <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
@@ -1108,181 +1172,181 @@
         </div>
     </div>
 
-    <div id="schedule" class="event fix pt-120 pb-120">
-        <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
-             data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
-             data-paroller-direction="horizontal"><h2>Evento</h2></div>
-        <div class="row justify-content-center">
-            <div class="col-xl-6 col-lg-8">
-                <div class="section-title text-center mb-80">
-                    <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                          data-delay=".2s">Calendario</span>
-                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Evento
-                        Calendario</h2>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <nav class="wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s">
-                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active show" id="nav-home-tab" data-bs-toggle="tab"
-                               data-bs-target="#one">
-                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">
-                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">
-                                <div class="nav-content">
-                                    <strong>Primer día</strong>
-                                    <span>Miércoles, Julio 9, 2025</span>
-                                </div>
-                            </a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#two"
-                               aria-selected="false">
-                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">
-                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">
-                                <div class="nav-content">
-                                    <strong>Segundo día</strong>
-                                    <span>Jueves, Julio 10, 2025</span>
-                                </div>
-                            </a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-                               data-bs-target="#three" aria-selected="false">
-                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">
-                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">
-                                <div class="nav-content">
-                                    <strong>Tercer día</strong>
-                                    <span>Viernes, Julio 11, 2025</span>
-                                </div>
-                            </a>
-                        </div>
-                    </nav>
-                    <div class="tab-content py-3 px-3 px-sm-0 wow fadeInDown animated"
-                         data-animation="fadeInDown animated" data-delay=".2s" id="nav-tabContent">
-                        <div class="tab-pane fade active show" id="one" role="tabpanel">
-                            <!-- row loop -->
-                            <div class="row mb-30">
-                                <div class="col-lg-12">
-                                    <div class="event-list-content fix">
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30</span>
-                                            <b>Registro y entrega de materiales</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 11:00 </span><b>Ceremonia inaugural</b></p>
-                                        <p style="margin-left:10px">
-                                            ° Bienvenida a cargo del Dr. Jorge Fabricio Guevara Viejó (Rector de UNEMI).<br>
-                                            ° Palabras del comité organizador. <br>
-                                            <b>Intervención especial</b> <br>
-                                            Ph.D. Jesennia Del Pilar Cárdenas Cobo (Vicerrectora Académica de Formación de Grado, UNEMI)
-                                            <br>
-                                            <b>Tema: </b>La importancia de la formación académica en eventos científicos de alto impacto.
-                                            <br>
-                                            Ph.D. Mayra D’Armas Regnault (Vicerrectora de Vinculación, UNEMI) <br>
-                                            <b>Tema: </b>El papel de la vinculación universitaria en la proyección internacional de la investigación.
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 11:00 - 12:00 </span><b>Conferencia magistral 1</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Ponente:</b> Dra. Purificación Galindo Villardón (USAL, España).<br>
-                                            ° <b>Tema:</b> Innovación en métodos biométricos para el desarrollo sostenible.<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesión plenaria 1</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Tema:</b> Avances en biometría aplicada a la salud pública.<br>
-                                            ° <b>Moderador:</b> Dra. Carolina Marchant (Grupo Chileno de Biometría).<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee break</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 17:00 </span><b>Conferencia magistral 2</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Ponente:</b> Dr. Sergio Bramardi (Universidad Nacional del Comahue, Argentina). Cdla. Universitaria Dr. Rómulo Minchala Murillo, km 1,5 vía Milagro @UNEMIEcuador www.unemi.edu.ec<br>
-                                            ° <b>Tema:</b> Desafíos y oportunidades en biometría para el desarrollo local.<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 17:00 - 18:00 </span><b>Panel de discusión</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Tema:</b> Rol de la biometría en el bienestar humano integral.<br>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="two" role="tabpanel">
-                            <!-- row loop -->
-                            <div class="row mb-30">
-                                <div class="col-lg-12">
-                                    <div class="event-list-content fix">
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 08:30 - 10:00 </span><b>Conferencia magistral 3</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Ponente: </b>Dr. Luís Fernando Grajales (UNAL, Colombia).<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30 </span><b>Coffee
-                                            Break</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 12:00 </span><b>Sesión plenaria 2</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Tema:</b> Biometría y desarrollo sostenible.<br>
-                                            ° <b>Moderador:</b> Dr. Claudio Ruff Escobar (UBO, Chile).<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesiones simultáneas (Salones A, B y C)</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Salón A:</b> Estadística aplicada en biología<br>
-                                            ° <b>Salón B:</b> Modelos biométricos en farmacología<br>
-                                            ° <b>Salón C:</b> Innovaciones en análisis de datos para la sostenibilidad<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee
-                                            Break</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 16:30 </span><b>Conferencia magistral 4</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Ponente:</b> Dra. Adriana Pérez (Presidenta Región Centroamericana y del Caribe).<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 16:30 - 18:30 </span><b>Recorrido cultural</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Lugar:</b> Ciudad y Museo Mitad del Mundo.<br>
-                                            ° Incluye visitas guiadas y actividades de integración para los asistentes.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="three" role="tabpanel">
-                            <div class="row mb-30">
-                                <div class="col-lg-12">
-                                    <div class="event-list-content fix">
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 08:30 - 10:00 </span><b>Conferencia magistral 5</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Ponente: </b>Dr. Raúl Macchiavelli (UPR, Puerto Rico).<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30 </span><b>Coffee
-                                            Break</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 12:00 </span><b>Sesión plenaria 3</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Tema:</b> Estadística y desarrollo sostenible.<br>
-                                            ° <b>Moderador:</b> Dra. Anabel Forte Deltell (Universidad de Valencia, España).<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesiones simultáneas (Salones A, B y C)</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Salón A:</b> Biometría y agricultura sostenible<br>
-                                            ° <b>Salón B:</b> Métodos innovadores en estadística aplicada<br>
-                                            ° <b>Salón C:</b> Análisis de datos para el bienestar humano<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee
-                                            Break</b></p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 16:30 </span><b>Conferencia magistral 6</b></p>
-                                        <p style="margin-left:10px">
-                                            ° <b>Ponente:</b> Dr. Carles Cuadras Avellana (Universidad Central de Barcelona, España).<br>
-                                        </p>
-                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 16:30 - 17:00 </span><b>Clausura del evento</b></p>
-                                        <p style="margin-left:10px">
-                                            ° Resumen de los principales aportes.<br>
-                                            ° Palabras finales del comité organizador <br>
-                                            Palabras finales: Ph.D. Edwuin Jesús Carrasquero (UNEMI) - Vicerrector de Investigación y Posgrado.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{#    <div id="schedule" class="event fix pt-120 pb-120">#}
+{#        <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"#}
+{#             data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"#}
+{#             data-paroller-direction="horizontal"><h2>Evento</h2></div>#}
+{#        <div class="row justify-content-center">#}
+{#            <div class="col-xl-6 col-lg-8">#}
+{#                <div class="section-title text-center mb-80">#}
+{#                    <span class="wow fadeInUp animated" data-animation="fadeInUp animated"#}
+{#                          data-delay=".2s">Calendario</span>#}
+{#                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Evento#}
+{#                        Calendario</h2>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-12">#}
+{#                    <nav class="wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s">#}
+{#                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">#}
+{#                            <a class="nav-item nav-link active show" id="nav-home-tab" data-bs-toggle="tab"#}
+{#                               data-bs-target="#one">#}
+{#                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">#}
+{#                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">#}
+{#                                <div class="nav-content">#}
+{#                                    <strong>Primer día</strong>#}
+{#                                    <span>Miércoles, Julio 9, 2025</span>#}
+{#                                </div>#}
+{#                            </a>#}
+{#                            <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#two"#}
+{#                               aria-selected="false">#}
+{#                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">#}
+{#                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">#}
+{#                                <div class="nav-content">#}
+{#                                    <strong>Segundo día</strong>#}
+{#                                    <span>Jueves, Julio 10, 2025</span>#}
+{#                                </div>#}
+{#                            </a>#}
+{#                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"#}
+{#                               data-bs-target="#three" aria-selected="false">#}
+{#                                <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">#}
+{#                                <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">#}
+{#                                <div class="nav-content">#}
+{#                                    <strong>Tercer día</strong>#}
+{#                                    <span>Viernes, Julio 11, 2025</span>#}
+{#                                </div>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </nav>#}
+{#                    <div class="tab-content py-3 px-3 px-sm-0 wow fadeInDown animated"#}
+{#                         data-animation="fadeInDown animated" data-delay=".2s" id="nav-tabContent">#}
+{#                        <div class="tab-pane fade active show" id="one" role="tabpanel">#}
+{#                            <!-- row loop -->#}
+{#                            <div class="row mb-30">#}
+{#                                <div class="col-lg-12">#}
+{#                                    <div class="event-list-content fix">#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30</span>#}
+{#                                            <b>Registro y entrega de materiales</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 11:00 </span><b>Ceremonia inaugural</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° Bienvenida a cargo del Dr. Jorge Fabricio Guevara Viejó (Rector de UNEMI).<br>#}
+{#                                            ° Palabras del comité organizador. <br>#}
+{#                                            <b>Intervención especial</b> <br>#}
+{#                                            Ph.D. Jesennia Del Pilar Cárdenas Cobo (Vicerrectora Académica de Formación de Grado, UNEMI)#}
+{#                                            <br>#}
+{#                                            <b>Tema: </b>La importancia de la formación académica en eventos científicos de alto impacto.#}
+{#                                            <br>#}
+{#                                            Ph.D. Mayra D’Armas Regnault (Vicerrectora de Vinculación, UNEMI) <br>#}
+{#                                            <b>Tema: </b>El papel de la vinculación universitaria en la proyección internacional de la investigación.#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 11:00 - 12:00 </span><b>Conferencia magistral 1</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Ponente:</b> Dra. Purificación Galindo Villardón (USAL, España).<br>#}
+{#                                            ° <b>Tema:</b> Innovación en métodos biométricos para el desarrollo sostenible.<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesión plenaria 1</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Tema:</b> Avances en biometría aplicada a la salud pública.<br>#}
+{#                                            ° <b>Moderador:</b> Dra. Carolina Marchant (Grupo Chileno de Biometría).<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee break</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 17:00 </span><b>Conferencia magistral 2</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Ponente:</b> Dr. Sergio Bramardi (Universidad Nacional del Comahue, Argentina). Cdla. Universitaria Dr. Rómulo Minchala Murillo, km 1,5 vía Milagro @UNEMIEcuador www.unemi.edu.ec<br>#}
+{#                                            ° <b>Tema:</b> Desafíos y oportunidades en biometría para el desarrollo local.<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 17:00 - 18:00 </span><b>Panel de discusión</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Tema:</b> Rol de la biometría en el bienestar humano integral.<br>#}
+{#                                        </p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="tab-pane fade" id="two" role="tabpanel">#}
+{#                            <!-- row loop -->#}
+{#                            <div class="row mb-30">#}
+{#                                <div class="col-lg-12">#}
+{#                                    <div class="event-list-content fix">#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 08:30 - 10:00 </span><b>Conferencia magistral 3</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Ponente: </b>Dr. Luís Fernando Grajales (UNAL, Colombia).<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30 </span><b>Coffee#}
+{#                                            Break</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 12:00 </span><b>Sesión plenaria 2</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Tema:</b> Biometría y desarrollo sostenible.<br>#}
+{#                                            ° <b>Moderador:</b> Dr. Claudio Ruff Escobar (UBO, Chile).<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesiones simultáneas (Salones A, B y C)</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Salón A:</b> Estadística aplicada en biología<br>#}
+{#                                            ° <b>Salón B:</b> Modelos biométricos en farmacología<br>#}
+{#                                            ° <b>Salón C:</b> Innovaciones en análisis de datos para la sostenibilidad<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee#}
+{#                                            Break</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 16:30 </span><b>Conferencia magistral 4</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Ponente:</b> Dra. Adriana Pérez (Presidenta Región Centroamericana y del Caribe).<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 16:30 - 18:30 </span><b>Recorrido cultural</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Lugar:</b> Ciudad y Museo Mitad del Mundo.<br>#}
+{#                                            ° Incluye visitas guiadas y actividades de integración para los asistentes.#}
+{#                                        </p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="tab-pane fade" id="three" role="tabpanel">#}
+{#                            <div class="row mb-30">#}
+{#                                <div class="col-lg-12">#}
+{#                                    <div class="event-list-content fix">#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 08:30 - 10:00 </span><b>Conferencia magistral 5</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Ponente: </b>Dr. Raúl Macchiavelli (UPR, Puerto Rico).<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:00 - 10:30 </span><b>Coffee#}
+{#                                            Break</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 10:30 - 12:00 </span><b>Sesión plenaria 3</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Tema:</b> Estadística y desarrollo sostenible.<br>#}
+{#                                            ° <b>Moderador:</b> Dra. Anabel Forte Deltell (Universidad de Valencia, España).<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 12:00 - 13:30 </span><b>Almuerzo libre</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 13:30 - 15:00 </span><b>Sesiones simultáneas (Salones A, B y C)</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Salón A:</b> Biometría y agricultura sostenible<br>#}
+{#                                            ° <b>Salón B:</b> Métodos innovadores en estadística aplicada<br>#}
+{#                                            ° <b>Salón C:</b> Análisis de datos para el bienestar humano<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:00 - 15:30 </span><b>Coffee#}
+{#                                            Break</b></p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 15:30 - 16:30 </span><b>Conferencia magistral 6</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° <b>Ponente:</b> Dr. Carles Cuadras Avellana (Universidad Central de Barcelona, España).<br>#}
+{#                                        </p>#}
+{#                                        <p><span style="color:#ff9900"><i class="fa fa-clock"></i> 16:30 - 17:00 </span><b>Clausura del evento</b></p>#}
+{#                                        <p style="margin-left:10px">#}
+{#                                            ° Resumen de los principales aportes.<br>#}
+{#                                            ° Palabras finales del comité organizador <br>#}
+{#                                            Palabras finales: Ph.D. Edwuin Jesús Carrasquero (UNEMI) - Vicerrector de Investigación y Posgrado.#}
+{#                                        </p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
     <section id="register" class="pricing-area pt-113 pb-90 fix"
              style="background-image:url(/static/eventes/img/pricing_bg.jpg);background-size: cover;">
