@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.template.loader import get_template
 from landing.models import ScheduleConference, DetailScheduleConference
-from landing.forms import ScheduleConferenceForm, DetailScheduleConferenceForm
+from landing.forms import ScheduleConferenceForm, DetailScheduleConferenceForm, DetailScheduleConferenceFormESP
 from core.funciones_adicionales import salva_logs
 from core.custom_forms import FormError
 from core.funciones import secure_module, log, paginador, addData, redirectAfterPostGet
@@ -65,25 +65,32 @@ def scheduleConferenceView(request):
                 if action == 'adddetail':
                     filtro = model.objects.get(pk=int(request.POST['pk']))
                     form = DetailScheduleConferenceForm(request.POST, request=request)
-                    if form.is_valid():
-                        form.instance.cab = filtro
-                        form.save()
-                        log(f"Registró un nuevo detalle de horario {form.instance.__str__()}", request, "add", obj=form.instance.id)
-                        messages.success(request, "Tema agregado exitosamente")
-                        res_json.append({'error': False, "reload": True})
-                    else:
+                    form_esp = DetailScheduleConferenceFormESP(request.POST, request=request)
+                    if not form.is_valid():
                         raise FormError(form)
+                    if not form_esp.is_valid():
+                        raise FormError(form_esp)
+                    form.instance.cab = filtro
+                    form.instance.description_esp = form_esp.cleaned_data['description_esp']
+                    form.save()
+                    log(f"Registró un nuevo detalle de horario {form.instance.__str__()}", request, "add", obj=form.instance.id)
+                    messages.success(request, "Tema agregado exitosamente")
+                    res_json.append({'error': False, "reload": True})
 
                 elif action == 'changedetail':
                     filtro = DetailScheduleConference.objects.get(pk=int(request.POST['pk']))
                     form = DetailScheduleConferenceForm(request.POST, instance=filtro, request=request)
-                    if form.is_valid() and filtro:
-                        form.save()
-                        log(f"Editó un nuevo detalle de horario {filtro.__str__()}", request, "change", obj=filtro.id)
-                        messages.success(request, "Tema modificado con éxito")
-                        res_json.append({'error': False, "reload": True})
-                    else:
+                    form_esp = DetailScheduleConferenceFormESP(request.POST, instance=filtro, request=request)
+                    if not form.is_valid():
                         raise FormError(form)
+                    if not form_esp.is_valid():
+                        raise FormError(form_esp)
+                    form.instance.description_esp = form_esp.cleaned_data['description_esp']
+                    form.save()
+                    form_esp.save()
+                    log(f"Editó un nuevo detalle de horario {filtro.__str__()}", request, "change", obj=filtro.id)
+                    messages.success(request, "Tema modificado con éxito")
+                    res_json.append({'error': False, "reload": True})
 
                 elif action == 'deletedetail':
                     filtro = DetailScheduleConference.objects.get(pk=int(request.POST['id']))
@@ -143,14 +150,16 @@ def scheduleConferenceView(request):
             elif action == 'adddetail':
                 data['filtro'] = model.objects.get(pk=int(request.GET['id']))
                 data["form"] = DetailScheduleConferenceForm()
-                template = get_template("conference/schedule/detail/form.html")
+                data["form_esp"] = DetailScheduleConferenceFormESP()
+                template = get_template("conference/schedule/detail/spanish_form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
             elif action == 'changedetail':
                 pk = int(request.GET['id'])
                 data['filtro'] = filtro = DetailScheduleConference.objects.get(pk=pk)
                 data["form"] = DetailScheduleConferenceForm(instance=filtro)
-                template = get_template("conference/schedule/detail/form.html")
+                data["form_esp"] = DetailScheduleConferenceFormESP(instance=filtro)
+                template = get_template("conference/schedule/detail/spanish_form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
         # Filtrado y listado

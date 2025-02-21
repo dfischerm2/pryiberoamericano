@@ -13,15 +13,15 @@ from landing.models import Conference, ConferenceFee, CommitteeCategory, TopicCa
 from pryiberoamericano import settings
 from core.email_config import send_html_mail
 from core.funciones import addData, mi_paginador, get_decrypt, get_client_ip
-from core.notificacion_config import enviar_not_push
 from public.models import VisitaEntorno
 from seguridad.models import *
 from seguridad.templatetags.templatefunctions import encrypt
+from django.utils.translation import gettext as _
 
 
 def conferences(request):
     data = {
-        'titulo': 'Previous Events',
+        'titulo': _('Previous Events'),
         'ruta': request.path,
         'fecha': datetime.now(),
     }

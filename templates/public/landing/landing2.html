@@ -432,13 +432,13 @@
                         <div class="col-8">
                             <div class="slider-content second-slider-content">
                                 <ul data-animation="fadeInUp animated" data-delay=".2s">
-                                    <li><i class="fas fa-map-marker-alt"></i> {{ conference.location_str }}</li>
-                                    <li><i class="far fa-clock"></i> {{ conference.date_str }}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i> {% trans conference.location_str %}</li>
+                                    <li><i class="far fa-clock"></i> {{ conference.get_trans_date_str }}</li>
                                 </ul>
                                 <h2 data-animation="fadeInUp animated" data-delay=".4s">{% if conference.number %}
-                                    <span>{{ conference.number }}</span>{% endif %} {{ conference.title }}</h2>
+                                    <span>{{ conference.number }}</span>{% endif %} {{ conference.get_trans_title }}</h2>
 
-                                <span class="texto-white fadeInUp animated">{{ conference.subtitle }}</span>
+                                <span class="texto-white fadeInUp animated">{{ conference.get_trans_subtitle }}</span>
 
                                 <div countdown class="conterdown wow fadeInDown animated"
                                      data-animation="fadeInDown animated" data-delay=".2s"
@@ -447,7 +447,7 @@
                                         {% for l in conference_items %}
                                             <div class="timer-outer bdr{{ forloop.counter }}">
                                                 <span class="expected" data-expected>{{ l.principal_text }}</span>
-                                                <div class="smalltext">{{ l.secondary_text }}</div>
+                                                <div class="smalltext">{{ l.get_trans_secondary_text }}</div>
                                                 <div class="value-bar"></div>
                                             </div>
                                         {% endfor %}
@@ -457,10 +457,10 @@
 
                                 <div class="action-buttons">
                                     <a href="#register" class="btn btn-primary btn-lg">
-                                        <i class="fas fa-ticket-alt me-2"></i>Register Now
+                                        <i class="fas fa-ticket-alt me-2"></i>{% trans 'Register Now' %}
                                     </a>
                                     <a href="#schedule" class="btn btn-outline-light btn-lg">
-                                        <i class="fas fa-calendar-alt me-2"></i>View Schedule
+                                        <i class="fas fa-calendar-alt me-2"></i>{% trans 'View Schedule' %}
                                     </a>
                                 </div>
                             </div>
@@ -533,8 +533,8 @@
                                  data-animation="fadeInUp"
                                  data-delay=".2s" style="width: 23%; margin: 0 1%;">
                                 <i class="{{ l.icon }} fa-2x mb-3" style="color: #ff9900"></i>
-                                <h4>{{ l.title }}</h4>
-                                <p>{{ l.description }}</p>
+                                <h4>{{ l.get_trans_title }}</h4>
+                                <p>{{ l.get_trans_description }}</p>
                             </div>
                         {% endfor %}
                     </div>
@@ -546,7 +546,7 @@
     <section id="teamscientific" class="team-area p-relative pt-120 pb-120 fix">
         <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
              data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
-             data-paroller-direction="horizontal"><h2>Committee</h2></div>
+             data-paroller-direction="horizontal"><h2>{% trans 'Committee'%}</h2></div>
         <div class="circal1 item-zoom-inout"></div>
         <div class="circal2 item-zoom-inout"></div>
         <div class="circal3 item-zoom-inout"></div>
@@ -556,9 +556,9 @@
                 <div class="col-xl-6 col-lg-8">
                     <div class="section-title text-center mb-80">
                         <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                              data-delay=".2s">Committee</span>
+                              data-delay=".2s">{% trans 'Committee'%}</span>
                         <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                            data-delay=".4s">{{ conference_committes_first.name }}</h2>
+                            data-delay=".4s">{{ conference_committes_first.get_trans_name }}</h2>
                     </div>
                 </div>
             </div>
@@ -572,8 +572,8 @@
                             </div>
                             <div class="team-info">
                                 <h5>{{ l.name }}</h5>
-                                <strong>{{ l.rol }}</strong><br>
-                                <span>{{ l.description_rol }}</span><br>
+                                <strong>{{ l.get_trans_rol }}</strong><br>
+                                <span>{{ l.get_trans_description_rol }}</span>
                             </div>
                         </div>
                     </div>
@@ -581,7 +581,7 @@
                 {% if conference_committes_first %}
                     <div class="d-flex justify-content-center w-100">
                         <div class="col-lg-12 text-center">
-                            <a href="/members/" class="btn btn-primary">View More</a>
+                            <a href="/members/" class="btn btn-primary">{% trans 'View More'%}</a>
                         </div>
                     </div>
                 {% endif %}
@@ -594,22 +594,22 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-6">
                     <div class="about-title second-atitle">
-                        <span class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">Special Benefits</span>
+                        <span class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">{% trans 'Special Benefits'%}</span>
                         <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">
-                            Get access to two premier academic events
+                            {% trans 'Get access to two premier academic events'%}
                         </h2>
                         <h5 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">
-                            Your registration includes free access to the 2025 International Statistics Symposium
+                            {% trans 'Your registration includes free access to the 2025 International Statistics Symposium'%}
                         </h5>
                     </div>
                     <ul class="wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s">
                         <li>
                             <img src="/static/eventes/img/calendar.png" alt="img">
-                            <span>Access to both the IX Ibero-American Biometrics Meeting and the International Statistics Symposium 2025</span>
+                            <span>{% trans 'Access to both the IX Ibero-American Biometrics Meeting and the International Statistics Symposium 2025'%}</span>
                         </li>
                         <li>
                             <img src="/static/eventes/img/comments.png" alt="img">
-                            <span>Expand your network with experts from both events and enhance your academic experience through interdisciplinary collaboration</span>
+                            <span>{% trans 'Expand your network with experts from both events and enhance your academic experience through interdisciplinary collaboration'%}</span>
                         </li>
                     </ul>
                 </div>
@@ -618,20 +618,20 @@
                         <div class="counter p-relative">
                             <span class="count">2</span>
                         </div>
-                        <p>Academic Events</p>
+                        <p>{% trans 'Academic Events'%}</p>
                     </div>
                     <div class="single-counter text-center mb-30 cr2">
                         <div class="counter p-relative">
                             <span class="count">1</span>
                         </div>
-                        <p>Registration Fee</p>
+                        <p>{% trans 'Registration Fee'%}</p>
                     </div>
                     <div class="single-counter text-center mb-30 cr3">
                         <div class="counter p-relative">
                             <span class="count">100</span>
                             <small>%</small>
                         </div>
-                        <p>Value Added</p>
+                        <p>{% trans 'Value Added'%}</p>
                     </div>
                     <div class="cr4"></div>
                     <div class="cr5"></div>
@@ -644,7 +644,7 @@
         <section id="teamorganizing" class="team-area p-relative pt-120 pb-120 fix">
             <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
                  data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
-                 data-paroller-direction="horizontal"><h2>Committee</h2></div>
+                 data-paroller-direction="horizontal"><h2>{% trans 'Committee'%}</h2></div>
             <div class="circal1 item-zoom-inout"></div>
             <div class="circal2 item-zoom-inout"></div>
             <div class="circal3 item-zoom-inout"></div>
@@ -654,9 +654,9 @@
                     <div class="col-xl-6 col-lg-8">
                         <div class="section-title text-center mb-80">
                         <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                              data-delay=".2s">Committee</span>
+                              data-delay=".2s">{% trans 'Committee'%}</span>
                             <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                                data-delay=".4s">{{ comite.name }}</h2>
+                                data-delay=".4s">{{ comite.get_trans_name }}</h2>
                         </div>
                     </div>
                 </div>
@@ -670,19 +670,19 @@
                                 </div>
                                 <div class="team-info">
                                     <h5>{{ member.name }}</h5>
-                                    <strong>{{ member.rol }}</strong><br>
-                                    <span>{{ member.description_rol }}</span><br>
+                                    <strong>{{ member.get_trans_rol }}</strong><br>
+                                    <span>{{ member.get_trans_description_rol }}</span><br>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                     {% if conference_committes %}
-                    <div class="d-flex justify-content-center w-100">
-                        <div class="col-lg-12 text-center">
-                            <a href="/members/" class="btn btn-primary">View More</a>
+                        <div class="d-flex justify-content-center w-100">
+                            <div class="col-lg-12 text-center">
+                                <a href="/members/" class="btn btn-primary">{% trans 'View More'%}</a>
+                            </div>
                         </div>
-                    </div>
-                {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -697,33 +697,33 @@
                     <div class="about-content s-about-content pl-30">
                         <div class="about-title second-atitle">
                             <div class="text-outline">
-                                <span>About</span>
+                                <span>{% trans 'About'%}</span>
                             </div>
                             <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">
-                                Scientific Excellence Since 2007
+                                {% trans 'Scientific Excellence Since 2007'%}
                             </h2>
                         </div>
                         <p class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".4s">
-                            The IX Ibero-American Biometrics Meeting is an international academic congress that has
+                            {% blocktrans %}The IX Ibero-American Biometrics Meeting is an international academic congress that has
                             brought together experts since 2007. Originally organized by the University of Salamanca and
                             the Spanish Council of Ibero-American Studies, this event promotes the exchange of knowledge
                             in statistical and mathematical methods applied to disciplines such as Biology, Medicine,
-                            Psychology, Pharmacology, and Agriculture.
+                            Psychology, Pharmacology, and Agriculture.{% endblocktrans %}
                         </p>
 
                         <ul class="key-benefits wow fadeInDown animated" data-animation="fadeInDown animated"
                             data-delay=".2s">
                             <li>
                                 <i class="fas fa-check-circle text-primary"></i>
-                                <span>Access cutting-edge research in biometrics applied to public health, sustainable development, and statistical methodologies</span>
+                                <span>{% trans 'Access cutting-edge research in biometrics applied to public health, sustainable development, and statistical methodologies'%}</span>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle text-primary"></i>
-                                <span>Network with leading experts and researchers from across Ibero-America in a collaborative environment</span>
+                                <span>{% trans 'Network with leading experts and researchers from across Ibero-America in a collaborative environment' %}</span>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle text-primary"></i>
-                                <span>Share your research through presentations and contribute to the advancement of biometric applications</span>
+                                <span>{% trans 'Share your research through presentations and contribute to the advancement of biometric applications' %}</span>
                             </li>
                         </ul>
                     </div>
@@ -737,9 +737,8 @@
                                     <i class="fa fa-globe"></i>
                                 </div>
                                 <div class="content">
-                                    <h5>Global Networking</h5>
-                                    <p>Connect with international experts and boost scientific networks for sustainable
-                                        development.</p>
+                                    <h5>{% trans 'Global Networking' %}</h5>
+                                    <p>{% trans 'Connect with international experts and boost scientific networks for sustainable development.' %}</p>
                                 </div>
                             </div>
                         </div>
@@ -750,8 +749,8 @@
                                     <i class="fa fa-cogs"></i>
                                 </div>
                                 <div class="content">
-                                    <h5>Research Excellence</h5>
-                                    <p>Foster interdisciplinary debates and advance biometric methodologies.</p>
+                                    <h5>{% trans 'Research Excellence' %}</h5>
+                                    <p>{% trans 'Foster interdisciplinary debates and advance biometric methodologies.' %}</p>
                                 </div>
                             </div>
                         </div>
@@ -762,8 +761,8 @@
                                     <i class="fa fa-magic"></i>
                                 </div>
                                 <div class="content">
-                                    <h5>Innovation Impact</h5>
-                                    <p>Develop cutting-edge solutions for local and global challenges.</p>
+                                    <h5>{% trans 'Innovation Impact' %}</h5>
+                                    <p>{% trans 'Develop cutting-edge solutions for local and global challenges.' %}</p>
                                 </div>
                             </div>
                         </div>
@@ -774,8 +773,8 @@
                                     <i class="fa fa-users"></i>
                                 </div>
                                 <div class="content">
-                                    <h5>Knowledge Exchange</h5>
-                                    <p>Share expertise in health, wellness, and sustainability research.</p>
+                                    <h5>{% trans 'Knowledge Exchange' %}</h5>
+                                    <p>{% trans 'Share expertise in health, wellness, and sustainability research.' %}</p>
                                 </div>
                             </div>
                         </div>
@@ -790,7 +789,7 @@
             <div class="row justify-content-center mb-5">
                 <div class="col-12">
                     <div class="text-center">
-                        <h2 class="section-title">Topics to be Developed</h2>
+                        <h2 class="section-title">{% trans 'Topics to be Developed' %}</h2>
                         <div class="divider mb-4"></div>
                     </div>
                 </div>
@@ -811,9 +810,9 @@
                                             </div>
                                             <div class="topic-header w-100">
                                                 <div class="d-flex justify-content-between align-items-center w-100">
-                                                    <div class="header-text">
-                                                        <h3>{{ l.name }}</h3>
-                                                        <span class="topic-subtitle">{{ l.description }}</span>
+                                                    <div class="header-text text-left">
+                                                        <h3>{{ l.get_trans_name }}</h3>
+                                                        <span class="topic-subtitle">{{ l.get_trans_description }}</span>
                                                     </div>
                                                     <div class="expand-icon ms-3">
                                                         <i class="fas fa-chevron-down"></i>
@@ -855,8 +854,7 @@
 {#                <div class="section-title text-center mb-80">#}
 {#                    <span class="wow fadeInUp animated" data-animation="fadeInUp animated"#}
 {#                          data-delay=".2s">{% trans 'Calendar' %}</span>#}
-{#                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">{% trans 'Event' %}#}
-{#                        {% trans 'Calendar' %}</h2>#}
+{#                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s">{% trans 'Event Calendar' %}</h2>#}
 {#                </div>#}
 {#            </div>#}
 {#        </div>#}
@@ -866,15 +864,15 @@
 {#                    <nav class="wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s">#}
 {#                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">#}
 {#                            {% for l in conference_schedules %}#}
-{#                                <a class="nav-item nav-link {% if forloop.counter == 1 %}active show{% endif %}"#}
+{#                                <a class="nav-item nav-link {% if forloop.counter == 1 %}active show{% endif %}" style="cursor: pointer"#}
 {#                                   data-bs-toggle="tab"#}
 {#                                   data-bs-target="#s{{ forloop.counter }}"#}
 {#                                   aria-selected="false">#}
 {#                                    <img src="/static/eventes/img/t-icon.png" alt="img" class="drk-icon">#}
 {#                                    <img src="/static/eventes/img/t-w-icon1.png" alt="img" class="lgt-icon">#}
 {#                                    <div class="nav-content">#}
-{#                                        <strong>{{ l.title }}</strong>#}
-{#                                        <span>{{ l.date_str }}</span>#}
+{#                                        <strong>{{ l.get_trans_title }}</strong>#}
+{#                                        <span>{{ l.get_trans_date_str }}</span>#}
 {#                                    </div>#}
 {#                                </a>#}
 {#                            {% endfor %}#}
@@ -892,9 +890,9 @@
 {#                                            {% for detail in l.get_details %}#}
 {#                                                <p><span style="color:#ff9900"><i#}
 {#                                                        class="fa fa-clock"></i> {{ detail.time_start|time:'H:i' }} - {{ detail.time_end|time:'H:i' }} </span>#}
-{#                                                    <b>{{ detail.title }}</b></p>#}
+{#                                                    <b>{{ detail.get_trans_title }}</b></p>#}
 {#                                                <p style="margin-left:10px">#}
-{#                                                    {{ detail.description|safe }}#}
+{#                                                    {{ detail.get_trans_description|safe }}#}
 {#                                                </p>#}
 {#                                            {% endfor %}#}
 {#                                        </div>#}
@@ -912,14 +910,14 @@
              style="background-image:url(/static/eventes/img/pricing_bg.jpg);background-size: cover;">
         <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
              data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
-             data-paroller-direction="horizontal"><h2>Plans</h2></div>
+             data-paroller-direction="horizontal"><h2>{% trans 'Plans' %}</h2></div>
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8">
                 <div class="section-title text-center mb-80">
                 <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                      data-delay=".2s">Our Rates</span>
-                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".4s">Register
-                        Now</h2>
+                      data-delay=".2s">{% trans 'Our Rates' %}</span>
+                    <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".4s">{% trans 'Register Now' %}
+                        </h2>
                 </div>
             </div>
         </div>
@@ -937,10 +935,10 @@
                             </div>
                             <div class="pricing-body mb-40">
                                 {% for detail in l.get_details %}
-                                    <p>{{ detail.description }}</p>
+                                    <p>{{ detail.get_trans_description }}</p>
                                 {% endfor %}
                                 <div class="pricing-btn mt-40">
-                                    <a href="#" class="btn"><i class="fa fa-ticket-alt"></i> Join Now</a>
+                                    <a href="#" class="btn"><i class="fa fa-ticket-alt"></i> {% trans 'Join Now' %}</a>
                                 </div>
                             </div>
 

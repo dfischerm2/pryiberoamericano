@@ -1,3 +1,5 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <style>
     .sticky-menu .logo img {
         content: url("/media/{{ confi.logo_sistema_white }}");
@@ -30,26 +32,42 @@
                         <div class="d-flex align-items-center justify-content-center gap-2">
                             {% if not request.user.is_authenticated %}
                                 <div class="header-btn second-header-btn d-flex d-xl-none gap-2">
-                                    <a href="/login/" class="btn btn-sm">Login</a>
+                                    <a href="/login/" class="btn btn-sm">{% trans 'Login' %}</a>
                                 </div>
                             {% else %}
                                 <div class="responsive d-xl-none"><i class="icon dripicons-align-right"></i></div>
                             {% endif %}
                             <!-- Botón de idioma con dropdown -->
                             <div class="dropdown ml-3 d-xl-none">
-                                <button class="btn btn-light dropdown-toggle d-flex align-items-center text-dark" style="padding: 6px 25px; font-size: 14px;" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="/static/images/english.png" alt="ES" width="15" height="12" class="mr-1"> EN
+                                <button class="btn btn-light dropdown-toggle d-flex align-items-center text-dark"
+                                        style="padding: 6px 25px; font-size: 14px;"
+                                        type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {% if LANGUAGE_CODE == "es" %}
+                                        <img src="/static/images/spanish.webp" alt="ES" width="15" height="12" class="mr-1"> ES
+                                    {% else %}
+                                        <img src="/static/images/english.png" alt="EN" width="15" height="12" class="mr-1"> EN
+                                    {% endif %}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center text-dark" href="/es/">
-                                            <img src="/static/images/spanish.webp" alt="ES" width="15" height="12" class="mr-1"> Spanish
-                                        </a>
+                                        <form action="/set-language/" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="next" value="{{ request.path }}">
+                                            <input type="hidden" name="language" value="es">
+                                            <button type="submit" class="dropdown-item d-flex align-items-center text-dark" style="cursor: pointer">
+                                                <img src="/static/images/spanish.webp" alt="ES" width="15" height="12" class="mr-1"> {% trans 'Spanish' %}
+                                            </button>
+                                        </form>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center text-dark" href="/">
-                                            <img src="/static/images/english.png" alt="EN" width="15" height="12" class="mr-1"> English
-                                        </a>
+                                        <form action="/set-language/" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="next" value="{{ request.path }}">
+                                            <input type="hidden" name="language" value="en">
+                                            <button type="submit" class="dropdown-item d-flex align-items-center text-dark" style="cursor: pointer">
+                                                <img src="/static/images/english.png" alt="EN" width="15" height="12" class="mr-1"> {% trans 'English' %}
+                                            </button>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -62,35 +80,41 @@
                                 <ul>
                                     {% if request.user.is_authenticated %}
                                         <li class="has-sub d-lg-none ">
-                                            <a href="/panel/"><i class="fa fa-lock"></i> Administration</a>
+                                            <a href="/panel/"><i class="fa fa-lock"></i> {% trans 'Administration' %}</a>
                                         </li>
                                         <li class="has-sub d-lg-none ">
-                                            <a href="/logout/"><i class="fa fa-sign-out"></i> Sign out</a>
+                                            <a href="/logout/"><i class="fa fa-sign-out"></i> {% trans 'Sign out' %}</a>
                                         </li>
                                         {% if sesion_anterior %}
                                             <li class="has-sub d-lg-none ">
                                                 <a href="/seguridad/regresar-sesion/?path={{ request.path }}">
-                                                    <i class="fa fa-user"></i> Return to my session</a>
+                                                    <i class="fa fa-user"></i> {% trans 'Return to my session' %}</a>
                                             </li>
                                         {% endif %}
                                     {% endif %}
                                     <li class="has-sub ">
-                                        <a href="/"> Home</a>
+                                        <a href="/"> {% trans 'Home' %}</a>
                                     </li>
                                     <li class="has-sub">
-                                        <a href="{% if request.path == '/' %}/#aboutus{% else %}/{% endif %}"> About us </a>
+                                        <a href="{% if request.path == '/' or request.path == '/'|add:LANGUAGE_CODE|add:'/' %}/{{ LANGUAGE_CODE }}/#aboutus{% else %}/{{ LANGUAGE_CODE }}/{% endif %}">
+                                            {% trans 'About us' %}
+                                        </a>
+                                    </li>
+                                    <li class="has-sub">
+                                        <a href="{% if request.path == '/' or request.path == '/'|add:LANGUAGE_CODE|add:'/' %}/{{ LANGUAGE_CODE }}/#schedule{% else %}/{{ LANGUAGE_CODE }}/{% endif %}">
+                                            {% trans 'Calendar' %}
+                                        </a>
+                                    </li>
+                                    <li class="has-sub">
+                                        <a href="{% if request.path == '/' or request.path == '/'|add:LANGUAGE_CODE|add:'/' %}/{{ LANGUAGE_CODE }}/#register{% else %}/{{ LANGUAGE_CODE }}/{% endif %}">
+                                            {% trans 'Prices' %}
+                                        </a>
                                     </li>
                                     <li class="has-sub ">
-                                        <a href="{% if request.path == '/' %}/#schedule{% else %}/{% endif %}"> Calendar</a>
+                                        <a href="/members"> {% trans 'Members' %}</a>
                                     </li>
                                     <li class="has-sub ">
-                                        <a href="{% if request.path == '/' %}/#register{% else %}/{% endif %}"> Prices</a>
-                                    </li>
-                                    <li class="has-sub ">
-                                        <a href="/members"> Members</a>
-                                    </li>
-                                    <li class="has-sub ">
-                                        <a href="/previous-events">Previous Events</a>
+                                        <a href="/previous-events">{% trans 'Previous Events' %}</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -99,25 +123,25 @@
                     <div class="col-xl-3 d-flex justify-content-end align-items-center">
                         {% if not request.user.is_authenticated %}
                             <div class="header-btn second-header-btn d-none d-xl-block">
-                                <a href="/login/" class="btn">Login</a>
+                                <a href="/login/" class="btn">{% trans 'Login' %}</a>
                             </div>
                         {% else %}
                             <div class="main-menu text-right text-xl-center">
                                 <nav id="mobile-menu">
                                     <ul>
                                         <li class="active has-sub">
-                                            <a href="javascript:void(0)">Hello, {{ request.user.primernombre }} <i
+                                            <a href="javascript:void(0)">{% trans 'Hello' %}, {{ request.user.primernombre }} <i
                                                     class="fa fa-chevron-down"></i></a>
                                             <ul>
                                                 {% if request.user.get_perfil_adm %}
-                                                    <li><a href="/panel/"><i class="fa fa-lock"></i> Administration</a>
+                                                    <li><a href="/panel/"><i class="fa fa-lock"></i> {% trans 'Administration' %}</a>
                                                     </li>
                                                 {% endif %}
-                                                <li><a href="/logout/"><i class="fa fa-sign-out"></i> Sign out</a>
+                                                <li><a href="/logout/"><i class="fa fa-sign-out"></i> {% trans 'Sign out' %}</a>
                                                 </li>
                                                 {% if sesion_anterior %}
                                                     <li><a href="/seguridad/regresar-sesion/?path={{ request.path }}">
-                                                        <i class="fa fa-user"></i> Return to my session</a></li>
+                                                        <i class="fa fa-user"></i> {% trans 'Return to my session' %}</a></li>
                                                 {% endif %}
                                             </ul>
                                         </li>
@@ -128,19 +152,35 @@
 
                         <!-- Botón de idioma con dropdown -->
                         <div class="dropdown ml-3 d-none d-xl-block">
-                            <button class="btn btn-light dropdown-toggle d-flex align-items-center text-dark" style="padding: 18px;" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/static/images/english.png" alt="ES" width="20" height="15" class="mr-1"> EN
+                            <button class="btn btn-light dropdown-toggle d-flex align-items-center text-dark"
+                                    style="padding: 18px;"
+                                    type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if LANGUAGE_CODE == "es" %}
+                                    <img src="/static/images/spanish.webp" alt="ES" width="20" height="15" class="mr-1"> {% trans 'Español' %}
+                                {% else %}
+                                    <img src="/static/images/english.png" alt="EN" width="20" height="15" class="mr-1"> {% trans 'English' %}
+                                {% endif %}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center text-dark" href="/es/">
-                                        <img src="/static/images/spanish.webp" alt="ES" width="20" height="15" class="mr-1"> Spanish
-                                    </a>
+                                    <form action="/set-language/" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+                                        <input type="hidden" name="language" value="es">
+                                        <button type="submit" class="dropdown-item d-flex align-items-center text-dark" style="cursor: pointer">
+                                            <img src="/static/images/spanish.webp" alt="ES" width="20" height="15" class="mr-1"> {% trans 'Spanish' %}
+                                        </button>
+                                    </form>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center text-dark" href="/">
-                                        <img src="/static/images/english.png" alt="EN" width="20" height="15" class="mr-1"> English
-                                    </a>
+                                    <form action="/set-language/" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+                                        <input type="hidden" name="language" value="en">
+                                        <button type="submit" class="dropdown-item d-flex align-items-center text-dark" style="cursor: pointer">
+                                            <img src="/static/images/english.png" alt="EN" width="20" height="15" class="mr-1"> {% trans 'English' %}
+                                        </button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>

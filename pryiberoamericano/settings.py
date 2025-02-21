@@ -86,6 +86,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Middleware necesario para cambiar idioma}
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -170,7 +171,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_URL = '/autenticacion/login/'
 
-LANGUAGE_CODE = 'es-ec'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'America/Guayaquil'
 
@@ -179,6 +180,15 @@ USE_I18N = True
 USE_L10N = True
 
 # USE_TZ = True
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+LANGUAGES = (
+    ('es', 'Spanish'),
+    ('en', 'English'),
+)
 
 AUTH_USER_MODEL = "autenticacion.Usuario"
 
@@ -261,11 +271,3 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-#
-# LOCALE_PATHS = (
-#     os.path.join(BASE_DIR, 'locale'),
-# )
-# LANGUAGES = (
-#     ('es', 'Spanish'),
-#     ('en', 'English'),
-# )

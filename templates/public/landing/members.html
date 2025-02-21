@@ -1,5 +1,5 @@
 {% extends 'public/base.html' %}
-
+{% load i18n %}
 {% block head %}
     <style>
         :root {
@@ -397,12 +397,12 @@
     <div id="schedule" class="event fix pt-120 pb-120">
         <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
              data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
-             data-paroller-direction="horizontal"><h2>Members</h2></div>
+             data-paroller-direction="horizontal"><h2>{% trans 'Members' %}</h2></div>
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8">
                 <div class="section-title text-center mb-80">
                     <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                          data-delay=".2s">Members</span>
+                          data-delay=".2s">{% trans 'Members' %}</span>
                     <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated" data-delay=".2s"></h2>
                 </div>
             </div>
@@ -415,14 +415,14 @@
                 <div class="col-lg-12 mb-3">
                     <div class="d-flex flex-wrap justify-content-end" style="gap: 10px">
                         {% for l in committes %}
-                            <a href="#comite_{{ l.id }}" class="btn btn-custom btn-sm">{{ l.name }}</a>
+                            <a href="#comite_{{ l.id }}" class="btn btn-custom btn-sm">{{ l.get_trans_name }}</a>
                         {% endfor %}
                     </div>
                 </div>
             </div>
 
                 {% for l in committes %}
-                    <div id="comite_{{ l.id }}"><h2 class="text-center">{{ l.name }}</h2></div>
+                    <div id="comite_{{ l.id }}"><h2 class="text-center">{{ l.get_trans_name }}</h2></div>
             <div class="row">
                     {% for member in l.get_members_all %}
                     <div class="col-lg-4 col-md-6 wow fadeInDown animated" data-animation="fadeInUp animated"
@@ -433,8 +433,8 @@
                                 </div>
                                 <div class="team-info">
                                     <h5>{{ member.name }}</h5>
-                                    <strong>{{ member.rol }}</strong><br>
-                                    <span>{{ member.description_rol }}</span>
+                                    <strong>{{ member.get_trans_rol }}</strong><br>
+                                    <span>{{ member.get_trans_description_rol }}</span>
                                     {% if member.degree %}<br><span>{{ member.degree }}</span>{% else %}{% endif %}
                                 </div>
                             </div>

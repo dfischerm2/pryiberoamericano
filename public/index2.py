@@ -16,10 +16,11 @@ from core.funciones import addData, mi_paginador, get_decrypt, get_client_ip
 from core.notificacion_config import enviar_not_push
 from public.models import VisitaEntorno
 from seguridad.models import *
+from django.utils.translation import gettext as _
 
 def index2(request):
     data = {
-        'titulo': 'Home',
+        'titulo': _('Home'),
         'ruta': request.path,
         'fecha': datetime.now(),
     }

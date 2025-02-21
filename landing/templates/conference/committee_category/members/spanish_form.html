@@ -1,0 +1,103 @@
+<style>
+    .nav-tabs .nav-link.active {
+        background-color: #e0e0e0;  /* Gris claro */
+        color: #000;  /* Texto negro */
+        border-color: #ddd;  /* Borde */
+        border-radius: 5px 5px 0 0; /* Bordes redondeados arriba */
+    }
+
+    /* Hover sobre las pestañas */
+    .nav-tabs .nav-link:hover {
+        background-color: #f5f5f5;  /* Gris más claro al pasar el mouse */
+        color: #000;
+    }
+</style>
+<div class="row">
+    <input type="hidden" value="{{ filtro.id }}" name="pk">
+    <input type="hidden" name="action" value="{{ action }}"/>
+
+    <!-- Tabs para cambiar entre EN y ES -->
+    <div class="col-12">
+        <ul class="nav nav-tabs justify-content-end" id="formTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active rounded" id="en-tab" data-toggle="tab" href="#enForm" role="tab"
+                   aria-controls="enForm" aria-selected="true">EN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded" id="es-tab" data-toggle="tab" href="#esForm" role="tab"
+                   aria-controls="esForm" aria-selected="false">ES</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-12">
+        <div class="tab-content" id="formTabsContent">
+            <!-- Formulario en inglés -->
+            <div class="tab-pane fade show active" id="enForm" role="tabpanel" aria-labelledby="en-tab">
+                <div class="row">
+                    {% for field in form %}
+                        {% if field.is_hidden %}
+                            {{ field }}
+                        {% else %}
+                            <div class="col-lg-{{ field.field.widget.attrs.col }}">
+                                <div class="form-group">
+                                    <label class="form-label" for="id_{{ field.name }}">{{ field.label }}:</label><br>
+                                    {{ field }}
+                                    <div class="invalid-feedback" id="errorMessage{{ field.name }}"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Formulario en español -->
+            <div class="tab-pane fade" id="esForm" role="tabpanel" aria-labelledby="es-tab">
+                <div class="row">
+                    {% for field in form_esp %}
+                        {% if field.is_hidden %}
+                            {{ field }}
+                        {% else %}
+                            <div class="col-lg-{{ field.field.widget.attrs.col }}">
+                                <div class="form-group">
+                                    <label class="form-label" for="id_{{ field.name }}">{{ field.label }}:</label><br>
+                                    {{ field }}
+                                    <div class="invalid-feedback" id="errorMessage{{ field.name }}"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ln_solid"></div>
+
+<!-- Botones -->
+<div class="form-group">
+    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-offset-3 text-right">
+        <a href="javascript:void(0);" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close"></i>
+            Cancelar</a>
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-save"></i> Guardar
+        </button>
+    </div>
+</div>
+
+{{ form.media }}
+<script>
+    $(document).ready(function () {
+        $.fn.select2.defaults.set('language', 'es');
+        $('.jselect2').select2();
+        $('.dropify').dropify({
+            messages: {
+                default: 'Arrastre y suelte un archivo o haga clic aquí.',
+                replace: 'Arrastre y suelte un archivo o haga clic aquí.',
+                remove: 'Eliminar',
+            },
+            imgFileExtensions: ["jpg", "jpeg", "png", "tiff", "jfif", "svg"]
+        });
+    });
+</script>

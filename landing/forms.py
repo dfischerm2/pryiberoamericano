@@ -34,6 +34,24 @@ class TopicCategoryForm(ModelFormBase):
                 self.fields[k].widget.attrs['disabled'] = 'disabled'
 
 
+class TopicCategoryFormESP(ModelFormBase):
+    class Meta:
+        model = TopicCategory
+        fields = ('name_esp', 'description_esp',)
+
+    def __init__(self, *args, **kwargs):
+        ver = kwargs.pop('ver', False)
+        self.editando = 'instance' in kwargs
+        super(TopicCategoryFormESP, self).__init__(*args, **kwargs)
+        for k, v in self.fields.items():
+            self.fields[k].widget.attrs['class'] = "form-control"
+            self.fields[k].widget.attrs['col'] = "6"
+            if k in ('description_esp', 'name_esp',):
+                self.fields[k].widget.attrs['col'] = "12"
+            if ver:
+                self.fields[k].widget.attrs['disabled'] = 'disabled'
+
+
 class TopicForm(ModelFormBase):
     class Meta:
         model = Topic
@@ -48,6 +66,19 @@ class TopicForm(ModelFormBase):
                 self.fields[k].widget.attrs['class'] = "jselect2"
             if ver:
                 self.fields[k].widget.attrs['disabled'] = 'disabled'
+
+class TopicFormESP(ModelFormBase):
+    class Meta:
+        model = Topic
+        fields = ('name_esp',)
+
+    def __init__(self, *args, **kwargs):
+        ver = kwargs.pop('ver', False)
+        self.editando = 'instance' in kwargs
+        super(TopicFormESP, self).__init__(*args, **kwargs)
+        for k, v in self.fields.items():
+            self.fields[k].widget.attrs['class'] = "form-control"
+            self.fields[k].widget.attrs['col'] = "6"
 
 
 class ScheduleConferenceForm(ModelFormBase):
@@ -83,6 +114,25 @@ class DetailScheduleConferenceForm(ModelFormBase):
             if k in ('description', 'title',):
                 self.fields[k].widget.attrs['col'] = "12"
             if k in ('description',):
+                self.fields[k].widget.attrs['class'] = "summernote"
+            if ver:
+                self.fields[k].widget.attrs['disabled'] = 'disabled'
+
+
+class DetailScheduleConferenceFormESP(ModelFormBase):
+    class Meta:
+        model = DetailScheduleConference
+        fields = ('description_esp',)
+
+    def __init__(self, *args, **kwargs):
+        ver = kwargs.pop('ver', False)
+        self.editando = 'instance' in kwargs
+        super(DetailScheduleConferenceFormESP, self).__init__(*args, **kwargs)
+        for k, v in self.fields.items():
+            self.fields[k].widget.attrs['class'] = "form-control"
+            self.fields[k].widget.attrs['col'] = "6"
+            if k in ('description_esp',):
+                self.fields[k].widget.attrs['col'] = "12"
                 self.fields[k].widget.attrs['class'] = "summernote"
             if ver:
                 self.fields[k].widget.attrs['disabled'] = 'disabled'
@@ -127,6 +177,21 @@ class CommitteeMemberForm(ModelFormBase):
                 self.fields[k].widget.attrs['col'] = "6"
             if k in('photo'):
                 self.fields[k].widget.attrs['class'] = 'dropify'
+            if ver:
+                self.fields[k].widget.attrs['disabled'] = 'disabled'
+
+
+class CommitteeMemberFormESP(ModelFormBase):
+    class Meta:
+        model = CommitteeMember
+        fields = ('rol_esp', 'description_rol_esp',)
+
+    def __init__(self, *args, **kwargs):
+        ver = kwargs.pop('ver', False)
+        self.editando = 'instance' in kwargs
+        super(CommitteeMemberFormESP, self).__init__(*args, **kwargs)
+        for k, v in self.fields.items():
+            self.fields[k].widget.attrs['col'] = "12"
             if ver:
                 self.fields[k].widget.attrs['disabled'] = 'disabled'
 

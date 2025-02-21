@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <footer class="footer-bg footer-p" style="background-image:url(/static/images/landing/footer.jpg)">
     <!-- Skyline Background -->
     <div class="footer-skyline">
@@ -18,11 +20,13 @@
 
                 <!-- Event Info -->
                 <div class="footer-info mb-4">
-                    <h4 class="text-white">IX Ibero-American Biometrics Meeting 2025</h4>
+                    <h4 class="text-white">{% trans 'IX Ibero-American Biometrics Meeting 2025' %}</h4>
                     {% if conference %}
-                        <p class="text-white">{{ conference.date_str|default:'' }} • {{ conference.location_str|default:'' }}</p>
+                        <p class="text-white">
+                        {{ conference.get_trans_date_str }} • {{ conference.location_str|default:'' }}
+                        </p>
                     {% else %}
-                        <p class="text-white">9 - 11 July, 2025 • Quito, Ecuador</p>
+                        <p class="text-white">{% trans '9 - 11 July, 2025 • Quito, Ecuador' %}</p>
                     {% endif %}
                 </div>
 
@@ -63,7 +67,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="copyright-text text-center text-white">
-                        <p>© 2025 State University of Milagro. All rights reserved.</p>
+                        <p>{% trans '© 2025 State University of Milagro. All rights reserved.' %}</p>
                     </div>
                 </div>
             </div>

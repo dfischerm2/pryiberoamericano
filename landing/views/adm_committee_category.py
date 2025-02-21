@@ -8,7 +8,7 @@ from django.template.loader import get_template
 from django.utils.dateformat import DateFormat
 from django.utils.decorators import method_decorator
 from landing.models import CommitteeCategory, CommitteeMember
-from landing.forms import CommitteeCategoryForm, CommitteeMemberForm
+from landing.forms import CommitteeCategoryForm, CommitteeMemberForm, CommitteeMemberFormESP
 from core.funciones_adicionales import salva_logs, customgetattr
 from core.custom_forms import FormError
 from core.funciones import secure_module, log, paginador, addData, redirectAfterPostGet
@@ -85,26 +85,37 @@ def committeeCategoryView(request):
                 if action == 'addmember':
                     filtro = model.objects.get(pk=int(request.POST['pk']))
                     form = CommitteeMemberForm(request.POST, request.FILES, request=request)
-                    if form.is_valid():
-                        form.instance.category = filtro
-                        form.save()
-                        log(f"Registró un nuevo miembro del comité {form.instance.name}", request, "add",
-                            obj=form.instance.id)
-                        messages.success(request, "Miembro del comité agregado exitosamente")
-                        res_json.append({'error': False, "reload": True})
-                    else:
+                    form_esp = CommitteeMemberFormESP(request.POST, request.FILES, request=request)
+                    if not form.is_valid():
                         raise FormError(form)
+                    if not form_esp.is_valid():
+                        raise FormError(form_esp)
+                    form.instance.category = filtro
+                    form.instance.description_rol_esp = form_esp.cleaned_data['description_rol_esp']
+                    form.instance.rol_esp = form_esp.cleaned_data['rol_esp']
+                    form.save()
+                    form_esp.save()
+                    log(f"Registró un nuevo miembro del comité {form.instance.name}", request, "add",
+                        obj=form.instance.id)
+                    messages.success(request, "Miembro del comité agregado exitosamente")
+                    res_json.append({'error': False, "reload": True})
 
                 elif action == 'changemember':
                     filtro = CommitteeMember.objects.get(pk=int(request.POST['pk']))
                     form = CommitteeMemberForm(request.POST, request.FILES, instance=filtro, request=request)
-                    if form.is_valid() and filtro:
-                        form.save()
-                        log(f"Editó el miembro del comité {filtro.name}", request, "change", obj=filtro.id)
-                        messages.success(request, "Miembro del comité modificado con éxito")
-                        res_json.append({'error': False, "reload": True})
-                    else:
+                    form_esp = CommitteeMemberFormESP(request.POST, request.FILES, instance=filtro, request=request)
+                    if not form.is_valid():
                         raise FormError(form)
+                    if not form_esp.is_valid():
+                        raise FormError(form_esp)
+
+                    form.instance.description_rol_esp = form_esp.cleaned_data['description_rol_esp']
+                    form.instance.rol_esp = form_esp.cleaned_data['rol_esp']
+                    form.save()
+                    form_esp.save()
+                    log(f"Editó el miembro del comité {filtro.name}", request, "change", obj=filtro.id)
+                    messages.success(request, "Miembro del comité modificado con éxito")
+                    res_json.append({'error': False, "reload": True})
 
                 elif action == 'deletemember':
                     filtro = CommitteeMember.objects.get(pk=int(request.POST['id']))
@@ -172,14 +183,16 @@ def committeeCategoryView(request):
             if action == 'addmember':
                 data['filtro'] = model.objects.get(pk=int(request.GET['id']))
                 data["form"] = CommitteeMemberForm()
-                template = get_template("conference/committee_category/members/form.html")
+                data["form_esp"] = CommitteeMemberFormESP()
+                template = get_template("conference/committee_category/members/spanish_form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
             elif action == 'changemember':
                 pk = int(request.GET['id'])
                 data['filtro'] = filtro = CommitteeMember.objects.get(pk=pk)
                 data["form"] = CommitteeMemberForm(instance=filtro)
-                template = get_template("conference/committee_category/members/form.html")
+                data["form_esp"] = CommitteeMemberFormESP(instance=filtro)
+                template = get_template("conference/committee_category/members/spanish_form.html")
                 return JsonResponse({"result": True, 'data': template.render(data)})
 
         # Filtrado y listado

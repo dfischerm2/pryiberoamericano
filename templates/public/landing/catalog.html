@@ -1,5 +1,5 @@
 {% extends 'public/base.html' %}
-
+{% load i18n %}
 {% block head %}
     <style>
         :root {
@@ -370,7 +370,7 @@
     <section id="conferences" class="team-area p-relative pt-120 pb-120 fix">
         <div class="section-t team-t paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
              data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
-             data-paroller-direction="horizontal"><h2>Events</h2></div>
+             data-paroller-direction="horizontal"><h2>{% trans 'Events' %}</h2></div>
         <div class="circal1 item-zoom-inout"></div>
         <div class="circal2 item-zoom-inout"></div>
         <div class="circal3 item-zoom-inout"></div>
@@ -380,9 +380,9 @@
                 <div class="col-xl-6 col-lg-8">
                     <div class="section-title text-center mb-80">
                         <span class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                              data-delay=".2s">Catalog</span>
+                              data-delay=".2s">{% trans 'Catalog' %}</span>
                         <h2 class="wow fadeInUp animated" data-animation="fadeInUp animated"
-                            data-delay=".4s">{% if past_conference.number %}{{ past_conference.number }}{% endif %} {{ past_conference.title }}</h2>
+                            data-delay=".4s">{% if past_conference.number %}{{ past_conference.number }}{% endif %} {{ past_conference.get_trans_title }}</h2>
                     </div>
                 </div>
             </div>
@@ -412,8 +412,7 @@
                     <div class="col-lg-6 text-center">
                         <div class="p-4 rounded shadow-lg wow fadeInUp" data-animation="fadeInUp"
                              data-delay=".6s">
-                            <p class="mb-0" style="font-style: normal">There is no photos available, come back
-                                soon!.</p>
+                            <p class="mb-0" style="font-style: normal">{% trans "There is no photos available, come back soon!." %}</p>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,8 @@ from area_geografica.urls import area_geografica_urls
 from core.funciones import db_table_exists
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import set_language
 from django.views.generic import RedirectView
 from django.views.static import serve
 
@@ -20,6 +22,7 @@ from pedidos.urls import pedidos_urls
 from pryiberoamericano.view_clearsitedata import clearSiteDataView
 from pryiberoamericano import settings
 from pryiberoamericano.view_redirect import redirectView, redirectToUrlView
+from public.check_language import check_language
 from seguridad.models import Configuracion, Modulo
 from seguridad.urls import seguridad_urls
 from seguridad.view_index import index
@@ -80,10 +83,14 @@ urls_sistema = (
         "vista": None
     },
 )
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('set-language/', set_language, name='set_language'),
+    path('check-language/', check_language, name='check_language'),
     path('panel/', index),
+    path('admin/', admin.site.urls),
+]
+urlpatterns += i18n_patterns (
+
     path('perfilpanel/', perfilView),
     path('consultas/', consultas, name='Consultas API'),
     path('ajaxrequest/', ConsultasAjax.as_view(), name='Ajax Consultas v1'),
@@ -96,8 +103,7 @@ urlpatterns = [
     # select2
     path("select2/", include("django_select2.urls")),
     path('', include('public.urls')),
-    path('es/', include('es.urls')),
-]
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

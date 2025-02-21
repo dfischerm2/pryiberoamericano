@@ -8,28 +8,23 @@ from .view_changepass import changepass
 from .view_conferences import conferences
 from .view_members import members
 
-#from .view_pago import pagoView
 from .view_registro import registerView
 from .view_restaurar import restaurar
 from .view_login import login_tienda, logout_tienda
 from .view_recordarusername import recordarusername
 from .view_perfil import perfil
-
-
+app_name = "public"
 urlpatterns = [
-    path('original/', index),
-    path('', index2),
-    path('members/', members),
-path('previous-events/', conferences),
-    re_path(r'^acercade/', acercade),
-    #path('pago/<str:pedido_id>/', pagoView),
-    re_path(r'^perfil/', perfil),
-    # url(r'^register/', registro),
-    re_path(r'^login/', login_tienda),
-    re_path(r'^logout/', logout_tienda),
-    re_path(r'^restorepass/', restaurar),
-    re_path(r'^restoreusername/', recordarusername),
-    re_path(r'^changepass/', changepass),
-    re_path(r'^register/', registerView),
-
+    path("", index2, name="home"),
+    path("original/", index, name="home2"),
+    path("members/", members, name="members"),
+    path("previous-events/", conferences, name="previous_events"),
+    path("acercade/", acercade, name="acercade"),
+    path("perfil/", perfil, name="perfil"),
+    path("login/", login_tienda, name="login"),
+    path("logout/", logout_tienda, name="logout"),
+    path("restorepass/", restaurar, name="restorepass"),
+    path("restoreusername/", recordarusername, name="restoreusername"),
+    path("changepass/", changepass, name="changepass"),
+    path("register/", registerView, name="register"),
 ]

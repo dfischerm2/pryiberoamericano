@@ -1,5 +1,6 @@
 from django.db import models
 from core.custom_models import ModeloBase
+from django.utils.translation import gettext_lazy as _, get_language
 
 
 # Create your models here.
@@ -14,6 +15,15 @@ class Conference(ModeloBase):
     location_str = models.CharField(blank=True, null=True, max_length=200, verbose_name='Ubicación')
     image_principal = models.ImageField(blank=True, null=True, upload_to='conference/images/', verbose_name='Imagen Principal')
     active = models.BooleanField(default=True, verbose_name='Activo')
+
+    def get_trans_title(self):
+        return _(self.title)
+
+    def get_trans_subtitle(self):
+        return _(self.subtitle)
+
+    def get_trans_date_str(self):
+        return _(self.date_str)
 
     def get_items(self):
         return self.itemdetailconference_set.filter(status=True).order_by('-id')
@@ -46,6 +56,9 @@ class ItemDetailConference(ModeloBase):
     principal_text = models.CharField(blank=True, null=True, verbose_name='Texto Principal')
     secondary_text = models.CharField(blank=True, null=True, verbose_name='Texto Secundario')
     color = models.CharField(default='', blank=True, null=True, max_length=200, verbose_name=u"Color")
+
+    def get_trans_secondary_text(self):
+        return _(self.secondary_text)
 
     def __str__(self):
         return f'{self.principal_text} - {self.secondary_text}'
@@ -85,6 +98,9 @@ class CommitteeCategory(ModeloBase):
     active = models.BooleanField(default=True, verbose_name='Activo')
     public = models.BooleanField(default=True, verbose_name='Publicado en landing')
 
+    def get_trans_name(self):
+        return _(self.name)
+
     def get_members_all(self):
         return self.members.filter(status=True).order_by('order')
 
@@ -116,6 +132,22 @@ class CommitteeMember(ModeloBase):
     photo = models.ImageField(upload_to='committee_members/', null=True, blank=True)
     linkedin = models.URLField(blank=True, null=True)
     public = models.BooleanField(default=True, verbose_name='Publicado en landing')
+    rol_esp = models.CharField(blank=True, null=True, max_length=500, verbose_name='Rol Español')
+    description_rol_esp = models.TextField(blank=True, null=True, verbose_name='Descripción del Rol Español')
+
+    def get_trans_rol(self):
+        language = get_language()
+        if language == 'es':
+            return self.rol_esp or _(self.rol)
+        else:
+            return _(self.rol)
+
+    def get_trans_description_rol(self):
+        language = get_language()
+        if language == 'es':
+            return self.description_rol_esp or _(self.description_rol)
+        else:
+            return _(self.description_rol)
 
     def __str__(self):
         return self.name
@@ -132,6 +164,22 @@ class TopicCategory(ModeloBase):
     name = models.CharField(blank=True, null=True, max_length=200, verbose_name='Nombre')
     description = models.TextField(null=True, blank=True, verbose_name='Descripción')
     public = models.BooleanField(default=True , verbose_name='Publicado en landing')
+    name_esp = models.CharField(blank=True, null=True, max_length=200, verbose_name='Nombre Español')
+    description_esp = models.TextField(blank=True, null=True, verbose_name='Descripción Español')
+
+    def get_trans_name(self):
+        language = get_language()
+        if language == 'es':
+            return self.name_esp or _(self.name)
+        else:
+            return _(self.name)
+
+    def get_trans_description(self):
+        language = get_language()
+        if language == 'es':
+            return self.description_esp or _(self.description)
+        else:
+            return _(self.description)
 
     def get_topics(self):
         return self.topics.filter(status=True, public=True)
@@ -153,6 +201,14 @@ class Topic(ModeloBase):
     category = models.ForeignKey(TopicCategory, related_name='topics', on_delete=models.CASCADE, verbose_name='Categoría')
     name = models.CharField(blank=True, null=True, max_length=200, verbose_name='Nombre')
     public = models.BooleanField(default=True, verbose_name='Publicado en landing')
+    name_esp = models.CharField(blank=True, null=True, max_length=200, verbose_name='Nombre Español')
+
+    def get_trans_name(self):
+        language = get_language()
+        if language == 'es':
+            return self.name_esp or _(self.name)
+        else:
+            return _(self.name)
 
     def __str__(self):
         return self.name
@@ -170,6 +226,12 @@ class ScheduleConference(ModeloBase):
     date_start = models.DateField(blank=True, null=True, verbose_name='Fecha de Inicio')
     date_end = models.DateField(blank=True, null=True, verbose_name='Fecha de Fin')
     date_str = models.CharField(blank=True, null=True, max_length=200, verbose_name='Fecha en Cadena')
+
+    def get_trans_date_str(self):
+        return _(self.date_str)
+
+    def get_trans_title(self):
+        return _(self.title)
 
     def get_details(self):
         return self.details.filter(status=True)
@@ -189,6 +251,17 @@ class DetailScheduleConference(ModeloBase):
     time_start = models.TimeField(blank=True, null=True, verbose_name='Hora de Inicio')
     time_end = models.TimeField(blank=True, null=True, verbose_name='Hora de Fin')
     description = models.TextField(blank=True, null=True, verbose_name='Descripción')
+    description_esp = models.TextField(blank=True, null=True, verbose_name='Descripción Español')
+
+    def get_trans_title(self):
+        return _(self.title)
+
+    def get_trans_description(self):
+        language = get_language()
+        if language == 'es':
+            return self.description_esp or _(self.description)
+        else:
+            return _(self.description)
 
     def __str__(self):
         return self.title
@@ -200,9 +273,9 @@ class DetailScheduleConference(ModeloBase):
 
 
 ROLES_FEE_CHOICE = (
-    (1, 'Speaker'),
-    (2, 'Attendees'),
-    (3, 'Student'),
+    (1, _('Speaker')),
+    (2, _('Attendees')),
+    (3, _('Student')),
 )
 
 
@@ -236,6 +309,9 @@ class DetailConferenceFee(ModeloBase):
     order = models.IntegerField(blank=True, null=True, verbose_name='Orden')
     description = models.CharField(blank=True, null=True, max_length=200, verbose_name='Descripción')
 
+    def get_trans_description(self):
+        return _(self.description)
+
     def __str__(self):
         return self.description
 
@@ -251,6 +327,12 @@ class ImportantDates(ModeloBase):
     icon = models.CharField(max_length=200, null=True, blank=True, verbose_name='Icono')
     title = models.CharField(blank=True, null=True, max_length=200, verbose_name='Titulo')
     description = models.TextField(null=True, blank=True, verbose_name='Descripción')
+
+    def get_trans_title(self):
+        return _(self.title)
+
+    def get_trans_description(self):
+        return _(self.description)
 
     def __str__(self):
         return f'{self.title} - {self.description}'
